@@ -1,0 +1,22 @@
+page-feed {
+    .toolbar-background{
+        background: none !important;
+        border: none !important;
+        box-shadow: 0 !important;
+    }
+
+    .header-md::after, .header-ios::after{
+        background: none !important;
+    }
+    .icon-md, .ion-ios-menu-outline{
+        color: #ff6633 !important;
+    }
+
+    .full-custom-btn {
+        margin-bottom: 0;
+        text-transform: uppercase;
+        font-weight: 900;
+        background: #ff6633;
+        height: 5rem !important;
+    }
+}

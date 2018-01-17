@@ -1,3 +1,44 @@
 page-home {
-
+    ion-content {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .full-custom-btn {
+        margin-bottom: 0;
+        text-transform: uppercase;
+        font-weight: 900;
+        background: #ff6633;
+    }
+    .custom-footer {
+        h3 {
+            color: #fff;
+            text-align: center;
+            font-weight: 300;
+            font-size: 2rem;
+        }
+    }
+    .custom-row {
+        button {
+            background: #ff6633 !important;
+            text-transform: capitalize;
+        }
+        .first-element {
+            padding-left: 0 !important;
+        }
+        .last-element {
+            padding-right: 0 !important;
+        }
+    }
+    .decorated-title {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #fff;
+        line-height: 0.1em;
+        margin: 10px 0 20px;
+        span {
+            background: #F3F5F6;
+            padding: 0 10px;
+        }
+    }
 }

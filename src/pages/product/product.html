@@ -1,0 +1,109 @@
+
+<ion-header>
+
+  <ion-navbar>
+	<ion-title>{{operator_name}} </ion-title>
+	<ion-buttons item-end>
+			<button class="back-btn" click="back()"><ion-icon name="close"></ion-icon></button>		
+	  </ion-buttons>
+  </ion-navbar>
+ 
+</ion-header>
+<ion-content padding>
+		<ion-card>
+				<img src="assets/imgs/gerry-great-adventures.JPG">
+			</ion-card>
+	<ion-row>
+		<ion-col col-10>
+			<h3 class="direction">4501 E Thomas Road (1.2 Miles)</h3>
+		</ion-col>
+		<ion-col col-2 class="right">
+			<img src="assets/imgs/arrow-rigth.png" width="20" height="20">
+		</ion-col>
+		<ion-col col-10>
+			<p class="star">
+				<ion-icon name="star" class="yellow-star"></ion-icon>
+				<ion-icon name="star" class="yellow-star"></ion-icon>
+				<ion-icon name="star" class="yellow-star"></ion-icon>
+				<ion-icon name="star" class="gray-star"></ion-icon>
+				<ion-icon name="star" class="gray-star"></ion-icon>
+				(3856)
+			</p>
+		</ion-col>
+		<ion-col col-2 class="right" *ngIf="enable">
+			<button *ngIf="!liked" (click)="addToFav()" class="transparent"><ion-icon name="heart-outline" md="md-heart-outline" class="gray-heart"></ion-icon></button>
+			<button *ngIf="liked"  class="transparent"><ion-icon name="ios-heart"></ion-icon></button>
+
+		</ion-col>
+		<ion-col col-12>
+			<div class="separate-line"></div>
+		</ion-col>
+		<ion-col col-8>
+			<h3 class="dark">{{productName}}</h3>
+		</ion-col>
+		<ion-col col-4 class="center">
+			<h3 class="dark"># Reserve</h3>
+		</ion-col>
+		<ion-col col-8>
+			<h3 class="light">Daily (24 Hours)<br>USD {{price}}</h3>
+		</ion-col>
+		<ion-col col-4 class="center">
+			 <button class="transparent" (click)="timesCount()"><ion-icon name="add"></ion-icon></button><span class="square">{{reserveCount}}</span><button (click)="dicreaseCount()" class="transparent"><ion-icon name="remove"></ion-icon></button>
+		</ion-col>
+		<ion-col col-12>
+			<div class="separate-line"></div>
+		</ion-col>
+		<ion-col col-12>
+			<h3 class="dark-light">Pick activity {{rowText}} date</h3>
+		</ion-col>
+
+		 <ion-row (click)="onButtonGroupClick($event)" class="date-row" >
+
+			<!-- <button col-4 class="orange-border orange-bg" *ngIf="i == 0" >
+       			{{date.day_name}} <br> {{date.date}}
+			  </button> -->
+			  
+			  <button col-4 [class]="firstColor" [disabled]="disableFirst">
+					{{dates[0]?.day_name}} <br> {{dates[0]?.date}}
+			   </button>
+			   <button col-4 (click)="secondTab()" [disabled]="disable" [class]="secondColor">
+					{{dates[1]?.day_name}} <br> {{dates[1]?.date}}
+			   </button>
+			   <button col-4 class="orange-border" [disabled]="disable" (click)="thirdTab()">
+					{{dates[2]?.day_name}} <br> {{dates[2]?.date}}
+			   </button>
+
+			   <!-- <button col-4 class="orange-border" *ngIf="i == 2" >
+					{{date.day_name}} <br> {{date.date}}
+			   </button> -->
+			
+			
+		</ion-row> 
+		<ion-col col-12>
+			<h3 class="dark-light">Pick activity {{rowText}} time</h3>
+		</ion-col>
+		<ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableFirst">
+			<button class="orange-border time" *ngFor="let hour of dates[0]?.hours" >
+				{{hour.hour}}
+			</button>
+		
+    </ion-row>
+    <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableSecond">
+			<button class="orange-border time" *ngFor="let hour of dates[1]?.hours">
+				{{hour.hour}}
+			</button>
+		
+    </ion-row>
+    <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableThird">
+			<button class="orange-border time" *ngFor="let hour of dates[2]?.hours">
+				{{hour.hour}}
+			</button>
+		
+		</ion-row>
+	</ion-row>
+</ion-content>
+<ion-footer>
+    <button class="full-custom-btn" ion-button clear (click)="enableTabs()">
+       Continue  
+      </button>
+</ion-footer>

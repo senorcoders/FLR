@@ -14,3 +14,36 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.center {
+    text-align: center;
+    h2 {
+        font-weight: 400;
+    }
+    .menu-btn-transparent {
+        height: 30px;
+        margin-bottom: 30px;
+        color: red;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.3rem;
+    }
+}
+
+.menu-list {
+    border-top: 0.5px solid rgb(194, 183, 183);
+    ion-icon {
+        color: gray;
+    }
+    .item-inner {
+        border: none !important;
+    }
+}
+
+.menu-full-custom-btn {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+    background: #ff6633;
+    height: 5rem !important;
+    
+}

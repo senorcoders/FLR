@@ -1,1 +1,59 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+
+
+    <ion-content padding>
+        <ion-row style="justify-content:center;">
+            <ion-col col-12 class="center">
+                <img src="{{photo_url}}" alt="" style="border-radius: 50%;">
+            </ion-col>
+            <ion-col col-12 class="center">
+                <h2>{{username}}</h2>
+                <button class="menu-btn-transparent" ion-button clear (click)="goToEditProfile()">Edit Profile</button>
+            </ion-col>
+
+
+        </ion-row>
+        <!-- <ion-list>
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+              {{p.title}}
+            </button>
+        </ion-list> -->
+        <ion-list class="menu-list">
+            <ion-item>
+                <ion-icon name="ios-people" item-start></ion-icon>
+                Find Activity
+            </ion-item>
+            <ion-item>
+                <ion-icon name="ios-chatbubbles" item-start></ion-icon>
+                Reservation
+            </ion-item>
+            <ion-item>
+                <ion-icon name="ios-heart" item-start></ion-icon>
+                Payments
+            </ion-item>
+            <ion-item (click)="goToFavorites()">
+                <ion-icon name="ios-star" item-start></ion-icon>
+                Favorites
+            </ion-item>
+            <ion-item>
+                <ion-icon name="ios-cog-outline" item-start></ion-icon>
+                Itinerary
+            </ion-item>
+            <ion-item (click)="goToReview()">
+                <ion-icon name="ios-cog-outline" item-start></ion-icon>
+                Reviews
+            </ion-item>
+            <ion-item>
+                <ion-icon name="ios-cog-outline" item-start></ion-icon>
+                Terms &amp; Help
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer>
+        <button class="menu-full-custom-btn" ion-button full>
+                    Log out
+            </button>
+    </ion-footer>
+
+</ion-menu>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
