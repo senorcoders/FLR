@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+      <ion-title>Payment Information <ion-icon name="close"></ion-icon></ion-title>
+  </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-row>
+      <ion-col col-4>
+        <img src="assets/imgs/visa-icon.png" alt="">
+      </ion-col>
+      <ion-col col-4>
+      <img src="assets/imgs/amazon-img.jpg" alt="">
+      </ion-col>
+      <ion-col col-4>
+        <img src="assets/imgs/paypal-img.jpg" alt="">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-input placeholder="NAME ON CARD"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="CARD NUMBER"></ion-input>
+      </ion-item>
+      <ion-col col-8>
+        <ion-item>
+          <ion-input placeholder="EXPIRES (MM/YY)"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-item>
+          <ion-input placeholder="CVV"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-8>
+        <ion-item>
+          <ion-input placeholder="ZIP CODE"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Save Card</ion-label>
+          <ion-checkbox></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>I agree with terms and conditions</ion-label>
+          <ion-checkbox checked="true"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+  <ion-footer>
+      <button class="full-custom-btn" ion-button clear (click)="pay()">
+        PAY &amp; RESERVE
+        </button>
+  </ion-footer>

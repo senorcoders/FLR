@@ -36,7 +36,8 @@ export class MyApp {
     this.httpProvider.hasLoggedIn().then(hasLoggedIn => {
       console.log(hasLoggedIn);
         if(hasLoggedIn){
-          this.rootPage = FeedPage;
+          //this.rootPage = FeedPage;
+          this.nav.setRoot(FeedPage);
           this.httpProvider.getAzureID().then(azure =>{
             this.azure_id = azure;
             console.log(azure);
@@ -70,6 +71,10 @@ export class MyApp {
 
   goToReview(){
     this.nav.push(ReviewPage);
+  }
+
+  goToActivities(){
+    this.nav.push(FeedPage);
   }
 
   getPhotoandUserName(){

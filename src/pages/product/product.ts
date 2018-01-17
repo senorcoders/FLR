@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
+import { ReservationPage } from '../reservation/reservation';
 
 @IonicPage()
 @Component({
@@ -32,15 +33,20 @@ export class ProductPage {
   firstColor:any = 'orange-bg orange-border';
   rowText:string = 'start';
   reserveCount:number = 1;
+  startDate:any;
+  startHour:any;
+  enableContinue:boolean = true;
+  
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private httpProvider: UsersProvider) {
+    private httpProvider: UsersProvider,
+    private alertCtrl: AlertController) {
   }
 
-  ngOnInit(){
-    this.operator_name = this.navParams.get('product').name;
+  ngOnInit(){ 
+    this.operator_name = this.navParams.get('operator');
       this.productName = this.navParams.get('product').name;
       this.price = this.navParams.get('product').price;
       this.productID = this.navParams.get('product').product_id;
@@ -83,7 +89,7 @@ export class ProductPage {
     }
 
   }
-
+ 
   back(){
     this.navCtrl.pop();
   }
@@ -103,6 +109,8 @@ export class ProductPage {
       if (date < 3){
         console.log(array[date]);
        this.dates.push(array[date]);
+      }else{
+        this.startDate = this.dates[0].date;
       }
 
     }
@@ -159,21 +167,26 @@ getLikeStatus(){
     });
 }
 
-secondTab(){
+secondTab(value){
   this.enableFirst = false;
   this.enableThird = false;
   this.enableSecond = true;
+  this.endDate = value;
+  console.log(this.endDate);
 
 }
 
-thirdTab(){
+thirdTab(value){
   this.enableFirst = false;
   this.enableSecond = false;
   this.enableThird = true;
+  this.endDate = value;
+  console.log(this.endDate);
 }
 
 enableTabs(){
-  console.log("clicked");
+  if(this.startHour != null){
+    console.log("clicked");
   this.disable = false;
   this.disableFirst = true;
   this.enableFirst = false;
@@ -181,6 +194,56 @@ enableTabs(){
   this.secondColor = 'orange-bg orange-border';
   this.firstColor = 'orange-border';
   this.rowText = 'end';
+  this.endDate = this.dates[1].date;
+  this.enableContinue = false;
+
+  }else{
+    this.presentAlert("You need to choose a start hour");
+  }
+  
+}
+
+setStartHour(value){
+  this.startHour = value;
+  console.log(this.startHour);
+}
+
+setEndHour(value){
+  this.endHour = value;
+  console.log(this.startHour);
+}
+
+toggleEndDate(value){
+  this.endDate = value;
+  console.log(this.endDate);
+}
+
+presentAlert(message) {
+  let alert = this.alertCtrl.create({
+    title: 'Upsss!!',
+    subTitle: message,
+    buttons: ['Dismiss']
+  });
+  alert.present();
+}
+
+reservate(){
+  if(this.endHour != null){
+    this.navCtrl.push(ReservationPage, {
+      productID: this.productID,
+      operatorName: this.operator_name,
+      productName: this.productName,
+      price: this.price,
+      startDate: this.startDate,
+      startHour: this.startHour,
+      endDate: this.endDate,
+      endHour: this.endHour,
+      reservationCount: this.reserveCount
+    });
+  }else{
+    this.presentAlert("You need to choose a end hour");
+
+  }
 }
 
 }

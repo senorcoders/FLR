@@ -18,6 +18,8 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 import { ReviewPage } from '../pages/review/review';
 import { SingleReviewPage } from '../pages/single-review/single-review';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { ReservationPage } from '../pages/reservation/reservation';
+import { PaymentPage } from '../pages/payment/payment';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     EditProfilePage,
     FavoritesPage,
     ReviewPage,
-    SingleReviewPage
+    SingleReviewPage,
+    ReservationPage,
+    PaymentPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     EditProfilePage,
     FavoritesPage,
     ReviewPage,
-    SingleReviewPage
+    SingleReviewPage,
+    ReservationPage,
+    PaymentPage
   ],
   providers: [
     StatusBar,
