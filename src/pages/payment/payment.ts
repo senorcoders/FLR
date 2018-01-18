@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
+import { ModifyReservationPage } from '../modify-reservation/modify-reservation';
 
 
 @IonicPage()
@@ -99,13 +100,13 @@ export class PaymentPage {
       price: this.price    
     })).subscribe(data => {
         console.log(data);
-        this.presentAlert("Reservation Done");
+        this.navCtrl.push(ModifyReservationPage, {reservation: data});
     });
   }
 
   presentAlert(message) {
     let alert = this.alertCtrl.create({
-      title: 'Upsss!!',
+      title: 'Ups!!',
       subTitle: message,
       buttons: ['Dismiss']
     });

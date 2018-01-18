@@ -20,27 +20,24 @@
         </ion-list> -->
         <ion-list class="menu-list">
             <ion-item (click)="goToActivities()">
-                <ion-icon name="ios-people" item-start></ion-icon>
+                <ion-icon name="ios-pin" item-start></ion-icon>
                 Find Activity
             </ion-item>
-            <ion-item>
+            <ion-item (click)="goToReservations()">
                 <ion-icon name="ios-chatbubbles" item-start></ion-icon>
                 Reservation
             </ion-item>
             <ion-item>
-                <ion-icon name="ios-heart" item-start></ion-icon>
-                Payments
+                <ion-icon name="ios-chatbubbles" item-start></ion-icon>
+                Requests
             </ion-item>
             <ion-item (click)="goToFavorites()">
-                <ion-icon name="ios-star" item-start></ion-icon>
+                <ion-icon name="ios-heart" item-start></ion-icon>
                 Favorites
             </ion-item>
-            <ion-item>
-                <ion-icon name="ios-cog-outline" item-start></ion-icon>
-                Itinerary
-            </ion-item>
+           
             <ion-item (click)="goToReview()">
-                <ion-icon name="ios-cog-outline" item-start></ion-icon>
+                <ion-icon name="ios-star" item-start></ion-icon>
                 Reviews
             </ion-item>
             <ion-item>

@@ -11,7 +11,7 @@ import { UsersProvider } from '../../providers/users/users';
 export class FavoritesPage {
 
   azure_id:any;
-  userID:any;
+  userID:any; 
   userEndpoint:any = 'user/';
   favorites:any;
 

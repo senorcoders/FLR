@@ -9,6 +9,7 @@ import { FeedPage } from '../pages/feed/feed';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { FavoritesPage } from '../pages/favorites/favorites';
 import { ReviewPage } from '../pages/review/review';
+import { ReservationListPage } from '../pages/reservation-list/reservation-list';
 @Component({
   templateUrl: 'app.html'
 })
@@ -44,7 +45,8 @@ export class MyApp {
             this.getPhotoandUserName();
           });
         }else{
-          this.rootPage = HomePage;
+          //this.rootPage = HomePage;
+          this.nav.setRoot(HomePage);
         }
         
     })
@@ -53,11 +55,11 @@ export class MyApp {
     ];
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-  }
+  // openPage(page) {
+  //   // Reset the content nav to have just this page
+  //   // we wouldn't want the back button to show in this scenario
+  //   this.nav.setRoot(page.component);
+  // }
 
 
   goToEditProfile(){
@@ -74,7 +76,11 @@ export class MyApp {
   }
 
   goToActivities(){
-    this.nav.push(FeedPage);
+    this.nav.setRoot(FeedPage);
+  }
+
+  goToReservations(){
+    this.nav.push(ReservationListPage);
   }
 
   getPhotoandUserName(){

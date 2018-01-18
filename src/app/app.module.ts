@@ -20,6 +20,8 @@ import { SingleReviewPage } from '../pages/single-review/single-review';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { ReservationPage } from '../pages/reservation/reservation';
 import { PaymentPage } from '../pages/payment/payment';
+import { ModifyReservationPage } from '../pages/modify-reservation/modify-reservation';
+import { ReservationListPage } from '../pages/reservation-list/reservation-list';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { PaymentPage } from '../pages/payment/payment';
     ReviewPage,
     SingleReviewPage,
     ReservationPage,
-    PaymentPage
+    PaymentPage,
+    ModifyReservationPage,
+    ReservationListPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { PaymentPage } from '../pages/payment/payment';
     ReviewPage,
     SingleReviewPage,
     ReservationPage,
-    PaymentPage
+    PaymentPage,
+    ModifyReservationPage,
+    ReservationListPage
   ],
   providers: [
     StatusBar,

@@ -6,7 +6,7 @@
             <ion-icon name="ios-menu-outline"></ion-icon>
           </button>
       </ion-buttons>
-      <ion-title>Reviews</ion-title>
+      <ion-title>Reservations</ion-title>
       <ion-buttons end>
           <button ion-button icon-only>
             <ion-icon name="md-close"></ion-icon>
@@ -16,17 +16,19 @@
 
 </ion-header>
 
+
+
+
 <ion-content padding>
 
     <ion-list>
-        <ion-item *ngFor="let item of reviews" (click)="evaluate(item)">
+        <ion-item *ngFor="let item of reservations" (click)="modifyReservation(item.reservationID, item.transactionDate, item.reservationMiscTripName, item.reservationNbrInAdult, item.transactionStartDate, item.transactionEndtTime, item.transactionStartTime, item.transactionEndTime, item.Price)">
           <ion-avatar item-start>
             <img src="assets/imgs/gerry-great-adventures.jpg">
           </ion-avatar>
           <h2>{{item.productName}}</h2>
-          <h3>{{item.operatorName}}</h3>
-          <p>USD {{item.productPrice}}</p>
+          <p>USD {{item.Price}}</p>
         </ion-item>
       </ion-list>
-
+  
 </ion-content>
