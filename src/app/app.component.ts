@@ -6,21 +6,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { UsersProvider } from '../providers/users/users';
 import { FeedPage } from '../pages/feed/feed';
-import { EditProfilePage } from '../pages/edit-profile/edit-profile';
-import { FavoritesPage } from '../pages/favorites/favorites';
-import { ReviewPage } from '../pages/review/review';
-import { ReservationListPage } from '../pages/reservation-list/reservation-list';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
   rootPage:any;
-  azure_id:any;
-  photo_url:any;
-  username:any;
-  //client:any;
-  pages: Array<{title: string, component: any}>;
+  
 
   constructor(
     platform: Platform, 
@@ -37,59 +29,21 @@ export class MyApp {
     this.httpProvider.hasLoggedIn().then(hasLoggedIn => {
       console.log(hasLoggedIn);
         if(hasLoggedIn){
-          //this.rootPage = FeedPage;
-          this.nav.setRoot(FeedPage);
-          this.httpProvider.getAzureID().then(azure =>{
-            this.azure_id = azure;
-            console.log(azure);
-            this.getPhotoandUserName();
-          });
+          this.rootPage = FeedPage;
+         
         }else{
-          //this.rootPage = HomePage;
-          this.nav.setRoot(HomePage);
+          this.rootPage = HomePage;
         }
         
     })
-    this.pages = [
-      { title: 'Home', component: HomePage },
-    ];
+    
   }
 
-  // openPage(page) {
-  //   // Reset the content nav to have just this page
-  //   // we wouldn't want the back button to show in this scenario
-  //   this.nav.setRoot(page.component);
-  // }
 
 
-  goToEditProfile(){
-    this.nav.push(EditProfilePage);
-  }
 
-  goToFavorites(){
-    this.nav.push(FavoritesPage);
+ 
 
-  }
-
-  goToReview(){
-    this.nav.push(ReviewPage);
-  }
-
-  goToActivities(){
-    this.nav.setRoot(FeedPage);
-  }
-
-  goToReservations(){
-    this.nav.push(ReservationListPage);
-  }
-
-  getPhotoandUserName(){
-    this.httpProvider.getJsonData('user/azure_id/'+this.azure_id).subscribe(
-      result =>{
-        console.log(result);
-          this.photo_url = result[0].photo_url;
-          this.username = result[0].username;
-      });
-  }
+  
 }
 

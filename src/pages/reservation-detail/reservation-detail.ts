@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FeedPage } from '../feed/feed';
 
 
 @IonicPage()
 @Component({
-  selector: 'page-modify-reservation',
-  templateUrl: 'modify-reservation.html',
+  selector: 'page-reservation-detail',
+  templateUrl: 'reservation-detail.html',
 })
-export class ModifyReservationPage {
+export class ReservationDetailPage {
 
-  enableOverlay:boolean = true;
   bookingID:any;
   bookingDate:any;
   productName:any;
@@ -35,19 +33,11 @@ export class ModifyReservationPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ModifyReservationPage');
-  }
-
-  viewReservation(){
-    this.enableOverlay = false;
+    console.log('ionViewDidLoad ReservationDetailPage');
   }
 
   getAmount(){
     return this.price * this.qty;
-  }
-
-  goToFeed(){
-    this.navCtrl.popToRoot();
   }
 
 }

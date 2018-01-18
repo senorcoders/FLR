@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
-import { ModifyReservationPage } from '../modify-reservation/modify-reservation';
+import { ReservationDetailPage } from '../reservation-detail/reservation-detail';
 
 @IonicPage()
 @Component({
@@ -91,7 +91,7 @@ export class ReservationListPage {
     this.data.transaction_start_time = transaction_start_time;
     this.data.transaction_end_time = transaction_end_time;
     this.data.price = price;
-    this.navCtrl.push(ModifyReservationPage, {reservation: this.data});
+    this.navCtrl.push(ReservationDetailPage, {reservation: this.data});
   }
 
 }

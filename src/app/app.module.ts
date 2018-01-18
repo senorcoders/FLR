@@ -22,6 +22,10 @@ import { ReservationPage } from '../pages/reservation/reservation';
 import { PaymentPage } from '../pages/payment/payment';
 import { ModifyReservationPage } from '../pages/modify-reservation/modify-reservation';
 import { ReservationListPage } from '../pages/reservation-list/reservation-list';
+import { ReservationDetailPage } from '../pages/reservation-detail/reservation-detail';
+import { BookingInquiryPage } from '../pages/booking-inquiry/booking-inquiry';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { SocialShareProvider } from '../providers/social-share/social-share';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import { ReservationListPage } from '../pages/reservation-list/reservation-list'
     ReservationPage,
     PaymentPage,
     ModifyReservationPage,
-    ReservationListPage
+    ReservationListPage,
+    ReservationDetailPage,
+    BookingInquiryPage
   ],
   imports: [
     BrowserModule,
@@ -63,13 +69,17 @@ import { ReservationListPage } from '../pages/reservation-list/reservation-list'
     ReservationPage,
     PaymentPage,
     ModifyReservationPage,
-    ReservationListPage
+    ReservationListPage,
+    ReservationDetailPage,
+    BookingInquiryPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsersProvider
+    UsersProvider,
+    SocialSharing,
+    SocialShareProvider
   ]
 })
 export class AppModule {}

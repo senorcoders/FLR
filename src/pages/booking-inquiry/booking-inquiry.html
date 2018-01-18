@@ -1,0 +1,69 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Book Inquiry <button class="back-btn"><ion-icon name="close"></ion-icon></button></ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+      <ion-col col-12>
+        <h2 class="dark">Summary</h2>
+      </ion-col>
+      
+      <ion-col col-8>
+        <h3 class="light">{{operatorName}}</h3>
+      </ion-col>
+      <ion-col col-4 class="right center">
+        <button class="transparent"><img src="assets/imgs/location-icon.png" width="40"><br>
+        <span class="orange-font">See on map</span></button>
+      </ion-col>
+      <ion-col col-12>
+        <p class="star">
+          <ion-icon name="star" class="yellow-star"></ion-icon>
+          <ion-icon name="star" class="yellow-star"></ion-icon>
+          <ion-icon name="star" class="yellow-star"></ion-icon>
+          <ion-icon name="star" class="gray-star"></ion-icon>
+          <ion-icon name="star" class="gray-star"></ion-icon>
+          (3856)
+        </p>
+      </ion-col>
+      <ion-col col-12>
+        <h3 class="dark">{{productName}}</h3>
+      </ion-col>
+      
+      
+    <ion-col col-12 class="separate-line-container">
+      <div class="separate-line"></div>
+    </ion-col>
+    <ion-col col-12 >
+      <p>One of our FUN Embassadors will tend to your very need and get back to you regarding the selected
+        activity, but also other possible options.
+      </p>
+      <p>So, sit back and relax while we do the work for you</p>
+    </ion-col>
+  
+  
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>Name</ion-label>
+            
+            <ion-input type="text" value="{{name}}" [(ngModel)]="name"></ion-input>
+          </ion-item>
+      
+        <ion-item>
+            <ion-label stacked>Email</ion-label>
+            
+            <ion-input type="email"  [(ngModel)]="email" [value]="email"></ion-input>
+        </ion-item>
+          <ion-item>
+            <ion-label stacked>Mobile</ion-label>
+            
+            <ion-input type="number" [(ngModel)]="mobile"></ion-input>
+        </ion-item>
+      </ion-list>
+  </ion-content>
+  <ion-footer>
+      <button class="full-custom-btn" ion-button clear  (click)="checkRequireFields()">
+         SEND REQUEST 
+        </button>
+  </ion-footer>

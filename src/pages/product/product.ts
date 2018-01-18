@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { ReservationPage } from '../reservation/reservation';
+import { BookingInquiryPage } from '../booking-inquiry/booking-inquiry';
 
 @IonicPage()
 @Component({
@@ -36,6 +37,7 @@ export class ProductPage {
   startDate:any;
   startHour:any;
   enableContinue:boolean = true;
+  enableDates:boolean;
   
 
   constructor(
@@ -96,9 +98,15 @@ export class ProductPage {
 
   getDates(){
     this.httpProvider.getJsonData(this.endpoint + '7722').subscribe(result => {
-        console.log("Dates", result);
+        console.log("Dates", result.length);
+        if (result.length > 0){
+          this.getSingleDate(result);
+          this.enableDates = true;
+        }else{
+          console.log('Booking Inquiry');
+          this.enableDates = false;
+        }
         //this.dates = result;
-        this.getSingleDate(result);
     });
 
   }
@@ -244,6 +252,14 @@ reservate(){
     this.presentAlert("You need to choose a end hour");
 
   }
+}
+
+request(){
+  this.navCtrl.push(BookingInquiryPage, {
+    productID: this.productID,
+    operatorName: this.operator_name,
+    productName: this.productName,
+  });
 }
 
 }

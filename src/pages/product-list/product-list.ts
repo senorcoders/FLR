@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { ProductPage } from '../product/product';
 
@@ -18,7 +18,8 @@ export class ProductListPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private httpProvider: UsersProvider,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController,
+    public app: App) {
       this.products = navParams.get('product');
       this.operator = navParams.get('operator');
   }
@@ -28,8 +29,9 @@ export class ProductListPage {
   }
 
   goToDetail(product){
-    this.navCtrl.push(ProductPage, {
+    this.app.getRootNav().push(ProductPage, {
       'product': product,
+      'operator': this.operator
     });
     this.viewCtrl.dismiss();
   }
