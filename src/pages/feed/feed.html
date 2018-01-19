@@ -46,7 +46,7 @@
             </ion-item>
             <ion-item (click)="goToReservations()">
                 <ion-icon name="ios-chatbubbles" item-start></ion-icon>
-                Reservation
+                Reservations
             </ion-item>
             <ion-item>
                 <ion-icon name="ios-chatbubbles" item-start></ion-icon>
@@ -61,14 +61,14 @@
                 <ion-icon name="ios-star" item-start></ion-icon>
                 Reviews
             </ion-item>
-            <ion-item>
+            <ion-item (click)="goToTerms()">
                 <ion-icon name="ios-cog-outline" item-start></ion-icon>
                 Terms &amp; Help
             </ion-item>
         </ion-list>
     </ion-content>
     <ion-footer>
-        <button class="menu-full-custom-btn" ion-button full>
+        <button class="menu-full-custom-btn" ion-button full (click)="logout()">
                     Log out
             </button>
     </ion-footer>

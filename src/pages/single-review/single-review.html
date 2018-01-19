@@ -7,13 +7,24 @@
             <ion-icon name="ios-menu-outline"></ion-icon>
           </button>
       </ion-buttons>
-      <ion-title>Evaluate</ion-title>
+      <ion-title>Reviews</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-card>
+        <img src="assets/imgs/gerry-great-adventures.JPG"/>
+        <ion-card-content>
+          <ion-card-title>
+            {{productName}}
+            </ion-card-title>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi corporis molestias id earum harum nemo vitae eligendi facilis ratione consequuntur.
+          </p>
+        </ion-card-content>
+      </ion-card>
   <rating [(ngModel)]="rate" 
   readOnly="false" 
   max="5" 

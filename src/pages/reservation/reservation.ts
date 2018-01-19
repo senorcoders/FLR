@@ -85,7 +85,7 @@ backToEdit(){
 }
 
 getSubtotal(){
-  return this.price * this.qty;
+  return (this.price * this.qty).toFixed(2);
 }
 
 getTax(){
@@ -93,8 +93,8 @@ getTax(){
   return (subtotal * 0.07).toFixed(2);
 }
 
-getTotal(){
-  return (this.price * this.qty) + ((this.price * this.qty) * 0.07) + this.gap;
+getTotal():any{
+  return ((this.price * this.qty) + ((this.price * this.qty) * 0.07) + this.gap).toFixed(2);
 }
 
 getDiscount(){

@@ -7,6 +7,9 @@ import { FavoritesPage } from '../favorites/favorites';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { UsersProvider } from '../../providers/users/users';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
+import { TermsPage } from '../terms/terms';
+import { Storage } from '@ionic/storage';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -18,21 +21,27 @@ export class FeedPage {
   azure_id:any;
   photo_url:any;
   username:any;
+  HAS_LOGGED_IN = 'hasLoggedIn';
+
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private httpProvider: UsersProvider,
-    public menuCtrl: MenuController) {
+    public menuCtrl: MenuController,
+    private storage: Storage) {
       this.getStatus();
+      console.log(this.navCtrl);
   }
 
   ionViewDidEnter() {
     this.menuCtrl.enable(true, "flrMenu");
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
+
   }
 
   goToNearbyActivities(){
@@ -76,6 +85,10 @@ export class FeedPage {
     this.navCtrl.push(ReservationListPage);
   }
 
+  goToTerms(){
+    this.navCtrl.push(TermsPage);
+  }
+
   getPhotoandUserName(){
     this.httpProvider.getJsonData('user/azure_id/'+this.azure_id).subscribe(
       result =>{
@@ -83,6 +96,11 @@ export class FeedPage {
           this.photo_url = result[0].photo_url;
           this.username = result[0].username;
       });
+  }
+
+  logout(){
+    this.storage.remove(this.HAS_LOGGED_IN);
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

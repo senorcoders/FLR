@@ -4,7 +4,7 @@
 <ion-content id="rita-custom-list">
  
   <!-- <ion-list> -->
-      <ion-item *ngFor="let product of products">
+      <ion-item *ngFor="let product of products" (click)="goToDetail(product)">
         <ion-thumbnail item-start>
           <img src="assets/imgs/gerry-great-adventures.JPG">
         </ion-thumbnail>
@@ -12,7 +12,7 @@
         <p><strong>${{product.price}}</strong> Daily (24 hours) <br>
           <span style="color: rgb(206, 94, 94);">{{operator}}</span>  
         </p>
-        <button ion-button clear item-end (click)="goToDetail(product)">
+        <button ion-button clear item-end >
             <img src="assets/imgs/arrow-rigth.png" width="20" height="20">
             
         </button>

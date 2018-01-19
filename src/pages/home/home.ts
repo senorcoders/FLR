@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { LocationsPage } from '../locations/locations';
 import { UsersProvider } from '../../providers/users/users';
 declare var WindowsAzure: any;
 import { Storage } from '@ionic/storage';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { FeedPage } from '../feed/feed';
+import { MapPage } from '../map/map';
 
 @Component({
   selector: 'page-home',
@@ -22,7 +23,12 @@ export class HomePage {
 
 
 
-  constructor(public navCtrl: NavController, private httpProvider:UsersProvider, private storage: Storage, public http: Http) {
+  constructor(
+    public navCtrl: NavController, 
+    private httpProvider:UsersProvider, 
+    private storage: Storage, 
+    public http: Http, 
+    private app:App) {
 
   }
 
@@ -55,8 +61,9 @@ export class HomePage {
           console.log(result, "Usuario ya existe");
           //nav.setRoot(FeedPage);
           //this.app.getRootNav().setRoot(FeedPage);
-          this.navCtrl.setRoot(FeedPage);
           this.storage.set(this.HAS_LOGGED_IN, true);
+          this.navCtrl.setRoot(FeedPage);
+
           
         }else{
           this.requestToken();

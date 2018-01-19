@@ -26,6 +26,10 @@ import { ReservationDetailPage } from '../pages/reservation-detail/reservation-d
 import { BookingInquiryPage } from '../pages/booking-inquiry/booking-inquiry';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SocialShareProvider } from '../providers/social-share/social-share';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { MapPage } from '../pages/map/map';
+import { TermsPage } from '../pages/terms/terms';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -44,14 +48,17 @@ import { SocialShareProvider } from '../providers/social-share/social-share';
     ModifyReservationPage,
     ReservationListPage,
     ReservationDetailPage,
-    BookingInquiryPage
+    BookingInquiryPage,
+    MapPage,
+    TermsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-    Ionic2RatingModule
+    Ionic2RatingModule,
+    MomentModule
 
   ],
   bootstrap: [IonicApp],
@@ -71,7 +78,9 @@ import { SocialShareProvider } from '../providers/social-share/social-share';
     ModifyReservationPage,
     ReservationListPage,
     ReservationDetailPage,
-    BookingInquiryPage
+    BookingInquiryPage,
+    MapPage,
+    TermsPage
   ],
   providers: [
     StatusBar,
@@ -79,7 +88,8 @@ import { SocialShareProvider } from '../providers/social-share/social-share';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsersProvider,
     SocialSharing,
-    SocialShareProvider
+    SocialShareProvider,
+    GoogleMaps
   ]
 })
 export class AppModule {}

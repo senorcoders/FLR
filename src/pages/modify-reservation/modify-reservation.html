@@ -21,7 +21,7 @@
         <b>Booking # </b>{{bookingID}}
       </ion-col> -->
       <ion-col col-12>
-        <b>Booking Date</b> {{bookingDate}}
+        <b>Booking Date</b> {{bookingDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}
       </ion-col>
       <ion-col col-12>
         <span class="gray">Receipt has been emailed to you.</span>	
@@ -53,7 +53,7 @@
         </div>
         <div class="summary">
           <h3>Starts <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
-          {{startDate}}, {{startHour}}
+          {{startDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{startHour}}
         </div>
       </ion-col>
       <ion-col col-5>
@@ -64,18 +64,18 @@
         <div class="summary">
           <div>
             <h3>Ends <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
-            {{endDate}}, {{endHour}}
+            {{endDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{endHour}}
           </div>
         </div>
       </ion-col>
       <ion-col col-12>
         <div class="summary">
           <span class="label">Price:</span> 
-          <span class="price-val">USD {{price}}</span>
+          <span class="price-val">$ {{price}}</span>
         </div>
         <div class="summary">
           <span class="label">Payment Amount:</span>
-          <span class="payment-val">USD {{getAmount()}}</span>
+          <span class="payment-val">$ {{getAmount()}}</span>
         </div>
       </ion-col>
     </ion-row>

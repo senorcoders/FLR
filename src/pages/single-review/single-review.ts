@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 
 
@@ -19,10 +19,12 @@ export class SingleReviewPage {
   userEndpoint:any = 'user';
   rate:any;
   startEndpoint:any = 'stars-operator';
+  productName:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private httpProvider: UsersProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private httpProvider: UsersProvider, private alertCtrl: AlertController) {
     console.log("Producto", navParams.get('product').operatorID);
     this.operatorID = navParams.get('product').operatorID;
+    this.productName = navParams.get('product').productName;
     this.getStatus();
   }
 
@@ -53,7 +55,19 @@ export class SingleReviewPage {
       });
   }
 
-  
+  presentAlert(message) {
+    let alert = this.alertCtrl.create({
+      title: 'Thank You',
+      subTitle: message,
+      buttons: [{
+        text: 'Ok',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }]
+    });
+    alert.present();
+  }
 
   addComment(){
     console.log(this.comment);
@@ -64,6 +78,7 @@ export class SingleReviewPage {
         .subscribe(data =>{
           console.log(data);
           this.disable = false;
+          this.presentAlert("Your Review has been saved!");
         });
 
     }

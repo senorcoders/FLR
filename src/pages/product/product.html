@@ -92,13 +92,13 @@
 			  </button> -->
 			  
 			  <button col-4 [class]="firstColor" [disabled]="disableFirst">
-					{{dates[0]?.day_name}} <br> {{dates[0]?.date}}
+					{{dates[0]?.day_name}} <br> {{dates[0]?.date | amUtc | amDateFormat: 'MM-DD-YYYY' }}
 			   </button>
 			   <button col-4 (click)="secondTab(dates[1]?.date)" [disabled]="disable" [class]="secondColor">
-					{{dates[1]?.day_name}} <br> {{dates[1]?.date}}
+					{{dates[1]?.day_name}} <br> {{dates[1]?.date | amUtc | amDateFormat: 'MM-DD-YYYY'}}
 			   </button>
 			   <button col-4 class="orange-border" [disabled]="disable" (click)="thirdTab(dates[2]?.date)">
-					{{dates[2]?.day_name}} <br> {{dates[2]?.date}}
+					{{dates[2]?.day_name}} <br> {{dates[2]?.date | amUtc | amDateFormat: 'MM-DD-YYYY' }}
 			   </button>
 
 			   <!-- <button col-4 class="orange-border" *ngIf="i == 2" >
@@ -112,20 +112,20 @@
 		</ion-col>
 		<ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableFirst">
 			<button (click)="setStartHour(hour.hour)" class="orange-border time" *ngFor="let hour of dates[0]?.hours" >
-				{{hour.hour}}
+				{{tConvert(hour.hour)}}
 			</button>
 		
     </ion-row>
     <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableSecond">
 			<button (click)="setEndHour(hour.hour)" class="orange-border time" *ngFor="let hour of dates[1]?.hours">
-				{{hour.hour}}
-			</button>
+					{{tConvert(hour.hour)}}
+				</button>
 		
     </ion-row>
     <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableThird">
 			<button (click)="setEndHour(hour.hour)" class="orange-border time" *ngFor="let hour of dates[2]?.hours">
-				{{hour.hour}}
-			</button>
+					{{tConvert(hour.hour)}}
+				</button>
 		
 		</ion-row>
 	</div>
