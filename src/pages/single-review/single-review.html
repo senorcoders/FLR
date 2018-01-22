@@ -2,11 +2,6 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-buttons start>
-          <button ion-button icon-only menuToggle>
-            <ion-icon name="ios-menu-outline"></ion-icon>
-          </button>
-      </ion-buttons>
       <ion-title>Reviews</ion-title>
   </ion-navbar>
 
@@ -41,4 +36,15 @@
           </ion-item>
       <button [disabled]="disable" (click)="addComment()" ion-button  block>Add Comment</button>
 
+      <ion-list>
+        <ion-item *ngFor="let item of reviews">
+          <ion-avatar item-start>
+            <img [src]="item?.comments[0]?.userPhotoUrl">
+          </ion-avatar>
+          <h2>{{item?.comments[0]?.userName}}</h2>
+          <h3>{{item?.comments[0]?.dateCreate | amTimeAgo}}</h3>
+          <p text-wrap>{{item?.comments[0]?.commentContent}}</p>
+          <p>Calification {{item.numStars}} stars</p>
+        </ion-item>
+      </ion-list>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { LocationsPage } from '../locations/locations';
 import { UsersProvider } from '../../providers/users/users';
@@ -28,7 +28,8 @@ export class HomePage {
     private httpProvider:UsersProvider, 
     private storage: Storage, 
     public http: Http, 
-    private app:App) {
+    private app:App,
+    private readonly ngZone: NgZone) {
 
   }
 
@@ -62,13 +63,14 @@ export class HomePage {
           //nav.setRoot(FeedPage);
           //this.app.getRootNav().setRoot(FeedPage);
           this.storage.set(this.HAS_LOGGED_IN, true);
-          this.navCtrl.setRoot(FeedPage);
+          //this.navCtrl.setRoot(FeedPage);
+          this.ngZone.run(() => this.navCtrl.setRoot(FeedPage));
 
           
         }else{
           this.requestToken();
         }
-        
+         
       })
     
   }
@@ -112,7 +114,9 @@ export class HomePage {
           this.storage.set('username', data.id);
           //nav.setRoot(FeedPage);
           //this.app.getRootNav().setRoot(FeedPage);
-          this.navCtrl.setRoot(FeedPage);
+          //this.navCtrl.setRoot(FeedPage);
+          this.ngZone.run(() => this.navCtrl.setRoot(FeedPage));
+
     
         }, error => {
           console.log("Error", error);

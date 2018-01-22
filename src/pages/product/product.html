@@ -9,7 +9,7 @@
   </ion-navbar>
  
 </ion-header>
-<ion-content padding>
+<ion-content padding >
 		<ion-card>
 				<img src="assets/imgs/gerry-great-adventures.JPG">
 			</ion-card>
@@ -35,7 +35,7 @@
 			<button *ngIf="liked"  class="transparent"><ion-icon name="ios-heart"></ion-icon></button>
 
 		</ion-col>
-		<div *ngIf="!enableDates">
+		<div *ngIf="enableInquiry">
 			<ion-col col-12>
 				<div class="separate-line"></div>
 			</ion-col>
@@ -83,6 +83,9 @@
 		</ion-col>
 		<ion-col col-12>
 			<h3 class="dark-light">Pick activity {{rowText}} date</h3>
+		</ion-col>
+		<ion-col col-12>
+			<button (click)="openModal()" ion-button clear>Pick another {{rowText}} date</button>
 		</ion-col>
 
 		 <ion-row (click)="onButtonGroupClick($event)" class="date-row" >
@@ -142,7 +145,7 @@
 	   </button>
 </ion-footer>
 
-<ion-footer *ngIf="!enableDates">
+<ion-footer *ngIf="enableInquiry">
 		<button  class="full-custom-btn" ion-button clear (click)="request()">
 		   Send request  
 		  </button>

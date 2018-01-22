@@ -107,7 +107,7 @@ export class BookingInquiryPage {
           //this.shareProvider.shareViaEmail(this.name + " " +  this.email + " " + this.mobile + " " + this.productID);
       }else{
         console.log("You need to enter your information");
-        this.presentAlert("Fill the information");
+        this.presentAlert("Your name, email and phone number are required");
       }
   }
 

@@ -30,11 +30,11 @@ export class ProductListPage {
   }
 
   goToDetail(product){
-    this.app.getRootNav().push(ProductPage, {
+    this.navCtrl.push(ProductPage, {
       'product': product,
       'operator': this.operator
     });
-    this.viewCtrl.dismiss();
+    //this.viewCtrl.dismiss();
   }
 
 

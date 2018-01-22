@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 
 
@@ -13,12 +13,18 @@ export class RequestsPage {
   email:any;
   endpoint:any = 'inquiry?email=';
   requests:any;
+  loading:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private httpProvider: UsersProvider) {
+    private httpProvider: UsersProvider,
+    public loadingCtrl: LoadingController) {
       this.getStatus();
+      this.loading = this.loadingCtrl.create({
+        content: "Please wait...",
+      });
+      this.loading.present();
   }
 
   ionViewDidLoad() {
@@ -53,6 +59,7 @@ export class RequestsPage {
   getRequests(){
     this.httpProvider.getJsonData(this.endpoint + this.email)
       .subscribe(result => {
+        this.loading.dismiss();
         this.requests = result;
       });
   }

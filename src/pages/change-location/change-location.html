@@ -1,0 +1,20 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Description
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text>Done</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Pick a date</ion-label>
+    <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeStarts"></ion-datetime>
+  </ion-item>
+</ion-content>

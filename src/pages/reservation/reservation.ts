@@ -72,7 +72,7 @@ export class ReservationPage {
 
 presentAlert(message) {
   let alert = this.alertCtrl.create({
-    title: 'Upsss!!',
+    title: 'Required',
     subTitle: message,
     buttons: ['Dismiss']
   });
@@ -157,7 +157,7 @@ checkRequireFields(){
         });
     }else{
       console.log("You need to enter your information");
-      this.presentAlert("Fill the information");
+      this.presentAlert("Your name, email and phone number are required");
     }
 }
 

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { ReservationPage } from '../reservation/reservation';
 import { BookingInquiryPage } from '../booking-inquiry/booking-inquiry';
+import { ChangeLocationPage } from '../change-location/change-location';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -37,14 +39,23 @@ export class ProductPage {
   startDate:any;
   startHour:any;
   enableContinue:boolean = true;
-  enableDates:boolean;
-  
+  enableDates:boolean = false;
+  loading:any;
+  reloading:boolean = true;
+  enableInquiry:boolean = false;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private httpProvider: UsersProvider,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController,
+    private storage: Storage) {
+      this.loading = this.loadingCtrl.create({
+        content: "Please wait...",
+      });
+      this.loading.present();
   }
 
   ngOnInit(){ 
@@ -96,15 +107,22 @@ export class ProductPage {
     this.navCtrl.pop();
   }
 
-  getDates(){
-    this.httpProvider.getJsonData(this.endpoint + '7722').subscribe(result => {
+  getDates(timeStart?){
+    if(timeStart != null){
+      var url = this.endpoint + '7722/' + timeStart;
+    }else{
+      var url = this.endpoint + '7722';
+    }
+    this.httpProvider.getJsonData(url).subscribe(result => {
         console.log("Dates", result.length);
+        this.loading.dismiss();
+        this.reloading = false;
         if (result.length > 0){
           this.getSingleDate(result);
           this.enableDates = true;
         }else{
           console.log('Booking Inquiry');
-          this.enableDates = false;
+          this.enableInquiry = true;
         }
         //this.dates = result;
     });
@@ -117,8 +135,8 @@ export class ProductPage {
       if (date < 3){
         console.log(array[date]);
        this.dates.push(array[date]);
-      }else{
-        this.startDate = this.dates[0].date;
+       this.startDate = this.dates[0].date;
+
       }
 
     }
@@ -272,6 +290,31 @@ tConvert (time) {
     time[0] = +time[0] % 12 || 12; // Adjust hours
   }
   return time.join (''); // return adjusted time or original string
+}
+
+openModal() {
+
+  let modal = this.modalCtrl.create(ChangeLocationPage);
+  modal.present();
+  modal.onDidDismiss(() => {
+    this.getStartDate();
+    this.loading = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loading.present();
+    this.enableDates = false;
+    this.dates = [];
+  });
+}
+
+getStartDate(){
+  this.storage.get('startDate').then((val) => {
+    console.log(val);
+    if(val != null){
+        this.getDates(val);
+    }
+
+  });
 }
 
 }

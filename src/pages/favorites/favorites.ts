@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 
 
@@ -14,13 +14,19 @@ export class FavoritesPage {
   userID:any; 
   userEndpoint:any = 'user/';
   favorites:any;
+  loading:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public menuCtrl: MenuController,
-    private httpProvider: UsersProvider) {
+    private httpProvider: UsersProvider,
+    public loadingCtrl: LoadingController) {
       this.getStatus();
+      this.loading = this.loadingCtrl.create({
+        content: "Please wait...",
+      });
+      this.loading.present();
 
   }
 
@@ -67,6 +73,7 @@ export class FavoritesPage {
   getFavorites(){
     this.httpProvider.getJsonData(this.userEndpoint + this.userID + '/favorites-products')
       .subscribe(result => {
+        this.loading.dismiss();
         this.favorites = result;
       });
   }

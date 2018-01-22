@@ -20,11 +20,13 @@ export class SingleReviewPage {
   rate:any;
   startEndpoint:any = 'stars-operator';
   productName:any;
+  operatorEndpoint:any = 'operator/';
+  reviews:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private httpProvider: UsersProvider, private alertCtrl: AlertController) {
     console.log("Producto", navParams.get('product').operatorID);
-    this.operatorID = navParams.get('product').operatorID;
-    this.productName = navParams.get('product').productName;
+    this.operatorID = navParams.get('product').operator_id;
+    this.productName = navParams.get('product').operator_name;
     this.getStatus();
   }
 
@@ -46,12 +48,22 @@ export class SingleReviewPage {
     });
   }
 
+  
+
 
   getUserID(){
     this.httpProvider.getJsonData('user/azure_id/'+this.azure_id).subscribe(
       result =>{
         console.log("User ID", result);
           this.userID = result[0].id;
+          this.getPrevReviews();
+      });
+  }
+
+  getPrevReviews(){
+    this.httpProvider.getJsonData(this.operatorEndpoint + this.operatorID + '/stars-comments')
+      .subscribe(result =>{
+        this.reviews = result;
       });
   }
 
