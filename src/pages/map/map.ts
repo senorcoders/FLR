@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, PopoverController, App} from 'ionic-angular';
 import {
   GoogleMaps,
@@ -18,7 +18,7 @@ import { ProductListPage } from '../product-list/product-list';
   templateUrl: 'map.html',
 })
 export class MapPage {
-  @ViewChild('map') element:ElementRef;
+  //@ViewChild('map') element:ElementRef;
 
   base:any = 'http://138.68.19.227:3030/api/location/by_distance/';
 
@@ -29,7 +29,8 @@ export class MapPage {
     public plt: Platform,
     private http: Http,
     public popoverCtrl: PopoverController,
-    private app: App) {
+    private app: App,
+    private readonly ngZone: NgZone) {
   }
 
   ionViewDidLoad() {
@@ -45,8 +46,10 @@ export class MapPage {
   }
 
   initMap (locations) {
+    let mapEle: HTMLElement = document.getElementById('map');
+
     
-    let map: GoogleMap = this.googleMaps.create(this.element.nativeElement);
+    let map: GoogleMap = this.googleMaps.create(mapEle);
 
     map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
 
@@ -73,7 +76,8 @@ export class MapPage {
           .then((marker: Marker) => {
             marker.showInfoWindow();
             marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-                this.presentPopover(location.products, location.operator_name);
+                //this.presentPopover(location.products, location.operator_name);
+                this.ngZone.run(() => this.presentPopover(location.products, location.operator_name));
               });
             });
 
@@ -82,17 +86,16 @@ export class MapPage {
   }
 
   presentPopover(product, operator) {
-    this.app.getRootNav().push(ProductListPage, {
-      'product':product,
-      'operator': operator});
+    // this.app.getRootNav().push(ProductListPage, {
+    //   'product':product,
+    //   'operator': operator});
     
-    // let popover = this.popoverCtrl.create(
-    //   ProductListPage, {
-    //     'product':product,
-    //     'operator': operator
-    //   }, {cssClass: 'product-popover'} );
-    // popover.present(
-    // );
+    let popover = this.popoverCtrl.create(
+      ProductListPage, {
+        'product':product,
+        'operator': operator
+      }, {cssClass: 'product-popover'} );
+    popover.present();
   }
 
 

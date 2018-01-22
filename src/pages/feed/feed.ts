@@ -10,6 +10,7 @@ import { MenuController } from 'ionic-angular/components/app/menu-controller';
 import { TermsPage } from '../terms/terms';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
+import { MapPage } from '../map/map';
 
 @IonicPage()
 @Component({
@@ -45,7 +46,7 @@ export class FeedPage {
   }
 
   goToNearbyActivities(){
-    this.navCtrl.push(LocationsPage);
+    this.navCtrl.push(MapPage);
   }
 
   getStatus(){

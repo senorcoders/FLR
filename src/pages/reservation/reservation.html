@@ -40,11 +40,11 @@
 		</ion-col>
 		<ion-col col-6>
 			<h2 class="dark">Starts <img src="assets/imgs/calendar-icon.png"  width="20" alt=""></h2>
-			<h3 class="light">{{startDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{startHour}}</h3>
+			<h3 class="light">{{startDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(startHour)}}</h3>
 		</ion-col>
 		<ion-col col-6>
 			<h2 class="dark">Ends <img src="assets/imgs/calendar-icon.png"  width="20" alt=""></h2>
-			<h3 class="light">{{endDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{endHour}}</h3>
+			<h3 class="light">{{endDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(endHour)}}</h3>
 		</ion-col>
 		<ion-col col-12>
 			<span class="dark">Price: </span><span class="light">$ {{price}} - Daily (24 Hours)</span>
@@ -61,7 +61,7 @@
 		<ion-col col-6 class="right">
 			$ {{getSubtotal()}} <br> $ {{getTax()}} <br>$ {{gap}} <br><span  class="overline dark">$ {{getTotal()}}</span>
 		</ion-col>
-		<ion-col col-6>
+		<ion-col col-6> 
 			<ion-item class="square">
 				<ion-input [(ngModel)]="coupon"></ion-input>
 			</ion-item>

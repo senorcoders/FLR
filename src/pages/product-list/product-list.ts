@@ -22,6 +22,7 @@ export class ProductListPage {
     public app: App) {
       this.products = navParams.get('product');
       this.operator = navParams.get('operator');
+      console.log(this.navCtrl);
   }
 
   ionViewDidLoad() {

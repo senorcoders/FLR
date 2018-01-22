@@ -33,7 +33,7 @@ export class HomePage {
   }
 
   goToNearbyActivities(){
-    this.navCtrl.push(LocationsPage);
+    this.navCtrl.push(MapPage);
   }
 
   // socialLogin(provider){
