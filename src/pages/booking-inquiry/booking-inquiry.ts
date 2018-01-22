@@ -20,6 +20,7 @@ export class BookingInquiryPage {
   operatorName:any;
   productName:any;
   azure_id:any;
+  inquiryEndpoint:any = 'inquiry';
 
 
   constructor(
@@ -43,6 +44,20 @@ export class BookingInquiryPage {
       title: 'Upsss!!',
       subTitle: message,
       buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
+  inquiryOverlay(message){
+    let alert = this.alertCtrl.create({
+      title: 'Successfully',
+      subTitle: message,
+      buttons: [{
+        text: 'Ok',
+        handler: () => {
+          this.navCtrl.popToRoot();
+        }
+      }]
     });
     alert.present();
   }
@@ -79,7 +94,17 @@ export class BookingInquiryPage {
     console.log(this.name);
       if(this.name != undefined && this.email != undefined && this.mobile != undefined){
           console.log("Send request!");
-          this.shareProvider.shareViaEmail(this.name + " " +  this.email + " " + this.mobile + " " + this.productID);
+          this.httpProvider.addItem(this.inquiryEndpoint, JSON.stringify({
+            product_id: this.productID,
+            name: this.name,
+            email: this.email,
+            phone: this.mobile,
+            message: 'Product ' + this.productID + ' is not available' 
+          })).subscribe(data => {
+              console.log(data);
+              this.inquiryOverlay("Your request has been sent successfully!");
+          });
+          //this.shareProvider.shareViaEmail(this.name + " " +  this.email + " " + this.mobile + " " + this.productID);
       }else{
         console.log("You need to enter your information");
         this.presentAlert("Fill the information");

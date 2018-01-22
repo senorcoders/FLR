@@ -30,6 +30,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { MapPage } from '../pages/map/map';
 import { TermsPage } from '../pages/terms/terms';
 import { MomentModule } from 'angular2-moment';
+import { RequestsPage } from '../pages/requests/requests';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MomentModule } from 'angular2-moment';
     ReservationDetailPage,
     BookingInquiryPage,
     MapPage,
-    TermsPage
+    TermsPage,
+    RequestsPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { MomentModule } from 'angular2-moment';
     ReservationDetailPage,
     BookingInquiryPage,
     MapPage,
-    TermsPage
+    TermsPage,
+    RequestsPage
   ],
   providers: [
     StatusBar,

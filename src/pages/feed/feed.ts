@@ -11,6 +11,7 @@ import { TermsPage } from '../terms/terms';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { MapPage } from '../map/map';
+import { RequestsPage } from '../requests/requests';
 
 @IonicPage()
 @Component({
@@ -88,6 +89,10 @@ export class FeedPage {
 
   goToTerms(){
     this.navCtrl.push(TermsPage);
+  }
+
+  goToRequests(){
+    this.navCtrl.push(RequestsPage);
   }
 
   getPhotoandUserName(){
