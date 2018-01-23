@@ -32,6 +32,7 @@ import { TermsPage } from '../pages/terms/terms';
 import { MomentModule } from 'angular2-moment';
 import { RequestsPage } from '../pages/requests/requests';
 import { ChangeLocationPage } from '../pages/change-location/change-location';
+import { MapModalPage } from '../pages/map-modal/map-modal';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ChangeLocationPage } from '../pages/change-location/change-location';
     MapPage,
     TermsPage,
     RequestsPage,
-    ChangeLocationPage
+    ChangeLocationPage,
+    MapModalPage
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ import { ChangeLocationPage } from '../pages/change-location/change-location';
     MapPage,
     TermsPage,
     RequestsPage,
-    ChangeLocationPage
+    ChangeLocationPage,
+    MapModalPage
   ],
   providers: [
     StatusBar,

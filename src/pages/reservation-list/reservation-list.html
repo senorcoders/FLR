@@ -17,7 +17,8 @@
             <img src="assets/imgs/gerry-great-adventures.JPG">
           </ion-avatar>
           <h2>{{item.productName}}</h2>
-          <p>USD {{item.Price}}</p>
+          <h3>$ {{item.Price}}</h3>
+          <p>{{item.transactionDate | amTimeAgo}}</p>
         </ion-item>
       </ion-list>
   

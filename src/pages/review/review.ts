@@ -58,7 +58,7 @@ export class ReviewPage {
   }
 
   getReviews(){
-    this.httpProvider.getJsonData(this.endpoint+this.userID+'/not-stars-comments/1/50' ).subscribe(result => {
+    this.httpProvider.getJsonData(this.endpoint+this.userID+'/not-stars-comments' ).subscribe(result => {
       this.loading.dismiss();
       this.reviews = result;
     });

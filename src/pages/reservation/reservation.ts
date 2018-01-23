@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { PaymentPage } from '../payment/payment';
+import { MapModalPage } from '../map-modal/map-modal';
 
 
 @IonicPage()
@@ -33,12 +34,15 @@ export class ReservationPage {
   endHour:any;
   reservationCount:any;
   couponEndpoint:any = 'coupon/';
+  lat:any;
+  lng:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    private httpProvider: UsersProvider) {
+    private httpProvider: UsersProvider,
+    public popoverCtrl: PopoverController) {
       this.productID = navParams.get('productID');
       this.operatorName = navParams.get('operatorName');
       this.productName = navParams.get('productName');
@@ -48,6 +52,8 @@ export class ReservationPage {
       this.endDate = navParams.get('endDate');
       this.endHour = navParams.get('endHour');
       this.qty = navParams.get('reservationCount');
+      this.lat = navParams.get('lat');
+      this.lng = navParams.get('lng');
       this.getUserStatus();
 
   }
@@ -170,7 +176,20 @@ tConvert (time) {
     time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
     time[0] = +time[0] % 12 || 12; // Adjust hours
   }
-  return time.join (''); // return adjusted time or original string
+  return time[0] + time[1] + time[2] + time[5]; // return adjusted time or original string
+}
+
+cancel(){
+  this.coupon = "";
+  this.enable = false;
+}
+
+presentPopover() {
+  let popover = this.popoverCtrl.create(MapModalPage, {
+    lat: this.lat,
+    lng: this.lng
+  }, {cssClass: 'map-popover'});
+  popover.present();
 }
 
 

@@ -43,6 +43,9 @@ export class ProductPage {
   loading:any;
   reloading:boolean = true;
   enableInquiry:boolean = false;
+  public timeStarts = '';
+  lat:any;
+  lng:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -56,6 +59,11 @@ export class ProductPage {
         content: "Please wait...",
       });
       this.loading.present();
+      var today = new Date();
+      var dd:any = today.getDate();
+      var mm:any = today.getMonth()+1;
+      var yyyy = today.getFullYear();
+      this.timeStarts = yyyy + '-' + mm + '-' + dd;
   }
 
   ngOnInit(){ 
@@ -63,6 +71,8 @@ export class ProductPage {
       this.productName = this.navParams.get('product').name;
       this.price = this.navParams.get('product').price;
       this.productID = this.navParams.get('product').product_id;
+      this.lat = this.navParams.get('product').lat;
+      this.lng = this.navParams.get('product').lot;
       console.log(this.navParams.get('product').name);
       this.getDates();
       this.getStatus();
@@ -264,7 +274,9 @@ reservate(){
       startHour: this.startHour,
       endDate: this.endDate,
       endHour: this.endHour,
-      reservationCount: this.reserveCount
+      reservationCount: this.reserveCount,
+      lat: this.lat,
+      lng: this.lng
     });
   }else{
     this.presentAlert("You need to choose a end hour");
@@ -289,32 +301,45 @@ tConvert (time) {
     time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
     time[0] = +time[0] % 12 || 12; // Adjust hours
   }
-  return time.join (''); // return adjusted time or original string
+
+  // console.log(time[0] + time[1] + time[2] + time[5]);
+
+  return time[0] + time[1] + time[2] + time[5]; // return adjusted time or original string
 }
 
-openModal() {
+// openModal() {
 
-  let modal = this.modalCtrl.create(ChangeLocationPage);
-  modal.present();
-  modal.onDidDismiss(() => {
-    this.getStartDate();
-    this.loading = this.loadingCtrl.create({
-      content: "Please wait...",
-    });
-    this.loading.present();
-    this.enableDates = false;
-    this.dates = [];
+//   let modal = this.modalCtrl.create(ChangeLocationPage);
+//   modal.present();
+//   modal.onDidDismiss(() => {
+//     this.getStartDate();
+//     this.loading = this.loadingCtrl.create({
+//       content: "Please wait...",
+//     });
+//     this.loading.present();
+//     this.enableDates = false;
+//     this.dates = [];
+//   });
+// }
+
+updateDate(){
+  this.loading = this.loadingCtrl.create({
+    content: "Please wait...",
   });
+  this.loading.present();
+  this.enableDates = false;
+  this.dates = [];
+  this.getDates(this.timeStarts);
 }
 
-getStartDate(){
-  this.storage.get('startDate').then((val) => {
-    console.log(val);
-    if(val != null){
-        this.getDates(val);
-    }
+// getStartDate(){
+//   this.storage.get('startDate').then((val) => {
+//     console.log(val);
+//     if(val != null){
+//         this.getDates(val);
+//     }
 
-  });
-}
+//   });
+// }
 
 }

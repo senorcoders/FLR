@@ -24,8 +24,8 @@ export class SingleReviewPage {
   reviews:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private httpProvider: UsersProvider, private alertCtrl: AlertController) {
-    console.log("Producto", navParams.get('product').operatorID);
-    this.operatorID = navParams.get('product').operator_id;
+    console.log("Producto", navParams.get('product').id);
+    this.operatorID = navParams.get('product').id;
     this.productName = navParams.get('product').operator_name;
     this.getStatus();
   }
@@ -63,6 +63,7 @@ export class SingleReviewPage {
   getPrevReviews(){
     this.httpProvider.getJsonData(this.operatorEndpoint + this.operatorID + '/stars-comments')
       .subscribe(result =>{
+        console.log(result);
         this.reviews = result;
       });
   }

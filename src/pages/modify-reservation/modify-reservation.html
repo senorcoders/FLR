@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title>Reservation<button class="back-btn"><ion-icon name="close"></ion-icon></button></ion-title>
+      <ion-title>Reservation<button (click)="goToFeed()" class="back-btn"><ion-icon name="close"></ion-icon></button></ion-title>
   </ion-navbar>
   
   </ion-header>
@@ -53,7 +53,7 @@
         </div>
         <div class="summary">
           <h3>Starts <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
-          {{startDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{startHour}}
+          {{startDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(startHour)}}
         </div>
       </ion-col>
       <ion-col col-5>
@@ -64,7 +64,7 @@
         <div class="summary">
           <div>
             <h3>Ends <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
-            {{endDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{endHour}}
+            {{endDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(endHour)}}
           </div>
         </div>
       </ion-col>

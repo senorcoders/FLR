@@ -70,7 +70,7 @@
 
 		<ion-row>
 				<ion-col col-8>
-						<h3 class="light">Daily (24 Hours)<br>USD {{price}}</h3>
+						<h3 class="light">Daily (24 Hours)<br>$ {{price}}</h3>
 					</ion-col>
 					<ion-col col-4 class="center">
 						 <button class="transparent" (click)="timesCount()"><ion-icon name="add"></ion-icon></button><span class="square">{{reserveCount}}</span><button (click)="dicreaseCount()" class="transparent"><ion-icon name="remove"></ion-icon></button>
@@ -85,7 +85,13 @@
 			<h3 class="dark-light">Pick activity {{rowText}} date</h3>
 		</ion-col>
 		<ion-col col-12>
-			<button (click)="openModal()" ion-button clear>Pick another {{rowText}} date</button>
+			<!-- <h3 class="dark-light">Pick another {{rowText}} date</h3> -->
+			<ion-item>
+				<ion-label>Pick a date</ion-label>
+				<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeStarts"></ion-datetime>
+				<button (click)="updateDate()" item-end ion-button clear>Update</button>
+
+			</ion-item>
 		</ion-col>
 
 		 <ion-row (click)="onButtonGroupClick($event)" class="date-row" >
@@ -134,6 +140,7 @@
 	</div>
 
 	</ion-row>
+	<div style="height: 50px;"></div>
 
 </ion-content>
 <ion-footer *ngIf="enableDates">

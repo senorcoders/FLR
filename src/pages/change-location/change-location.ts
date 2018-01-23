@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
 })
 export class ChangeLocationPage {
   public timeStarts = '';
-  constructor(
+  constructor( 
     public navCtrl: NavController, 
     public navParams: NavParams,
     public viewCtrl: ViewController,
