@@ -120,7 +120,7 @@ export class MapPage {
 
       let markerOptions: MarkerOptions = {
         position: coordinates,
-        icon: "assets/imgs/marker.png",
+        icon: 'https://findlocalrentals.net/reservations/shop_image/gmap/' + location.name_image,
         title: location.operator_name,
       };
 
