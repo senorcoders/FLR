@@ -33,6 +33,8 @@ import { MomentModule } from 'angular2-moment';
 import { RequestsPage } from '../pages/requests/requests';
 import { ChangeLocationPage } from '../pages/change-location/change-location';
 import { MapModalPage } from '../pages/map-modal/map-modal';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder} from '@ionic-native/native-geocoder';
 
 @NgModule({
   declarations: [
@@ -98,7 +100,9 @@ import { MapModalPage } from '../pages/map-modal/map-modal';
     UsersProvider,
     SocialSharing,
     SocialShareProvider,
-    GoogleMaps
+    GoogleMaps,
+    Geolocation,
+    NativeGeocoder
   ]
 })
 export class AppModule {}

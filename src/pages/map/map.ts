@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, PopoverController, App} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, PopoverController, App, ModalController} from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -11,6 +11,9 @@ import {
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ProductListPage } from '../product-list/product-list';
+import { Geolocation } from '@ionic-native/geolocation';
+import { ChangeLocationPage } from '../change-location/change-location';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -21,6 +24,9 @@ export class MapPage {
   //@ViewChild('map') element:ElementRef;
 
   base:any = 'http://138.68.19.227:3030/api/location/by_distance/';
+  lat:any;
+  lng:any;
+  map: GoogleMap;
 
   constructor(
     public navCtrl: NavController, 
@@ -30,7 +36,10 @@ export class MapPage {
     private http: Http,
     public popoverCtrl: PopoverController,
     private app: App,
-    private readonly ngZone: NgZone) {
+    private readonly ngZone: NgZone,
+    private geolocation: Geolocation,
+    public modalCtrl: ModalController,
+    private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -39,50 +48,74 @@ export class MapPage {
 
   ngAfterViewInit() {
     this.plt.ready().then(() => {
-        this.http.get(this.base + '28.471346/-81.54047/1000')
-        .map(res => res.json())
-        .subscribe(locations => this.initMap(locations))
+      // this.geolocation.getCurrentPosition().then((resp) =>{
+      //   this.lat = resp.coords.latitude;
+      //   this.lng = resp.coords.longitude;
+      //   this.getLocations();
+      // }).catch((error) => {
+      //   console.log('Error getting location', error);
+      // });
+      this.getLocations();
+       
     });
   }
 
+  getLocations(){
+    //this.http.get(this.base + this.lat + '/' + this.lng + '/10000')
+    this.http.get(this.base +  '28.471346/-81.54047/10000')
+    .map(res => res.json())
+    .subscribe(locations => this.initMap(locations))
+  }
+
+  updateLocations(){
+    this.http.get(this.base + this.lat + '/' + this.lng + '/10000')
+    .map(res => res.json())
+    .subscribe(locations => this.moveMap(locations))
+  }
   initMap (locations) {
     let mapEle: HTMLElement = document.getElementById('map');
 
     
-    let map: GoogleMap = this.googleMaps.create(mapEle);
+    this.map= this.googleMaps.create(mapEle);
 
-    map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
+    this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
+      this.moveMap(locations);
+     
+    })
+  }
 
-      let cameraCoordinates: LatLng = new LatLng(locations[0].lat, locations[0].lot);
 
-      let cameraPosition = {
-        target: cameraCoordinates,
-        zoom: 17
+  moveMap(locations){
+    let cameraCoordinates: LatLng = new LatLng(locations[0].lat, locations[0].lot);
+
+    let cameraPosition = {
+      target: cameraCoordinates,
+      zoom: 12
+    };
+
+    this.map.animateCamera(cameraPosition);
+
+    locations.forEach((location) => {
+
+      let coordinates: LatLng = new LatLng(location.lat, location.lot);
+
+      let markerOptions: MarkerOptions = {
+        position: coordinates,
+        icon: "assets/imgs/marker.png",
+        title: location.operator_name,
+        animation: 'DROP'
       };
 
-      map.animateCamera(cameraPosition);
-
-      locations.forEach((location) => {
-
-        let coordinates: LatLng = new LatLng(location.lat, location.lot);
-
-        let markerOptions: MarkerOptions = {
-          position: coordinates,
-          icon: "assets/imgs/marker.png",
-          title: location.operator_name
-        };
-
-        const marker = map.addMarker(markerOptions)
-          .then((marker: Marker) => {
-            marker.showInfoWindow();
-            marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-                //this.presentPopover(location.products, location.operator_name);
-                this.ngZone.run(() => this.presentPopover(location.products, location.operator_name));
-              });
+      const marker = this.map.addMarker(markerOptions)
+        .then((marker: Marker) => {
+          marker.showInfoWindow();
+          marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+              //this.presentPopover(location.products, location.operator_name);
+              this.ngZone.run(() => this.presentPopover(location.products, location.operator_name));
             });
+          });
 
-      });
-    })
+    });
   }
 
   presentPopover(product, operator) {
@@ -97,6 +130,48 @@ export class MapPage {
       }, {cssClass: 'product-popover'} );
     popover.present();
   }
+
+  presentModal() {
+    let modal = this.modalCtrl.create(ChangeLocationPage);
+    modal.present();
+    modal.onDidDismiss(() =>{
+        this.getLat();
+    });
+  }
+
+  getLat(){
+    this.storage.get('customLat').then((val) => {
+      if(val != null){
+        this.lat = val;
+        this.getLng();
+      }      
+    });
+  }
+
+  getLng(){
+    this.storage.get('customLng').then((val) => {
+      if(val != null){
+        this.lng = val;
+        console.log(this.map);
+        // this.map.remove().then(data =>{
+        //   console.log(data);
+        //   //this.getLocations();
+        // });
+        // let cameraCoordinates: LatLng = new LatLng(this.lat, this.lng);
+
+        // let cameraPosition = {
+        //   target: cameraCoordinates,
+        //   zoom: 17
+        // };
+  
+        // this.map.animateCamera(cameraPosition);
+        this.updateLocations();
+       
+      }      
+    });
+  }
+
+ 
 
 
 }
