@@ -39,6 +39,7 @@ export class ChangeLocationPage {
   .then((coordinates: NativeGeocoderForwardResult) => {
     
     console.log(this.searchTerm);
+    console.log(coordinates.latitude, coordinates.longitude);
     this.saveCoords(coordinates.latitude, coordinates.longitude);
   })
   .catch((error: any) => console.log(error));

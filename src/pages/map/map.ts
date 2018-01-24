@@ -72,6 +72,12 @@ export class MapPage {
     .map(res => res.json())
     .subscribe(locations => this.moveMap(locations))
   }
+
+  updateMarkers(){
+    this.http.get(this.base + this.lat + '/' + this.lng + '/10000')
+    .map(res => res.json())
+    .subscribe(locations => this.sortMarkers(locations))
+  }
   initMap (locations) {
     let mapEle: HTMLElement = document.getElementById('map');
 
@@ -81,7 +87,15 @@ export class MapPage {
     this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
       this.moveMap(locations);
      
-    })
+    });
+    this.map.addEventListener(GoogleMapsEvent.CAMERA_MOVE_END).subscribe(() => {
+        
+        console.log(this.map.getCameraTarget());
+        this.lat = this.map.getCameraTarget().lat;
+        this.lng = this.map.getCameraTarget().lng;
+        this.updateMarkers();
+
+    }); 
   }
 
 
@@ -91,10 +105,15 @@ export class MapPage {
     let cameraPosition = {
       target: cameraCoordinates,
       zoom: 12
-    };
+    }
 
     this.map.animateCamera(cameraPosition);
 
+    this.sortMarkers(locations);
+  }
+
+  sortMarkers(locations){
+    console.log(locations);
     locations.forEach((location) => {
 
       let coordinates: LatLng = new LatLng(location.lat, location.lot);
@@ -103,7 +122,6 @@ export class MapPage {
         position: coordinates,
         icon: "assets/imgs/marker.png",
         title: location.operator_name,
-        animation: 'DROP'
       };
 
       const marker = this.map.addMarker(markerOptions)

@@ -3,7 +3,7 @@
     <name>Find Local Rentals</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.9:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -83,6 +83,7 @@
     <allow-navigation href="http://192.168.0.10:8100" />
     <allow-navigation href="http://192.168.8.108:8100" />
     <allow-navigation href="http://192.168.8.102:8100" />
+    <allow-navigation href="http://192.168.1.9:8100" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -103,5 +104,4 @@
     <plugin name="cordova-plugin-nativegeocoder" spec="^2.0.4">
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Use geocoder service" />
     </plugin>
-    <allow-navigation href="http://192.168.1.9:8100" />
 </widget>
