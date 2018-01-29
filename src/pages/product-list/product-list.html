@@ -4,7 +4,8 @@
 <ion-content id="rita-custom-list">
  
   <!-- <ion-list> -->
-      <ion-item *ngFor="let product of products" (click)="goToDetail(product)">
+    <div >
+      <ion-item  *ngFor="let product of products" (click)="goToDetail(product)">
         <ion-thumbnail item-start>
           <img src="assets/imgs/placeholder.png">
         </ion-thumbnail>
@@ -17,6 +18,26 @@
             
         </button>
       </ion-item>
+    </div>
+
+    <div *ngIf="products.length < 1">
+        <ion-row>
+            <ion-col col-12 class="center">
+                <img src="assets/imgs/Canoe.png" alt="" style="width: 150px;">
+                <br>
+                <p>Availability cannot be determinated at this time. Not to worry! Help is
+                  one step away. Send a request for immediate assistance.
+                </p>
+              </ion-col>
+        </ion-row>
+    </div>
      
     <!-- </ion-list> -->
 </ion-content>
+
+<ion-footer *ngIf="products.length < 1">
+		<button  class="full-custom-btn" ion-button clear (click)="request()">
+		   Send request  
+		  </button>
+		
+	</ion-footer>

@@ -1,3 +1,15 @@
 page-product-list {
-
+    /*footer*/
+	ion-footer{
+		background: #ed640a;
+		text-align: center;
+	}
+	.full-custom-btn{
+		font-size: 2rem;
+	    text-transform: uppercase;
+	    color: white;
+	    text-align: center;
+	}
+	.footer-md .button-clear-md{height: 4rem}
+	.footer-ios .button-ios{height: 4rem}
 }

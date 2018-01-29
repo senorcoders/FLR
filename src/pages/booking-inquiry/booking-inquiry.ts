@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { SocialShareProvider } from '../../providers/social-share/social-share';
+import { FeedPage } from '../feed/feed';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -21,6 +23,7 @@ export class BookingInquiryPage {
   productName:any;
   azure_id:any;
   inquiryEndpoint:any = 'inquiry';
+  root:any;
 
 
   constructor(
@@ -55,11 +58,17 @@ export class BookingInquiryPage {
       buttons: [{
         text: 'Ok',
         handler: () => {
-          this.navCtrl.popToRoot();
+          this.navCtrl.setRoot(this.root);
         }
       }]
     });
     alert.present();
+  }
+
+
+  close(){
+    this.navCtrl.setRoot(this.root);
+
   }
 
   getUserStatus(){
@@ -69,10 +78,12 @@ export class BookingInquiryPage {
           this.httpProvider.getAzureID().then(azure =>{
             this.azure_id = azure;
             this.getUserData();
+            this.root = FeedPage;
             
           });
         }else{
          console.log('User not logged in');
+         this.root = HomePage;
         }
         
     })

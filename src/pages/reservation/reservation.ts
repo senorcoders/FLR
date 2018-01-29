@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController, PopoverController
 import { UsersProvider } from '../../providers/users/users';
 import { PaymentPage } from '../payment/payment';
 import { MapModalPage } from '../map-modal/map-modal';
+import { FeedPage } from '../feed/feed';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -36,6 +38,7 @@ export class ReservationPage {
   couponEndpoint:any = 'coupon/';
   lat:any;
   lng:any;
+  root:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -125,10 +128,12 @@ getUserStatus(){
         this.httpProvider.getAzureID().then(azure =>{
           this.azure_id = azure;
           this.getUserData();
+          this.root = FeedPage;
           
         });
       }else{
        console.log('User not logged in');
+       this.root = HomePage;
       }
       
   })
@@ -193,7 +198,7 @@ presentPopover() {
 }
 
 back(){
-  this.navCtrl.popToRoot();
+  this.navCtrl.setRoot(this.root);
 }
 
 }

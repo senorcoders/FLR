@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { ProductPage } from '../product/product';
+import { BookingInquiryPage } from '../booking-inquiry/booking-inquiry';
 
 
 @IonicPage()
@@ -37,6 +38,11 @@ export class ProductListPage {
     //this.viewCtrl.dismiss();
   }
 
+  request(){
+    this.navCtrl.push(BookingInquiryPage, {
+      operatorName: this.operator,
+    });
+  }
 
 
 }

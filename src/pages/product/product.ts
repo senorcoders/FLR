@@ -5,6 +5,8 @@ import { ReservationPage } from '../reservation/reservation';
 import { BookingInquiryPage } from '../booking-inquiry/booking-inquiry';
 import { ChangeLocationPage } from '../change-location/change-location';
 import { Storage } from '@ionic/storage';
+import { FeedPage } from '../feed/feed';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -50,6 +52,7 @@ export class ProductPage {
 
   lat:any;
   lng:any;
+  root:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -122,7 +125,7 @@ export class ProductPage {
   }
  
   back(){
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(this.root);
   }
 
   getDates(timeStart?){
@@ -209,9 +212,11 @@ export class ProductPage {
             this.azure_id = azure;
             console.log(azure);
             this.getUserID();
+            this.root = FeedPage;
           });
         }else{
           this.enable = false;
+          this.root = HomePage;
         }
         
     });
