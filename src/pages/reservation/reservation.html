@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Book Reservation <button class="back-btn"><ion-icon name="close"></ion-icon></button></ion-title>
+    <ion-title>Book Reservation <button (click)="back()" class="back-btn"><ion-icon name="close"></ion-icon></button></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -16,10 +16,10 @@
 		<ion-col col-8>
 			<h3 class="light">{{operatorName}}</h3>
 		</ion-col>
-		<ion-col col-4 class="right center">
+		<!-- <ion-col col-4 class="right center">
 			<button  (click)="presentPopover()" class="transparent"><img src="assets/imgs/location-icon.png" width="40"><br>
 			<span class="orange-font">See on map</span></button>
-		</ion-col>
+		</ion-col> -->
 		<ion-col col-12>
 			<p class="star">
 				<ion-icon name="star" class="yellow-star"></ion-icon>

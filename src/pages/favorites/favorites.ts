@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 
 
@@ -21,10 +21,14 @@ export class FavoritesPage {
     public navParams: NavParams,
     public menuCtrl: MenuController,
     private httpProvider: UsersProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController) {
       this.getStatus();
       this.loading = this.loadingCtrl.create({
-        content: "Please wait...",
+        spinner: 'hide',
+        content: `<img width="150" src="assets/imgs/placeholder.png" />
+        <br>
+        <h1 class="loader-text-center">Loading...</h1>`,
       });
       this.loading.present();
 
@@ -75,6 +79,37 @@ export class FavoritesPage {
       .subscribe(result => {
         this.loading.dismiss();
         this.favorites = result;
+      });
+  }
+
+  showConfirm(favID, index) {
+    let confirm = this.alertCtrl.create({
+      title: 'Are you sure?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+            confirm.dismiss();
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            console.log('Agree clicked');
+            this.deleteFav(favID, index);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  deleteFav(favID, index){
+    this.httpProvider.removeItem('favorite-product', favID)
+      .subscribe(data => {
+        (this.favorites).splice(index, 1);
+
       });
   }
 

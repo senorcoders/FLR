@@ -84,6 +84,8 @@
     <allow-navigation href="http://192.168.8.108:8100" />
     <allow-navigation href="http://192.168.8.102:8100" />
     <allow-navigation href="http://192.168.1.9:8100" />
+    <allow-navigation href="http://169.254.98.58:8100" />
+    <allow-navigation href="http://169.254.42.50:8100" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />

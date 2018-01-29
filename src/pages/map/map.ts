@@ -48,21 +48,42 @@ export class MapPage {
 
   ngAfterViewInit() {
     this.plt.ready().then(() => {
-      // this.geolocation.getCurrentPosition().then((resp) =>{
-      //   this.lat = resp.coords.latitude;
-      //   this.lng = resp.coords.longitude;
-      //   this.getLocations();
-      // }).catch((error) => {
-      //   console.log('Error getting location', error);
-      // });
-      this.getLocations();
+      
+      this.storage.get('customLat').then((val) => {
+        console.log(val);
+        if(val != null){
+          this.lat = val;
+          this.storage.get('customLng').then((lng) => {
+            console.log(lng);
+            if(val != null){
+              this.lng = lng;
+              this.getLocations();
+            }
+          });
+        }else{
+        // this.geolocation.getCurrentPosition().then((resp) =>{
+        // this.lat = resp.coords.latitude;
+        // this.lng = resp.coords.longitude;
+        // this.getLocations();
+        //   }).catch((error) => {
+        //     console.log('Error getting location', error);
+        //   });
+          this.lat = '28.471346';
+          this.lng = '-81.54047';
+          this.getLocations();
+        }   
+      });
+      //this.getLocations();
        
     });
   }
 
+  
+
   getLocations(){
-    //this.http.get(this.base + this.lat + '/' + this.lng + '/10000')
-    this.http.get(this.base +  '28.471346/-81.54047/10000')
+    
+    this.http.get(this.base + this.lat + '/' + this.lng + '/10000')
+    //this.http.get(this.base +  '28.471346/-81.54047/10000')
     .map(res => res.json())
     .subscribe(locations => this.initMap(locations))
   }
@@ -79,6 +100,7 @@ export class MapPage {
     .subscribe(locations => this.sortMarkers(locations))
   }
   initMap (locations) {
+    console.log(locations);
     let mapEle: HTMLElement = document.getElementById('map');
 
     

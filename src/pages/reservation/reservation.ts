@@ -192,5 +192,8 @@ presentPopover() {
   popover.present();
 }
 
+back(){
+  this.navCtrl.popToRoot();
+}
 
 }

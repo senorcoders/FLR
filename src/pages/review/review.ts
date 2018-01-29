@@ -24,7 +24,10 @@ export class ReviewPage {
     public loadingCtrl: LoadingController) {
       this.getStatus();
       this.loading = this.loadingCtrl.create({
-        content: "Please wait...",
+        spinner: 'hide',
+        content: `<img width="150" src="assets/imgs/placeholder.png" />
+        <br>
+        <h1 class="loader-text-center">Loading...</h1>`,
       });
       this.loading.present();
   }

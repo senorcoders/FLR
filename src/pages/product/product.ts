@@ -19,6 +19,7 @@ export class ProductPage {
   productID:any;
   endpoint:any = 'services-dates/next-dates/';
   public dates:any = [];
+  public datesEnd:any = [];
   enable:boolean;
   azure_id:any;
   userID:any;
@@ -44,6 +45,9 @@ export class ProductPage {
   reloading:boolean = true;
   enableInquiry:boolean = false;
   public timeStarts = '';
+  public timeEnd = '';
+  enableEndDate:boolean = false;
+
   lat:any;
   lng:any;
 
@@ -56,7 +60,10 @@ export class ProductPage {
     public modalCtrl: ModalController,
     private storage: Storage) {
       this.loading = this.loadingCtrl.create({
-        content: "Please wait...",
+        spinner: 'hide',
+        content: `<img width="150" src="assets/imgs/placeholder.png" />
+        <br>
+        <h1 class="loader-text-center">Loading...</h1>`,
       });
       this.loading.present();
       var today = new Date();
@@ -64,6 +71,7 @@ export class ProductPage {
       var mm:any = today.getMonth()+1;
       var yyyy = today.getFullYear();
       this.timeStarts = yyyy + '-' + mm + '-' + dd;
+      this.timeEnd = yyyy + '-' + mm + '-' + dd;
   }
 
   ngOnInit(){ 
@@ -133,10 +141,33 @@ export class ProductPage {
         }else{
           console.log('Booking Inquiry');
           this.enableInquiry = true;
+          this.enableDates = false;
         }
         //this.dates = result;
     });
 
+  }
+
+  getEndDates(timeStart?){
+    if(timeStart != null){
+      var url = this.endpoint + '7722/' + timeStart;
+    }else{
+      var url = this.endpoint + '7722';
+    }
+    this.httpProvider.getJsonData(url).subscribe(result => {
+        console.log("Dates", result.length);
+        this.loading.dismiss();
+        this.reloading = false;
+        if (result.length > 0){
+          this.getSingleEndDate(result);
+          this.enableEndDate = true;
+        }else{
+          console.log('Booking Inquiry');
+          this.enableInquiry = true;
+          this.enableDates = false;
+        }
+        //this.dates = result;
+    });
   }
   getSingleDate(array){
     console.log("Longitud", array.length);
@@ -146,6 +177,21 @@ export class ProductPage {
         console.log(array[date]);
        this.dates.push(array[date]);
        this.startDate = this.dates[0].date;
+
+      }
+
+    }
+  
+  }
+
+  getSingleEndDate(array){
+    console.log("Longitud", array.length);
+    for(var date = 0; date < array.length; date++){
+      console.log(array[date], date);
+      if (date < 3){
+        console.log(array[date]);
+       this.datesEnd.push(array[date]);
+       this.endDate = this.dates[1].date;
 
       }
 
@@ -203,7 +249,33 @@ getLikeStatus(){
     });
 }
 
+firstTab(value){
+  this.enableFirst = true;
+  this.enableThird = false;
+  this.enableSecond = false;
+  this.startDate = value;
+  console.log(this.startDate);
+
+}
+
 secondTab(value){
+  this.enableFirst = false;
+  this.enableThird = false;
+  this.enableSecond = true;
+  this.startDate = value;
+  console.log(this.startDate);
+
+}
+
+thirdTab(value){
+  this.enableFirst = false;
+  this.enableSecond = false;
+  this.enableThird = true;
+  this.startDate = value;
+  console.log(this.startDate);
+}
+
+secondEndTab(value){
   this.enableFirst = false;
   this.enableThird = false;
   this.enableSecond = true;
@@ -212,7 +284,7 @@ secondTab(value){
 
 }
 
-thirdTab(value){
+thirdEndTab(value){
   this.enableFirst = false;
   this.enableSecond = false;
   this.enableThird = true;
@@ -223,15 +295,26 @@ thirdTab(value){
 enableTabs(){
   if(this.startHour != null){
     console.log("clicked");
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: `<img width="150" src="assets/imgs/placeholder.png" />
+      <br>
+      <p class="loader-text-center">Loading available end Dates...</p>`,
+    });
+    this.loading.present();
+  this.getEndDates(this.startDate);
   this.disable = false;
   this.disableFirst = true;
   this.enableFirst = false;
+  this.enableThird = false;
   this.enableSecond = true;
   this.secondColor = 'orange-bg orange-border';
   this.firstColor = 'orange-border';
   this.rowText = 'end';
-  this.endDate = this.dates[1].date;
   this.enableContinue = false;
+  this.enableDates = false;
+  //this.enableEndDate = true;
+ 
 
   }else{
     this.presentAlert("You need to choose a start hour");
@@ -324,12 +407,28 @@ tConvert (time) {
 
 updateDate(){
   this.loading = this.loadingCtrl.create({
-    content: "Please wait...",
+    spinner: 'hide',
+    content: `<img width="150" src="assets/imgs/placeholder.png" />
+    <br>
+    <h1 class="loader-text-center">Loading...</h1>`,
   });
   this.loading.present();
   this.enableDates = false;
   this.dates = [];
   this.getDates(this.timeStarts);
+}
+
+updateEndDate(){
+  this.loading = this.loadingCtrl.create({
+    spinner: 'hide',
+    content: `<img width="150" src="assets/imgs/placeholder.png" />
+    <br>
+    <h1 class="loader-text-center">Loading...</h1>`,
+  });
+  this.loading.present();
+  this.enableDates = false;
+  this.datesEnd = [];
+  this.getEndDates(this.timeEnd);
 }
 
 // getStartDate(){

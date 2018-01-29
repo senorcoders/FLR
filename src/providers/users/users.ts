@@ -110,6 +110,17 @@ headers.append('Accept', 'application/json');
   //   });
 }
 
+removeItem(endpoint, recordID){
+  var headers = new Headers();
+   headers.append('Content-Type', 'application/json' );
+   let options = new RequestOptions({ headers: headers });
+          return this.http.delete(this.base + endpoint + '/' + recordID, options)
+                .map(res => res.json())
+                .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+ 
+   
+}
+
 
 load(endpoint){
 console.log(this.base + endpoint);
