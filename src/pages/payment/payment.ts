@@ -163,14 +163,23 @@ export class PaymentPage {
 
   presentAlert(message) { 
     let alert = this.alertCtrl.create({
-      title: 'Ups!!',
+      title: 'Warning!',
       subTitle: message,
       buttons: ['Dismiss']
     });
     alert.present();
   }
 
-  showMe() { 
+  showMe(){
+    if(this.name != undefined && this.address != undefined && this.city != undefined && this.region != undefined && this.country != undefined
+        && this.account != undefined && this.expiry != undefined && this.cvv2 != undefined && this.postal != undefined){
+      this.sendCardData();
+    }else{
+      this.presentAlert("All fields are required!");
+    }
+  }
+
+  sendCardData() { 
     this.httpProvider.updateItem(this.cardConnectEnpoint, JSON.stringify({
       merchid: this.merchid,
       accttype: this.acctype,
@@ -190,8 +199,13 @@ export class PaymentPage {
       tokenize: this.tokenize,
       capture: this.capture
     })).subscribe(data => {
-      console.log(data);
       this.pay();
+      if(data.resptext === 'Approval'){
+        this.pay();
+
+      }else{
+        this.presentAlert("Invalid Card Data");
+      }
     }); 
 }
 
