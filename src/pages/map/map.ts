@@ -142,7 +142,7 @@ export class MapPage {
 
       let markerOptions: MarkerOptions = {
         position: coordinates,
-        icon: 'https://findlocalrentals.net/reservations/shop_image/gmap/' + location.name_image,
+        icon: 'https://findlocalrentals.net/reservations/shop_image/gmap/' + location.products_types_name,
         title: location.operator_name,
       };
 

@@ -135,4 +135,20 @@ return new Promise(resolve => {
 
 }
 
+
+updateItem(endpoint, data){
+  var _authdata = btoa('testing' + ':' + 'testing123');
+  console.log(_authdata);
+  var headers = new Headers();
+  headers.append('Authorization', 'Basic ' + _authdata);
+  headers.append('Content-Type', 'application/json' );
+  // headers.append('Accept', 'application/json');
+  // headers.append('Access-Control-Allow-Origin', '*');
+    let options = new RequestOptions({ headers: headers });
+    
+      return this.http.put(endpoint, data, options)
+    .map(res => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+}
+
 }

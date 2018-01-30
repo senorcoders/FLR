@@ -31,8 +31,25 @@ export class PaymentPage {
   guestId:any;
   guestEndpoint:any = 'guest';
   deviceID:any;
-
-
+  token:any;
+  name:any;
+  merchid:any = '496160873888';
+  amount:any;
+  currency:any = 'USD';
+  address:any;
+  city:any;
+  region:any;
+  country:any;
+  postal:any;
+  ecomind:any = 'E';
+  cvv2:any;
+  tokenize:any = 'Y';
+  capture:any = 'Y';
+  acctype:any = 'VISA';
+  orderid:any = 'AB-11-9876"';
+  account:any;
+  cardConnectEnpoint:any = 'https://fts.cardconnect.com:6443/cardconnect/rest/auth';
+  expiry:any;
 
 
   constructor(
@@ -41,6 +58,21 @@ export class PaymentPage {
     private httpProvider: UsersProvider,
     public alertCtrl: AlertController,
     private device: Device) {
+      var that = this;
+
+      // window.addEventListener('message', function(event) {
+      //   // document.getElementById('mytoken').value = JSON.parse(event.data);
+      //   that.token;
+        
+      //   var token = JSON.parse(event.data);      
+        
+      //   console.log('Received message ' + token.message);
+      //   // var mytoken = document.getElementById('mytoken');
+      //   that.token = token.message;
+      //   }, false);
+
+
+
       this.productID = navParams.get('productID');
       this.productName = navParams.get('productName');
       this.price = navParams.get('price');
@@ -53,6 +85,7 @@ export class PaymentPage {
       this.guestEmail = navParams.get('guestEmail');
       this.guestMobile = navParams.get('guestMobile');
       this.deviceID = this.device.uuid;
+      this.amount = this.price * this.number_activity_reserved;
       console.log(this.transaction_start_time, this.transaction_end_time);
       this.getUserStatus();
   }
@@ -136,5 +169,31 @@ export class PaymentPage {
     });
     alert.present();
   }
+
+  showMe() { 
+    this.httpProvider.updateItem(this.cardConnectEnpoint, JSON.stringify({
+      merchid: this.merchid,
+      accttype: this.acctype,
+      orderid: this.orderid,
+      account: this.account,
+      expiry: this.expiry,
+      amount: this.amount,
+      currency: this.currency,
+      name: this.name,
+      address: this.address,
+      city: this.city,
+      region: this.region,
+      country: this.country,
+      postal: this.postal,
+      ecomind: this.ecomind,
+      cvv2: this.cvv2,
+      tokenize: this.tokenize,
+      capture: this.capture
+    })).subscribe(data => {
+      console.log(data);
+      this.pay();
+    }); 
+}
+
 
 }
