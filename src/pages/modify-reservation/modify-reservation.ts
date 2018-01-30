@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { FeedPage } from '../feed/feed';
 import { MapPage } from '../map/map';
+import { HomePage } from '../home/home';
+import { UsersProvider } from '../../providers/users/users';
 
 
 @IonicPage()
@@ -22,8 +24,13 @@ export class ModifyReservationPage {
   endHour:any;
   price:any;
   totalAmount:number;
+  root:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private viewCtrl: ViewController,
+    private httpProvider: UsersProvider) {
     this.bookingID = navParams.get('reservation').id;
     this.bookingDate= navParams.get('reservation').transaction_date;
     this.productName = navParams.get('reservation').misc_trip_name;
@@ -33,7 +40,24 @@ export class ModifyReservationPage {
     this.startHour = navParams.get('reservation').transaction_start_time;
     this.endHour = navParams.get('reservation').transaction_end_time;
     this.price = navParams.get('reservation').price;
+    this.getStatus();
   }
+
+  getStatus(){
+    this.httpProvider.hasLoggedIn().then(hasLoggedIn => {
+      console.log(hasLoggedIn);
+        if(hasLoggedIn){
+          this.httpProvider.getAzureID().then(azure =>{
+            console.log(azure);
+            this.root = FeedPage;
+          });
+        }else{
+          this.root = HomePage;
+        }
+        
+    });
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModifyReservationPage');
@@ -51,10 +75,10 @@ export class ModifyReservationPage {
   }
 
   goToFeed(){
-    this.navCtrl.popToRoot();
+    this.navCtrl.setRoot(this.root);
   }
   setFeed(){
-    this.navCtrl.setRoot(FeedPage);
+    this.navCtrl.setRoot(this.root);
   }
 
   goToMap(){
@@ -62,8 +86,9 @@ export class ModifyReservationPage {
   }
 
   tConvert (time) {
-    // Check correct time format and split into components
-    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+    if(time != null){
+       // Check correct time format and split into components
+      time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
   
     if (time.length > 1) { // If time format correct
       time = time.slice (1);  // Remove full string match value
@@ -71,6 +96,8 @@ export class ModifyReservationPage {
       time[0] = +time[0] % 12 || 12; // Adjust hours
     }
     return time[0] + time[1] + time[2] + time[5]; // return adjusted time or original string
+    }
+   
   }
 
 }

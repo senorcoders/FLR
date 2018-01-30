@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { ModifyReservationPage } from '../modify-reservation/modify-reservation';
+import { Device } from '@ionic-native/device';
 
 
 @IonicPage()
@@ -24,6 +25,12 @@ export class PaymentPage {
   transaction_end_time:any;
   number_activity_reserved:any;
   reservationEndpoint:any = 'reservation';
+  guestName:any;
+  guestEmail:any;
+  guestMobile:any;
+  guestId:any;
+  guestEndpoint:any = 'guest';
+  deviceID:any;
 
 
 
@@ -32,7 +39,8 @@ export class PaymentPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private httpProvider: UsersProvider,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    private device: Device) {
       this.productID = navParams.get('productID');
       this.productName = navParams.get('productName');
       this.price = navParams.get('price');
@@ -41,6 +49,11 @@ export class PaymentPage {
       this.transaction_start_time = navParams.get('transaction_start_time');
       this.transaction_end_time = navParams.get('transaction_end_time');
       this.number_activity_reserved = navParams.get('number_activity_reserved');
+      this.guestName = navParams.get('guestName');
+      this.guestEmail = navParams.get('guestEmail');
+      this.guestMobile = navParams.get('guestMobile');
+      this.deviceID = this.device.uuid;
+      console.log(this.transaction_start_time, this.transaction_end_time);
       this.getUserStatus();
   }
 
@@ -79,8 +92,18 @@ export class PaymentPage {
     if(this.hasLoggedIn == true){
       this.makeReservation();
     }else{
-      this.presentAlert("You need to sign in");
+      //this.presentAlert("You need to sign in");
+      this.createGuest();
     }
+  }
+
+  createGuest(){
+    this.httpProvider.addItem(this.guestEndpoint, JSON.stringify({device_id: this.deviceID, email: this.guestEmail, phone: this.guestMobile}))
+      .subscribe(data =>{
+        console.log(data);
+        this.guestId = data.id;
+        this.makeReservation();
+      });
   }
 
   makeReservation(){
@@ -97,14 +120,15 @@ export class PaymentPage {
       nbr_in_adult: this.number_activity_reserved,
       nbr_children: 0,
       misc_trip_name: this.productName,
-      price: this.price    
+      price: this.price,
+      guest_id: this.guestId 
     })).subscribe(data => {
         console.log(data);
         this.navCtrl.push(ModifyReservationPage, {reservation: data});
     });
   }
 
-  presentAlert(message) {
+  presentAlert(message) { 
     let alert = this.alertCtrl.create({
       title: 'Ups!!',
       subTitle: message,

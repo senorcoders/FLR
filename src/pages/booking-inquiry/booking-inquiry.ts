@@ -69,7 +69,7 @@ export class BookingInquiryPage {
   close(){
     this.navCtrl.setRoot(this.root);
 
-  }
+  } 
 
   getUserStatus(){
     this.httpProvider.hasLoggedIn().then(hasLoggedIn => {

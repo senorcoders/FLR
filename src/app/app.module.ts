@@ -35,6 +35,7 @@ import { ChangeLocationPage } from '../pages/change-location/change-location';
 import { MapModalPage } from '../pages/map-modal/map-modal';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder} from '@ionic-native/native-geocoder';
+import { Device } from '@ionic-native/device';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { NativeGeocoder} from '@ionic-native/native-geocoder';
     SocialShareProvider,
     GoogleMaps,
     Geolocation,
-    NativeGeocoder
+    NativeGeocoder,
+    Device
   ]
 })
 export class AppModule {}

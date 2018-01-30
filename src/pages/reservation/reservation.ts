@@ -164,13 +164,17 @@ checkRequireFields(){
           transaction_end_date: this.endDate,
           transaction_start_time: this.startHour,
           transaction_end_time: this.endHour,
-          number_activity_reserved: this.qty
+          number_activity_reserved: this.qty,
+          guestName: this.name,
+          guestEmail: this.email,
+          guestMobile: this.mobile
         });
     }else{
       console.log("You need to enter your information");
       this.presentAlert("Your name, email and phone number are required");
     }
 }
+
 
 tConvert (time) {
   // Check correct time format and split into components
