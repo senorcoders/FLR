@@ -62,7 +62,7 @@
           {{qty}}
         </div>
         <div class="summary">
-          <div>
+          <div *ngIf="endDate != ''">
             <h3>Ends <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
             {{endDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(endHour)}}
           </div>

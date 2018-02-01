@@ -199,6 +199,7 @@ export class PaymentPage {
       tokenize: this.tokenize,
       capture: this.capture
     })).subscribe(data => {
+      console.log("Payment", data);
       this.pay();
       if(data.resptext === 'Approval'){
         this.pay();

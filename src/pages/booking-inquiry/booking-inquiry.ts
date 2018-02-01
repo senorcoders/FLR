@@ -44,7 +44,7 @@ export class BookingInquiryPage {
 
   presentAlert(message) {
     let alert = this.alertCtrl.create({
-      title: 'Upsss!!',
+      title: 'Oops!',
       subTitle: message,
       buttons: ['Dismiss']
     });

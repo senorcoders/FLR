@@ -142,6 +142,8 @@ updateItem(endpoint, data){
   var headers = new Headers();
   headers.append('Authorization', 'Basic ' + _authdata);
   headers.append('Content-Type', 'application/json' );
+  headers.append('Access-Control-Allow-Origin', '*');
+
   // headers.append('Accept', 'application/json');
   // headers.append('Access-Control-Allow-Origin', '*');
     let options = new RequestOptions({ headers: headers });

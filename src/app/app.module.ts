@@ -36,6 +36,7 @@ import { MapModalPage } from '../pages/map-modal/map-modal';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder} from '@ionic-native/native-geocoder';
 import { Device } from '@ionic-native/device';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { Device } from '@ionic-native/device';
     GoogleMaps,
     Geolocation,
     NativeGeocoder,
-    Device
+    Device,
+    Keyboard
   ]
 })
 export class AppModule {}

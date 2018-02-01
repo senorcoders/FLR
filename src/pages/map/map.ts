@@ -61,16 +61,16 @@ export class MapPage {
             }
           });
         }else{
-        this.geolocation.getCurrentPosition().then((resp) =>{
-        this.lat = resp.coords.latitude;
-        this.lng = resp.coords.longitude;
-        this.getLocations();
-          }).catch((error) => {
-            console.log('Error getting location', error);
-          });
-          // this.lat = '28.471346';
-          // this.lng = '-81.54047';
-          // this.getLocations();
+        // this.geolocation.getCurrentPosition().then((resp) =>{
+        // this.lat = resp.coords.latitude;
+        // this.lng = resp.coords.longitude;
+        // this.getLocations();
+        //   }).catch((error) => {
+        //     console.log('Error getting location', error);
+        //   });
+          this.lat = '28.471346';
+          this.lng = '-81.54047';
+          this.getLocations();
         }   
       });
       //this.getLocations();
@@ -142,7 +142,7 @@ export class MapPage {
 
       let markerOptions: MarkerOptions = {
         position: coordinates,
-        icon: 'https://findlocalrentals.net/reservations/shop_image/gmap/' + location.products_types_name,
+        icon: 'https://findlocalrentals.net/reservations/shop_image/gmap/' + location.products_types_name_image,
         title: location.operator_name,
       };
 

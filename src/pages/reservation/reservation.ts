@@ -5,6 +5,7 @@ import { PaymentPage } from '../payment/payment';
 import { MapModalPage } from '../map-modal/map-modal';
 import { FeedPage } from '../feed/feed';
 import { HomePage } from '../home/home';
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 @IonicPage()
@@ -39,13 +40,16 @@ export class ReservationPage {
   lat:any;
   lng:any;
   root:any;
+  pricePlan:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController,
     private httpProvider: UsersProvider,
-    public popoverCtrl: PopoverController) {
+    public popoverCtrl: PopoverController,
+    private keyboard: Keyboard) {
+      this.keyboard.hideKeyboardAccessoryBar(false);
       this.productID = navParams.get('productID');
       this.operatorName = navParams.get('operatorName');
       this.productName = navParams.get('productName');
@@ -57,6 +61,7 @@ export class ReservationPage {
       this.qty = navParams.get('reservationCount');
       this.lat = navParams.get('lat');
       this.lng = navParams.get('lng');
+      this.pricePlan = navParams.get('pricePlan');
       this.getUserStatus();
 
   }
@@ -177,7 +182,8 @@ checkRequireFields(){
 
 
 tConvert (time) {
-  // Check correct time format and split into components
+  if(time != null){
+    // Check correct time format and split into components
   time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
 
   if (time.length > 1) { // If time format correct
@@ -186,6 +192,8 @@ tConvert (time) {
     time[0] = +time[0] % 12 || 12; // Adjust hours
   }
   return time[0] + time[1] + time[2] + time[5]; // return adjusted time or original string
+  }
+  
 }
 
 cancel(){

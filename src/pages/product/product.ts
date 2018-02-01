@@ -49,6 +49,8 @@ export class ProductPage {
   public timeStarts = '';
   public timeEnd = '';
   enableEndDate:boolean = false;
+  pricePlan:any;
+  hourly:boolean = false;
 
   lat:any;
   lng:any;
@@ -78,13 +80,18 @@ export class ProductPage {
   }
 
   ngOnInit(){ 
-    this.operator_name = this.navParams.get('operator');
+      this.operator_name = this.navParams.get('operator');
       this.productName = this.navParams.get('product').name;
       this.price = this.navParams.get('product').price;
       this.productID = this.navParams.get('product').product_id;
       this.lat = this.navParams.get('product').lat;
       this.lng = this.navParams.get('product').lot;
-      console.log(this.navParams.get('product').name);
+      this.pricePlan = this.navParams.get('product').price_plan;
+      console.log(this.navParams.get('product').price_plan);
+      console.log(this.pricePlan.includes('Hours'));
+      if(this.pricePlan.includes('Hours') == true){
+        this.hourly = true;
+      }
       this.getDates();
       this.getStatus();
   }
@@ -299,26 +306,33 @@ thirdEndTab(value){
 
 enableTabs(){
   if(this.startHour != null){
-    console.log("clicked");
-    this.loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: `<img width="150" src="assets/imgs/placeholder.png" />
-      <br>
-      <p class="loader-text-center">Loading available end Dates...</p>`,
-    });
-    this.loading.present();
-  this.getEndDates(this.startDate);
-  this.disable = false;
-  this.disableFirst = true;
-  this.enableFirst = false;
-  this.enableThird = false;
-  this.enableSecond = true;
-  this.secondColor = 'orange-bg orange-border';
-  this.firstColor = 'orange-border';
-  this.rowText = 'end';
-  this.enableContinue = false;
-  this.enableDates = false;
-  //this.enableEndDate = true;
+    if(this.hourly != true){
+      console.log("clicked");
+      this.loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        content: `<img width="150" src="assets/imgs/placeholder.png" />
+        <br>
+        <p class="loader-text-center">Loading available end Dates...</p>`,
+      });
+      this.loading.present();
+    this.getEndDates(this.startDate);
+    this.disable = false;
+    this.disableFirst = true;
+    this.enableFirst = false;
+    this.enableThird = false;
+    this.enableSecond = true;
+    this.secondColor = 'orange-bg orange-border';
+    this.firstColor = 'orange-border';
+    this.rowText = 'end';
+    this.enableContinue = false;
+    this.enableDates = false;
+    //this.enableEndDate = true;
+    }else{
+      this.endDate = '';
+      this.endHour = '';
+      this.goToReservation();
+    }
+   
  
 
   }else{
@@ -344,28 +358,31 @@ toggleEndDate(value){
 
 presentAlert(message) {
   let alert = this.alertCtrl.create({
-    title: 'Upsss!!',
+    title: 'Oops!',
     subTitle: message,
     buttons: ['Dismiss']
   });
   alert.present();
 }
-
+goToReservation(){
+  this.navCtrl.push(ReservationPage, {
+    productID: this.productID,
+    operatorName: this.operator_name,
+    productName: this.productName,
+    price: this.price,
+    startDate: this.startDate,
+    startHour: this.startHour,
+    endDate: this.endDate,
+    endHour: this.endHour,
+    reservationCount: this.reserveCount,
+    lat: this.lat,
+    lng: this.lng,
+    pricePlan: this.pricePlan
+  });
+}
 reservate(){
   if(this.endHour != null){
-    this.navCtrl.push(ReservationPage, {
-      productID: this.productID,
-      operatorName: this.operator_name,
-      productName: this.productName,
-      price: this.price,
-      startDate: this.startDate,
-      startHour: this.startHour,
-      endDate: this.endDate,
-      endHour: this.endHour,
-      reservationCount: this.reserveCount,
-      lat: this.lat,
-      lng: this.lng
-    });
+    this.goToReservation();
   }else{
     this.presentAlert("You need to choose a end hour");
 
