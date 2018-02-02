@@ -21,14 +21,15 @@
 			<span class="orange-font">See on map</span></button>
 		</ion-col> -->
 		<ion-col col-12>
-			<p class="star">
-				<ion-icon name="star" class="yellow-star"></ion-icon>
-				<ion-icon name="star" class="yellow-star"></ion-icon>
-				<ion-icon name="star" class="yellow-star"></ion-icon>
-				<ion-icon name="star" class="gray-star"></ion-icon>
-				<ion-icon name="star" class="gray-star"></ion-icon>
-				(3856)
-			</p>
+			<rating [(ngModel)]="stars" 
+			readOnly="true" 
+			max="5" 
+			emptyStarIconName="star-outline" 
+			halfStarIconName="star-half" 
+			starIconName="star" 
+			nullable="false" 
+			rating
+			value="stars"></rating> 
 		</ion-col>
 		<ion-col col-6>
 			<h2 class="dark">Activity</h2>

@@ -24,6 +24,7 @@ export class BookingInquiryPage {
   azure_id:any;
   inquiryEndpoint:any = 'inquiry';
   root:any;
+  stars:any;
 
 
   constructor(
@@ -35,6 +36,8 @@ export class BookingInquiryPage {
       this.productID = navParams.get('productID');
       this.operatorName = navParams.get('operatorName');
       this.productName = navParams.get('productName');
+      this.stars = navParams.get('stars');
+
       this.getUserStatus();
   }
 

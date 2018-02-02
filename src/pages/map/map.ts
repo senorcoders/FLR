@@ -151,14 +151,14 @@ export class MapPage {
           marker.showInfoWindow();
           marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
               //this.presentPopover(location.products, location.operator_name);
-              this.ngZone.run(() => this.presentPopover(location.products, location.operator_name));
+              this.ngZone.run(() => this.presentPopover(location.products, location.operator_name, location.avg_stars));
             });
           });
 
     });
   }
 
-  presentPopover(product, operator) {
+  presentPopover(product, operator, avg_stars) {
     // this.app.getRootNav().push(ProductListPage, {
     //   'product':product,
     //   'operator': operator});
@@ -166,7 +166,8 @@ export class MapPage {
     let popover = this.popoverCtrl.create(
       ProductListPage, {
         'product':product,
-        'operator': operator
+        'operator': operator,
+        'stars': avg_stars
       }, {cssClass: 'product-popover'} );
     popover.present();
   }
@@ -177,7 +178,7 @@ export class MapPage {
     modal.onDidDismiss(() =>{
         this.getLat();
     });
-  }
+  } 
 
   getLat(){
     this.storage.get('customLat').then((val) => {

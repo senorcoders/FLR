@@ -126,4 +126,16 @@ page-booking-inquiry {
 	  border-bottom-color: transparent !important;
 	  box-shadow: none !important;
 	}
+
+	ul {
+        padding: 0px;
+       
+        &.rating li {
+          padding: 5px 2px !important;
+          background: none;
+          color: #ffb400;
+       
+          
+        }
+      }
 }

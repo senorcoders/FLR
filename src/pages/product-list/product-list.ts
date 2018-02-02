@@ -13,6 +13,7 @@ import { BookingInquiryPage } from '../booking-inquiry/booking-inquiry';
 export class ProductListPage {
   operatorID:any;
   operator:any;
+  stars:any;
   public products:any = [];
 
   constructor(
@@ -23,7 +24,8 @@ export class ProductListPage {
     public app: App) {
       this.products = navParams.get('product');
       this.operator = navParams.get('operator');
-      console.log(this.navCtrl);
+      this.stars = navParams.get('stars');
+      console.log(this.stars);
   }
 
   ionViewDidLoad() {
@@ -33,14 +35,16 @@ export class ProductListPage {
   goToDetail(product){
     this.navCtrl.push(ProductPage, {
       'product': product,
-      'operator': this.operator
+      'operator': this.operator,
+      'stars': this.stars
     });
     //this.viewCtrl.dismiss();
-  }
+  } 
 
   request(){
     this.navCtrl.push(BookingInquiryPage, {
       operatorName: this.operator,
+      'stars': this.stars
     });
   }
 

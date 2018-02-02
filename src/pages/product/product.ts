@@ -51,10 +51,14 @@ export class ProductPage {
   enableEndDate:boolean = false;
   pricePlan:any;
   hourly:boolean = false;
+  pricingEndpoint:any = 'product/';
+  public prices:any = [];
 
   lat:any;
   lng:any;
   root:any;
+  stars:any;
+  enablePicker:boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -87,13 +91,12 @@ export class ProductPage {
       this.lat = this.navParams.get('product').lat;
       this.lng = this.navParams.get('product').lot;
       this.pricePlan = this.navParams.get('product').price_plan;
-      console.log(this.navParams.get('product').price_plan);
-      console.log(this.pricePlan.includes('Hours'));
-      if(this.pricePlan.includes('Hours') == true){
-        this.hourly = true;
-      }
+      this.stars = this.navParams.get('stars');
+
+      
       this.getDates();
       this.getStatus();
+      this.getPricing();
   }
 
   timesCount(){
@@ -312,7 +315,7 @@ enableTabs(){
         spinner: 'hide',
         content: `<img width="150" src="assets/imgs/placeholder.png" />
         <br>
-        <p class="loader-text-center">Loading available end Dates...</p>`,
+        <p class="loader-text-center">Loading End Dates...</p>`,
       });
       this.loading.present();
     this.getEndDates(this.startDate);
@@ -377,7 +380,8 @@ goToReservation(){
     reservationCount: this.reserveCount,
     lat: this.lat,
     lng: this.lng,
-    pricePlan: this.pricePlan
+    pricePlan: this.pricePlan,
+    stars: this.stars
   });
 }
 reservate(){
@@ -462,5 +466,25 @@ updateEndDate(){
 
 //   });
 // }
+
+
+  getPricing(){
+    this.httpProvider.getJsonData(this.pricingEndpoint + this.productID + '/prices')
+      .subscribe(result => {
+        this.prices = result;
+      });
+  }
+
+  choosePrice(price, pricePlan){
+    console.log(price, pricePlan);
+    this.price = price;
+    this.pricePlan = pricePlan;
+    if(pricePlan.includes('Hour') == true){
+        this.hourly = true;
+      }else{
+        this.hourly = false;
+      }
+    this.enablePicker = true;
+  }
 
 }

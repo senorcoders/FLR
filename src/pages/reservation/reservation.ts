@@ -41,6 +41,7 @@ export class ReservationPage {
   lng:any;
   root:any;
   pricePlan:any;
+  stars:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -62,6 +63,8 @@ export class ReservationPage {
       this.lat = navParams.get('lat');
       this.lng = navParams.get('lng');
       this.pricePlan = navParams.get('pricePlan');
+      this.stars = navParams.get('stars');
+
       this.getUserStatus();
 
   }
