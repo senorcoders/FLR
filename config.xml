@@ -110,4 +110,5 @@
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Use geocoder service" />
     </plugin>
     <allow-navigation href="http://192.168.8.106:8100" />
+    <allow-navigation href="http://169.254.163.208:8100" />
 </widget>

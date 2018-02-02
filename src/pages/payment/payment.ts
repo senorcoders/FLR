@@ -50,6 +50,7 @@ export class PaymentPage {
   account:any;
   cardConnectEnpoint:any = 'https://fts.cardconnect.com:6443/cardconnect/rest/auth';
   expiry:any;
+  paymentEndpoint:any = 'payment';
 
 
   constructor(
@@ -121,29 +122,29 @@ export class PaymentPage {
     )
   }
 
-  pay(){
+  pay(payment_id){
     if(this.hasLoggedIn == true){
-      this.makeReservation();
+      this.makeReservation(payment_id);
     }else{
       //this.presentAlert("You need to sign in");
-      this.createGuest();
+      this.createGuest(payment_id);
     }
   }
 
-  createGuest(){
+  createGuest(payment_id){
     this.httpProvider.addItem(this.guestEndpoint, JSON.stringify({device_id: this.deviceID, email: this.guestEmail, phone: this.guestMobile}))
       .subscribe(data =>{
         console.log(data);
         this.guestId = data.id;
-        this.makeReservation();
+        this.makeReservation(payment_id);
       });
   }
 
-  makeReservation(){
+  makeReservation(payment_id){
     this.httpProvider.addItem(this.reservationEndpoint, JSON.stringify({
       user_id: this.user_id,
       product_id: this.productID,
-      transaction_date: Date.now(),
+      transaction_date: new Date(),
       transaction_start_date: this.transaction_start_date,
       transaction_end_date: this.transaction_end_date,
       transaction_start_time: this.transaction_start_time,
@@ -154,7 +155,8 @@ export class PaymentPage {
       nbr_children: 0,
       misc_trip_name: this.productName,
       price: this.price,
-      guest_id: this.guestId 
+      guest_id: this.guestId ,
+      payment_id: payment_id
     })).subscribe(data => {
         console.log(data);
         this.navCtrl.push(ModifyReservationPage, {reservation: data});
@@ -180,9 +182,8 @@ export class PaymentPage {
   }
 
   sendCardData() { 
-    this.httpProvider.updateItem(this.cardConnectEnpoint, JSON.stringify({
-      merchid: this.merchid,
-      accttype: this.acctype,
+    this.httpProvider.addItem(this.paymentEndpoint, JSON.stringify({
+      acccttype: this.acctype,
       orderid: this.orderid,
       account: this.account,
       expiry: this.expiry,
@@ -194,15 +195,12 @@ export class PaymentPage {
       region: this.region,
       country: this.country,
       postal: this.postal,
-      ecomind: this.ecomind,
       cvv2: this.cvv2,
-      tokenize: this.tokenize,
-      capture: this.capture
+    
     })).subscribe(data => {
       console.log("Payment", data);
-      this.pay();
       if(data.resptext === 'Approval'){
-        this.pay();
+        this.pay(data.id);
 
       }else{
         this.presentAlert("Invalid Card Data");

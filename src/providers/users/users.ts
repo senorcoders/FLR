@@ -92,6 +92,7 @@ updateUser(endpoint, name,username, email, password, photo_url):void{
 }
 
 addItem(endpoint, data){
+  console.log(data);
   var headers = new Headers();
 headers.append('Content-Type', 'application/json' );
 headers.append('Accept', 'application/json');
