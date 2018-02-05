@@ -65,21 +65,17 @@
 		
 
 		<ion-row>
-						<!-- <h3 class="light">{{pricePlan}}<br>$ {{price}}</h3> -->
-						<ion-list radio-group>
-							<ion-list-header>
-								Prices Availables
-							</ion-list-header>
-						  
-							<ion-item *ngFor="let price of prices">
-							  <ion-label>${{price.price}} - {{price.price_plan}}</ion-label>
-							  <ion-radio (ionSelect)="choosePrice(price.price, price.price_plan)" checked="false" value="{{price.price}}"></ion-radio>
-							</ion-item>
-						  
-							
-						  </ion-list>
+		<h3 class="light">Choose a plan</h3> 
+
+				<ion-item>
+						<ion-label>Prices Availables</ion-label>
+						<ion-select >
+						  <ion-option  *ngFor="let price of prices" value="{{price.price}}" (ionSelect)="choosePrice(price.price, price.price_plan)">${{price.price}} - {{price.price_plan}}</ion-option>
+						</ion-select>
+					  </ion-item>
+						
 		</ion-row>
-		<ion-row>
+		<ion-row *ngIf="enablePicker">
 				<ion-col col-8>
 						<h3 class="dark">{{productName}}</h3>
 					</ion-col>
@@ -88,7 +84,7 @@
 						</ion-col>
 					
 		</ion-row>
-		<ion-row>
+		<ion-row *ngIf="enablePicker">
 				<ion-col col-8>
 						<h3 class="light">{{pricePlan}}<br>$ {{price}}</h3>
 					</ion-col>

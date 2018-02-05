@@ -104,11 +104,7 @@ headers.append('Accept', 'application/json');
   .map(res => res.json())
   .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
 
-  //   .subscribe(data => {
-  //     console.log("In senorcoders", data);
-  //   }, error => {
-  //     console.log("Error", error);
-  //   });
+  
 }
 
 removeItem(endpoint, recordID){

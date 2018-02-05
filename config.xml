@@ -89,6 +89,8 @@
     <allow-navigation href="http://169.254.208.126:8100" />
     <allow-navigation href="http://192.168.8.109:8100" />
     <allow-navigation href="http://169.254.87.203:8100" />
+    <allow-navigation href="http://192.168.8.106:8100" />
+    <allow-navigation href="http://169.254.163.208:8100" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -109,6 +111,4 @@
     <plugin name="cordova-plugin-nativegeocoder" spec="^2.0.4">
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Use geocoder service" />
     </plugin>
-    <allow-navigation href="http://192.168.8.106:8100" />
-    <allow-navigation href="http://169.254.163.208:8100" />
 </widget>
