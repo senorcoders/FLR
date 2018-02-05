@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { ModifyReservationPage } from '../modify-reservation/modify-reservation';
 import { Device } from '@ionic-native/device';
@@ -51,15 +51,23 @@ export class PaymentPage {
   cardConnectEnpoint:any = 'https://fts.cardconnect.com:6443/cardconnect/rest/auth';
   expiry:any;
   paymentEndpoint:any = 'payment';
+  loading:any;
 
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    private httpProvider: UsersProvider,
+    private httpProvider: UsersProvider, 
     public alertCtrl: AlertController,
-    private device: Device) {
+    private device: Device,
+    public loadingCtrl: LoadingController) {
       var that = this;
+      this.loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        content: `<img width="150" src="assets/imgs/placeholder.png" />
+        <br>
+        <h1 class="loader-text-center">Contacting Payment Provider...</h1>`,
+      });
 
       // window.addEventListener('message', function(event) {
       //   // document.getElementById('mytoken').value = JSON.parse(event.data);
@@ -182,6 +190,8 @@ export class PaymentPage {
   }
 
   sendCardData() { 
+    this.loading.present();
+
     this.httpProvider.addItem(this.paymentEndpoint, JSON.stringify({
       acccttype: this.acctype,
       orderid: this.orderid,
@@ -199,11 +209,12 @@ export class PaymentPage {
     
     })).subscribe(data => {
       console.log("Payment", data);
-      if(data.resptext === 'Approval'){
-        this.pay(data.id);
+      this.loading.dismiss();
+      if(data.text === 'Approval'){
+        this.pay(data.payment_id);
 
       }else{
-        this.presentAlert("Invalid Card Data");
+        this.presentAlert(data.text);
       }
     }); 
 }
