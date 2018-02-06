@@ -70,7 +70,7 @@ export class BookingInquiryPage {
 
 
   close(){
-    this.navCtrl.setRoot(this.root);
+    this.navCtrl.popToRoot();
 
   } 
 

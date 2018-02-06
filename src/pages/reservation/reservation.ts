@@ -213,7 +213,7 @@ presentPopover() {
 }
 
 back(){
-  this.navCtrl.setRoot(this.root);
+  this.navCtrl.popToRoot();
 }
 
 }

@@ -135,7 +135,7 @@ export class ProductPage {
   }
  
   back(){
-    this.navCtrl.setRoot(this.root);
+    this.navCtrl.popToRoot();
   }
 
   getDates(timeStart?){

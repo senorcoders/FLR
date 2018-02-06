@@ -75,10 +75,10 @@ export class ModifyReservationPage {
   }
 
   goToFeed(){
-    this.navCtrl.setRoot(this.root);
+    this.navCtrl.popToRoot();
   }
   setFeed(){
-    this.navCtrl.setRoot(this.root);
+    this.navCtrl.popToRoot();
   }
 
   goToMap(){
