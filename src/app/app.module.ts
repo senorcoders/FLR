@@ -37,6 +37,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder} from '@ionic-native/native-geocoder';
 import { Device } from '@ionic-native/device';
 import { Keyboard } from '@ionic-native/keyboard';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { Keyboard } from '@ionic-native/keyboard';
     TermsPage,
     RequestsPage,
     ChangeLocationPage,
-    MapModalPage
+    MapModalPage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -93,7 +97,9 @@ import { Keyboard } from '@ionic-native/keyboard';
     TermsPage,
     RequestsPage,
     ChangeLocationPage,
-    MapModalPage
+    MapModalPage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

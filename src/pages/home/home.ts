@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { FeedPage } from '../feed/feed';
 import { MapPage } from '../map/map';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -92,7 +93,9 @@ export class HomePage {
           this.getFBuserData(this.fbToken);
         }else if(this.provider === 'twitter'){
           this.httpProvider.saveNewUser('user', token[0].user_id, token[0].user_id, 'not defined yet', token[0].user_claims[9].val, this.azure_id);
-          
+          this.storage.set(this.HAS_LOGGED_IN, true);
+          this.storage.set('username', token[0].user_id);
+          this.ngZone.run(() => this.navCtrl.setRoot(FeedPage));
           //this.getTwitterData(token[0].user_id);
         }else{  
           console.log(token);
@@ -114,9 +117,6 @@ export class HomePage {
           console.log(data);
           this.storage.set(this.HAS_LOGGED_IN, true);
           this.storage.set('username', data.id);
-          //nav.setRoot(FeedPage);
-          //this.app.getRootNav().setRoot(FeedPage);
-          //this.navCtrl.setRoot(FeedPage);
           this.ngZone.run(() => this.navCtrl.setRoot(FeedPage));
 
     
@@ -126,6 +126,10 @@ export class HomePage {
   
       }
     )
+  }
+
+  goToLogin(){
+    this.navCtrl.push(LoginPage);
   }
 
 }
