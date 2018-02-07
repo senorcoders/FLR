@@ -90,10 +90,12 @@ export class HomePage {
         if (this.provider === 'facebook'){
           this.fbToken = token[0].access_token;
           this.getFBuserData(this.fbToken);
-        }else{
+        }else if(this.provider === 'twitter'){
           this.httpProvider.saveNewUser('user', token[0].user_id, token[0].user_id, 'not defined yet', token[0].user_claims[9].val, this.azure_id);
           
           //this.getTwitterData(token[0].user_id);
+        }else{  
+          console.log(token);
         }
   
         

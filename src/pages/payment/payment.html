@@ -6,58 +6,11 @@
   
   </ion-header>
   
-  
+   
   <ion-content >
    
 
-    <!-- <form name="order" method="POST">
-      <table>
-                      <tr>
-                      <td>Card number</td>
-                      <td><input type="number" name="card" [(ngModel)]="account"></td>
 
-                    </tr>
-                      <tr>
-                      <td>Enter Expiration</td>
-                      <td><input type="text" name="expiry" size="6" [(ngModel)]="expiry"></td>
-                      </tr>
-                      <tr>
-                          <tr>
-                              <td>CVV2</td>
-                              <td><input type="text" name="expiry" size="6" [(ngModel)]="cvv2"></td>
-                              </tr>
-                              <tr>
-                        <td>Name</td>
-                        <td><input type="text" name="name" [(ngModel)]="name"></td>
-                        </tr>
-                        <tr>
-                        <td>Address</td>
-                        <td><input type="text" name="address" [(ngModel)]="address"></td>
-                        </tr>
-                        <tr>
-                        <td>City</td>
-                        <td><input type="text" name="city" [(ngModel)]="city"></td>
-                        </tr>
-                        <tr>
-                        <td>Region</td>
-                        <td><input type="text" name="region" [(ngModel)]="region"></td>
-                        </tr>
-                        <tr>
-                          <td>Country</td>
-                          <td><input type="text" name="country" [(ngModel)]="country"></td>
-                          </tr>
-                          <tr>
-                            <td>Postal</td>
-                            <td><input type="text" name="postal" [(ngModel)]="postal"></td>
-                            </tr>
-      </table>
-      <br/>
-      
-      <input type="hidden" name="mytoken" id="mytoken" [(ngModel)]="token">
-      
-    </form> -->
-
-    <!-- <iframe src="https://cdn.cardconnect.com/developer/assets/iFrameTokenizerExample1.html?css=input{box-shadow:none;border:none;border-bottom:1pxsolid#d1d1d1;width:100%;}" frameborder="0"></iframe> -->
 
     <ion-row>
       <ion-col col-4>
@@ -74,7 +27,7 @@
       <ion-item>
         <ion-input placeholder="NAME ON CARD" [(ngModel)]="name"></ion-input>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
           <ion-input placeholder="ADDRESS" [(ngModel)]="address"></ion-input>
         </ion-item>
         <ion-item>
@@ -85,7 +38,7 @@
             </ion-item>
             <ion-item>
                 <ion-input placeholder="COUNTRY" [(ngModel)]="country"></ion-input>
-              </ion-item>
+              </ion-item> -->
       <ion-item>
         <ion-input type="number" placeholder="CARD NUMBER" [(ngModel)]="account"></ion-input>
       </ion-item>
@@ -108,6 +61,10 @@
       <ion-col col-12>
         <ion-item>
           <ion-label>I agree with terms and conditions</ion-label>
+          <ion-checkbox checked="checked" [(ngModel)]="checked" (ionChange)="updateTerms()"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Save card on file </ion-label>
           <ion-checkbox checked="true"></ion-checkbox>
         </ion-item>
       </ion-col>

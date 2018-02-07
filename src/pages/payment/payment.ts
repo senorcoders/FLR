@@ -52,6 +52,7 @@ export class PaymentPage {
   expiry:any;
   paymentEndpoint:any = 'payment';
   loading:any;
+  checked:boolean = true;
 
 
   constructor(
@@ -181,14 +182,19 @@ export class PaymentPage {
   }
 
   showMe(){
-    if(this.name != undefined && this.address != undefined && this.city != undefined && this.region != undefined && this.country != undefined
-        && this.account != undefined && this.expiry != undefined && this.cvv2 != undefined && this.postal != undefined){
+    if(this.name != undefined && this.account != undefined && this.expiry != undefined && this.cvv2 != undefined && this.postal != undefined){
       this.sendCardData();
+    }else if(this.checked == false){
+      this.presentAlert("Accept the terms and conditions");
+
     }else{
       this.presentAlert("All fields are required!");
     }
   }
 
+  updateTerms(){
+    console.log(this.checked);
+  }
   sendCardData() { 
     this.loading.present();
 
