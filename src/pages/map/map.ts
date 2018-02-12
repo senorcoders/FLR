@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, PopoverController, App, ModalController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, PopoverController, App, ModalController, AlertController} from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -39,7 +39,8 @@ export class MapPage {
     private readonly ngZone: NgZone,
     private geolocation: Geolocation,
     public modalCtrl: ModalController,
-    private storage: Storage) {
+    private storage: Storage,
+    public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -122,7 +123,10 @@ export class MapPage {
 
 
   moveMap(locations){
-    let cameraCoordinates: LatLng = new LatLng(locations[0].lat, locations[0].lot);
+    if(locations.length < 1){
+      this.showAlert();
+    }else{
+      let cameraCoordinates: LatLng = new LatLng(locations[0].lat, locations[0].lot);
 
     let cameraPosition = {
       target: cameraCoordinates,
@@ -132,6 +136,8 @@ export class MapPage {
     this.map.animateCamera(cameraPosition);
 
     this.sortMarkers(locations);
+    }
+    
   }
 
   sortMarkers(locations){
@@ -210,6 +216,20 @@ export class MapPage {
        
       }      
     });
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'No Locations founds',
+      subTitle: 'Change location and try again',
+      buttons: [{
+        text: 'Search',
+        handler: data =>{
+          this.presentModal();
+        }
+      }]
+    });
+    alert.present();
   }
 
  
