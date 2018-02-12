@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class ChangeLocationPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private storage: Storage,
-    private nativeGeocoder: NativeGeocoder) {
+    private nativeGeocoder: NativeGeocoder,
+    private geolocation: Geolocation) {
      
   }
 
@@ -53,6 +55,19 @@ export class ChangeLocationPage {
     this.storage.set('customLat', lat);
     this.storage.set('customLng', lng);
     this.dismiss();
+  }
+
+  public getCurrentLocation(){
+    this.geolocation.getCurrentPosition().then((resp) =>{
+      this.saveCoords(resp.coords.latitude, resp.coords.longitude);
+        }).catch((error) => {
+          console.log('Error getting location', error);
+        });
+  }
+
+  detail(item){
+    console.log(item);
+    this.searchTerm = item.description;
   }
 
 

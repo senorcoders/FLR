@@ -39,6 +39,7 @@ import { Device } from '@ionic-native/device';
 import { Keyboard } from '@ionic-native/keyboard';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { RegisterPage } from '../pages/register/register';
     HttpModule,
     IonicStorageModule.forRoot(),
     Ionic2RatingModule,
-    MomentModule
+    MomentModule,
+    GooglePlacesAutocompleteComponentModule
 
   ],
   bootstrap: [IonicApp],
