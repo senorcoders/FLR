@@ -94,7 +94,7 @@ export class ProductPage {
       this.stars = this.navParams.get('stars');
 
       
-      this.getDates();
+      //this.getDates();
       this.getStatus();
       this.getPricing();
   }
@@ -469,9 +469,19 @@ updateEndDate(){
 
 
   getPricing(){
+    
     this.httpProvider.getJsonData(this.pricingEndpoint + this.productID + '/prices')
       .subscribe(result => {
-        this.prices = result;
+        console.log(result);
+        if(result.length > 0){
+          this.prices = result;
+          this.getDates();
+        }else{
+          this.prices = result;
+          this.enableInquiry = true;
+          this.enableDates = false;  
+          this.loading.dismiss();
+        }
       });
   }
 
