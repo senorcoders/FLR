@@ -40,6 +40,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,9 @@ import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-au
     Geolocation,
     NativeGeocoder,
     Device,
-    Keyboard
+    Keyboard,
+    Diagnostic,
+    LocationAccuracy
   ]
 })
 export class AppModule {}
