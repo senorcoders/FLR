@@ -37,7 +37,7 @@ $ npm install
   Booking Inquiry => /api/inquiry
   Favorites       => /api/user/:userid/favorites-products
   Locations       => /api/location/by_distance/:lat/:lng/:distance
-  Reservation         => /api/reservation
+  Reservation     => /api/reservation
   Guest           => /api/guest
   Dates           => /api/services-dates/next-dates/:productid/:date
   Pricing         => /api/product/:productid/prices
