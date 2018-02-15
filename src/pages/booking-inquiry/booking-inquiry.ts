@@ -25,7 +25,7 @@ export class BookingInquiryPage {
   inquiryEndpoint:any = 'inquiry';
   root:any;
   stars:any;
-
+  count_stars:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -37,6 +37,9 @@ export class BookingInquiryPage {
       this.operatorName = navParams.get('operatorName');
       this.productName = navParams.get('productName');
       this.stars = navParams.get('stars');
+      this.count_stars = navParams.get('count_stars');
+
+
 
       this.getUserStatus();
   }

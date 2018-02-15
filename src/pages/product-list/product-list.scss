@@ -22,5 +22,19 @@ page-product-list {
        
           
         }
-      }
+	  }
+	  
+	  
+}
+
+.rating-box{
+	display: flex;
+	align-items: center;
+	ul{
+		width: 80%;
+	}
+	span.count{
+		margin-left: 7px;
+		color: gray;
+	}
 }

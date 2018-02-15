@@ -59,6 +59,7 @@ export class ProductPage {
   root:any;
   stars:any;
   enablePicker:boolean = false;
+  count_stars:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -92,6 +93,7 @@ export class ProductPage {
       this.lng = this.navParams.get('product').lot;
       this.pricePlan = this.navParams.get('product').price_plan;
       this.stars = this.navParams.get('stars');
+      this.count_stars = this.navParams.get('count_stars');
 
       
       //this.getDates();
@@ -381,7 +383,8 @@ goToReservation(){
     lat: this.lat,
     lng: this.lng,
     pricePlan: this.pricePlan,
-    stars: this.stars
+    stars: this.stars,
+    count_stars: this.count_stars
   });
 }
 reservate(){
@@ -398,6 +401,8 @@ request(){
     productID: this.productID,
     operatorName: this.operator_name,
     productName: this.productName,
+    stars: this.stars,
+    count_stars: this.count_stars
   });
 }
 

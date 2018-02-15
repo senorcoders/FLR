@@ -14,7 +14,8 @@
         <!-- <p><strong>${{product.price}}</strong> Daily (24 hours) <br> -->
           <span style="color: rgb(206, 94, 94);">{{operator}}</span>  
         </p>
-        <rating [(ngModel)]="stars" 
+        <div class="rating-box">
+          <rating [(ngModel)]="stars" 
         readOnly="true" 
         max="5" 
         emptyStarIconName="star-outline" 
@@ -23,6 +24,9 @@
         nullable="false" 
         rating
         value="stars"></rating>
+        <span class="count">({{count_stars}}) </span>
+        </div>
+        
         <button ion-button clear item-end >
             <img src="assets/imgs/arrow-rigth.png" width="20" height="20">
             

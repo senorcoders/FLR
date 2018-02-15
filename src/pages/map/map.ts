@@ -157,14 +157,14 @@ export class MapPage {
           marker.showInfoWindow();
           marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
               //this.presentPopover(location.products, location.operator_name);
-              this.ngZone.run(() => this.presentPopover(location.products, location.operator_name, location.avg_stars));
+              this.ngZone.run(() => this.presentPopover(location.products, location.operator_name, location.avg_stars, location.count_stars));
             });
           });
 
     });
   }
 
-  presentPopover(product, operator, avg_stars) {
+  presentPopover(product, operator, avg_stars, count_stars) {
     // this.app.getRootNav().push(ProductListPage, {
     //   'product':product,
     //   'operator': operator});
@@ -173,7 +173,8 @@ export class MapPage {
       ProductListPage, {
         'product':product,
         'operator': operator,
-        'stars': avg_stars
+        'stars': avg_stars,
+        "count_stars": count_stars
       }, {cssClass: 'product-popover'} );
     popover.present();
   }
