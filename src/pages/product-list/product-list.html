@@ -24,13 +24,14 @@
         nullable="false" 
         rating
         value="stars"></rating>
-        <span class="count">({{count_stars}}) </span>
+        <span class="count" *ngIf="count_stars != null">({{count_stars}}) </span>
         </div>
         
-        <button ion-button clear item-end >
+        <div class="end-list-item" item-end >
             <img src="assets/imgs/arrow-rigth.png" width="20" height="20">
+            <span>{{getDistanceBetweenPoints(product.lat, product.lot)}}</span>
             
-        </button>
+        </div>
       </ion-item>
     </div>
 

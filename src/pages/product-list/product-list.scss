@@ -13,7 +13,8 @@ page-product-list {
 	.footer-md .button-clear-md{height: 4rem}
 	.footer-ios .button-ios{height: 4rem}
 	ul {
-        padding: 0px;
+		padding: 0px;
+		width: 80%;
        
         &.rating li {
           padding: 5px 2px !important;
@@ -30,11 +31,22 @@ page-product-list {
 .rating-box{
 	display: flex;
 	align-items: center;
-	ul{
-		width: 80%;
-	}
+	
 	span.count{
 		margin-left: 7px;
 		color: gray;
+	}
+}
+
+.end-list-item{
+	width: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	span{
+		font-size: 10px;
+		color: gray;
+		margin-top: 5px;
 	}
 }

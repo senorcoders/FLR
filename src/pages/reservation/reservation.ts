@@ -43,6 +43,7 @@ export class ReservationPage {
   pricePlan:any;
   stars:any;
   count_stars:any;
+  miles:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -67,6 +68,7 @@ export class ReservationPage {
       this.stars = navParams.get('stars');
       this.count_stars = navParams.get('count_stars');
 
+      this.miles = navParams.get('miles');
 
       this.getUserStatus();
 

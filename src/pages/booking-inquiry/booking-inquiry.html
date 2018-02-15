@@ -11,7 +11,7 @@
       </ion-col>
       
       <ion-col col-8>
-        <h3 class="light">{{operatorName}}</h3>
+        <h3 class="light">{{operatorName}} ({{miles}})</h3>
       </ion-col>
       <!-- <ion-col col-4 class="right center">
         <button class="transparent"><img src="assets/imgs/location-icon.png" width="40"><br>
@@ -29,7 +29,7 @@
 			  nullable="false" 
 			  rating
 			  value="stars"></rating>
-			  <span class="count">({{count_stars}}) </span>
+			  <span class="count" *ngIf="count_stars != null">({{count_stars}}) </span>
 			  </div>
       </ion-col>
       <ion-col col-12>

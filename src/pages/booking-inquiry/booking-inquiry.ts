@@ -26,6 +26,7 @@ export class BookingInquiryPage {
   root:any;
   stars:any;
   count_stars:any;
+  miles:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -38,6 +39,7 @@ export class BookingInquiryPage {
       this.productName = navParams.get('productName');
       this.stars = navParams.get('stars');
       this.count_stars = navParams.get('count_stars');
+      this.miles = navParams.get('miles');
 
 
 

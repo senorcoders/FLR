@@ -16,7 +16,7 @@
 			</ion-card>
 	<ion-row>
 		<ion-col col-10>
-			<h3 class="direction">{{operator_name}}</h3>
+			<h3 class="direction">{{operator_name}} ({{miles}})</h3>
 		</ion-col>
 		<ion-col col-2 class="right">
 			<img src="assets/imgs/arrow-rigth.png" width="20" height="20">
@@ -33,7 +33,7 @@
 			  nullable="false" 
 			  rating
 			  value="stars"></rating>
-			  <span class="count">({{count_stars}}) </span>
+			  <span class="count" *ngIf="count_stars != null">({{count_stars}}) </span>
 			  </div>
 		</ion-col>
 		<ion-col col-2 class="right" *ngIf="enable">

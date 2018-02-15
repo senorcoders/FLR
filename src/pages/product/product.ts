@@ -53,6 +53,7 @@ export class ProductPage {
   hourly:boolean = false;
   pricingEndpoint:any = 'product/';
   public prices:any = [];
+  miles:any;
 
   lat:any;
   lng:any;
@@ -94,6 +95,7 @@ export class ProductPage {
       this.pricePlan = this.navParams.get('product').price_plan;
       this.stars = this.navParams.get('stars');
       this.count_stars = this.navParams.get('count_stars');
+      this.miles = this.navParams.get('miles');
 
       
       //this.getDates();
@@ -384,7 +386,8 @@ goToReservation(){
     lng: this.lng,
     pricePlan: this.pricePlan,
     stars: this.stars,
-    count_stars: this.count_stars
+    count_stars: this.count_stars,
+    miles: this.miles
   });
 }
 reservate(){
@@ -402,7 +405,9 @@ request(){
     operatorName: this.operator_name,
     productName: this.productName,
     stars: this.stars,
-    count_stars: this.count_stars
+    count_stars: this.count_stars,
+    miles: this.miles
+
   });
 }
 
