@@ -140,9 +140,9 @@ export class ProductPage {
 
   getDates(timeStart?){
     if(timeStart != null){
-      var url = this.endpoint + '7722/' + timeStart;
+      var url = this.endpoint + this.productID +'/' + timeStart;
     }else{
-      var url = this.endpoint + '7722';
+      var url:string = this.endpoint + this.productID;
     }
     this.httpProvider.getJsonData(url).subscribe(result => {
         console.log("Dates", result.length);
@@ -163,9 +163,9 @@ export class ProductPage {
 
   getEndDates(timeStart?){
     if(timeStart != null){
-      var url = this.endpoint + '7722/' + timeStart;
+      var url = this.endpoint + this.productID + '/' + timeStart;
     }else{
-      var url = this.endpoint + '7722';
+      var url:string = this.endpoint + this.productID;
     }
     this.httpProvider.getJsonData(url).subscribe(result => {
         console.log("Dates", result.length);
