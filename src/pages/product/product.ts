@@ -61,6 +61,7 @@ export class ProductPage {
   stars:any;
   enablePicker:boolean = false;
   count_stars:any;
+  image:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -96,6 +97,7 @@ export class ProductPage {
       this.stars = this.navParams.get('stars');
       this.count_stars = this.navParams.get('count_stars');
       this.miles = this.navParams.get('miles');
+      this.image = 'https://findlocalrentals.net/reservations/shop_image/product/' + this.navParams.get('product').name_image;
 
       
       //this.getDates();

@@ -27,6 +27,8 @@ export class MapPage {
   lat:any;
   lng:any;
   map: GoogleMap;
+  myLat:any;
+  myLng:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -116,7 +118,6 @@ export class MapPage {
         console.log(this.map.getCameraTarget());
         this.lat = this.map.getCameraTarget().lat;
         this.lng = this.map.getCameraTarget().lng;
-        this.myMarker();
         this.updateMarkers();
 
     }); 
@@ -131,18 +132,29 @@ export class MapPage {
 
     let cameraPosition = {
       target: cameraCoordinates,
-      zoom: 12
+      zoom: 14
     }
 
     this.map.animateCamera(cameraPosition);
 
     this.sortMarkers(locations);
+    this.geolocation.getCurrentPosition().then((resp) =>{
+      this.myLat = resp.coords.latitude;
+      this.myLng = resp.coords.longitude;
+      console.log("MY coords", resp.coords);
+      this.myMarker();
+
+        }).catch((error) => {
+          console.log('Error getting location', error);
+        });
+
     }
     
   }
 
   myMarker(){
-    let coordinates: LatLng = new LatLng(this.lat, this.lng);
+    
+    let coordinates: LatLng = new LatLng(this.myLat, this.myLng);
 
     let markerOptions: MarkerOptions = {
       position: coordinates,

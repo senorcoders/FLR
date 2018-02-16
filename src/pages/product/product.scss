@@ -163,6 +163,10 @@ page-product {
        
           
         }
-      }
+	  }
+	  
+	  .product-image{
+		height: 180px; width:100%; background-size: cover; background-position: center !important;
+	  }
 
 }

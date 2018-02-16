@@ -7,7 +7,7 @@
     <div >
       <ion-item  *ngFor="let product of products" (click)="goToDetail(product)">
         <ion-thumbnail item-start>
-          <img src="assets/imgs/placeholder.png">
+          <img src="https://findlocalrentals.net/reservations/shop_image/product/{{product.name_image}}">
         </ion-thumbnail>
         <h2 text-wrap><strong>{{product.name}}</strong></h2>
         <p>
