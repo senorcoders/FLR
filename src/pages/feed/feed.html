@@ -10,7 +10,11 @@
   </ion-navbar>
 
 </ion-header>
-<ion-content padding #feed>
+<ion-content #feed>
+    <div class="verification-box" *ngIf="!verified">
+        Go to your mailbox {{email}} and verify your email please
+    </div>
+    
 <img src="assets/imgs/feeb-bg.png" alt="">
 
 

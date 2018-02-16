@@ -116,6 +116,7 @@ export class MapPage {
         console.log(this.map.getCameraTarget());
         this.lat = this.map.getCameraTarget().lat;
         this.lng = this.map.getCameraTarget().lng;
+        this.myMarker();
         this.updateMarkers();
 
     }); 
@@ -138,6 +139,20 @@ export class MapPage {
     this.sortMarkers(locations);
     }
     
+  }
+
+  myMarker(){
+    let coordinates: LatLng = new LatLng(this.lat, this.lng);
+
+    let markerOptions: MarkerOptions = {
+      position: coordinates,
+      title: 'My Location',
+    };
+
+    const marker = this.map.addMarker(markerOptions)
+      .then((marker: Marker) => {
+        marker.showInfoWindow();
+        });
   }
 
   sortMarkers(locations){

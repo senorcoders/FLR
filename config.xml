@@ -119,4 +119,5 @@
     </plugin>
     <plugin name="cordova.plugins.diagnostic" spec="^3.9.2" />
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
+    <allow-navigation href="http://169.254.25.162:8100" />
 </widget>

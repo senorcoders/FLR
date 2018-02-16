@@ -24,6 +24,8 @@ export class FeedPage {
   photo_url:any;
   username:any;
   HAS_LOGGED_IN = 'hasLoggedIn';
+  email:any;
+  verified:boolean;
 
 
   constructor(
@@ -101,6 +103,9 @@ export class FeedPage {
         console.log(result);
           this.photo_url = result[0].photo_url;
           this.username = result[0].username;
+          this.email = result[0].email;
+          this.verified = result[0].verified;
+          console.log(result[0].email);
       });
   }
 
