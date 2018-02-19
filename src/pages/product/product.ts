@@ -19,7 +19,7 @@ export class ProductPage {
   productName:any;
   price:any;
   productID:any;
-  endpoint:any = 'services-dates/next-dates/';
+  endpoint:any = 'services-dates/better-next-dates/';
   public dates:any = [];
   public datesEnd:any = [];
   enable:boolean;
@@ -54,7 +54,7 @@ export class ProductPage {
   pricingEndpoint:any = 'product/';
   public prices:any = [];
   miles:any;
-
+  pricesRow:boolean = true;
   lat:any;
   lng:any;
   root:any;
@@ -62,7 +62,8 @@ export class ProductPage {
   enablePicker:boolean = false;
   count_stars:any;
   image:any;
-
+  enableEndDateRow:boolean = true;
+  enableEndTimeRow:boolean = true;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -99,7 +100,7 @@ export class ProductPage {
       this.miles = this.navParams.get('miles');
       this.image = 'https://findlocalrentals.net/reservations/shop_image/product/' + this.navParams.get('product').name_image;
 
-      
+      console.log("Product ID", this.productID);
       //this.getDates();
       this.getStatus();
       this.getPricing();
@@ -141,7 +142,8 @@ export class ProductPage {
   }
  
   back(){
-    this.navCtrl.popToRoot();
+    console.log('back');
+    this.navCtrl.pop();
   }
 
   getDates(timeStart?){
@@ -152,6 +154,7 @@ export class ProductPage {
     }
     this.httpProvider.getJsonData(url).subscribe(result => {
         console.log("Dates", result.length);
+        console.log(result);
         this.loading.dismiss();
         this.reloading = false;
         if (result.length > 0){
@@ -173,6 +176,8 @@ export class ProductPage {
     }else{
       var url:string = this.endpoint + this.productID;
     }
+
+    console.log(url);
     this.httpProvider.getJsonData(url).subscribe(result => {
         console.log("Dates", result.length);
         this.loading.dismiss();
@@ -315,17 +320,18 @@ thirdEndTab(value){
 
 enableTabs(){
   if(this.startHour != null){
-    if(this.hourly != true){
+    if(this.pricePlan === 'hourly'){
       console.log("clicked");
       this.loading = this.loadingCtrl.create({
         spinner: 'hide',
         content: `<img width="150" src="assets/imgs/placeholder.png" />
         <br>
-        <p class="loader-text-center">Loading End Dates...</p>`,
+        <p class="loader-text-center">Loading End Times...</p>`,
       });
       this.loading.present();
     this.getEndDates(this.startDate);
     this.disable = false;
+    this.enableEndDateRow = false;
     this.disableFirst = true;
     this.enableFirst = false;
     this.enableThird = false;
@@ -335,11 +341,77 @@ enableTabs(){
     this.rowText = 'end';
     this.enableContinue = false;
     this.enableDates = false;
+    
     //this.enableEndDate = true;
-    }else{
-      this.endDate = '';
-      this.endHour = '';
-      this.goToReservation();
+    } else if(this.pricePlan === 'daily'){
+      console.log("clicked");
+      this.loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        content: `<img width="150" src="assets/imgs/placeholder.png" />
+        <br>
+        <p class="loader-text-center">Loading End Dates...</p>`,
+      });
+      this.loading.present();
+        this.getEndDates(this.startDate);
+        this.disable = false;
+        this.enableEndTimeRow = false;
+        this.disableFirst = true;
+        this.enableFirst = false;
+        this.enableThird = false;
+        this.enableSecond = true;
+        this.secondColor = 'orange-bg orange-border';
+        this.firstColor = 'orange-border';
+        this.rowText = 'end';
+        this.enableContinue = false;
+        this.enableDates = false;
+        this.endHour = this.startHour;
+        }
+        else if(this.pricePlan === 'weekly'){
+            var start = new Date(this.startDate);
+            console.log("In one week", start);
+            var dd = start.getDate() + 7;
+            var month = new Array();
+              month[0] = "01";
+              month[1] = "02";
+              month[2] = "03";
+              month[3] = "04";
+              month[4] = "05";
+              month[5] = "06";
+              month[6] = "07";
+              month[7] = "08";
+              month[8] = "09";
+              month[9] = "10";
+              month[10] = "11";
+              month[11] = "12";
+            var year = start.getFullYear();
+            console.log(year + '-' + month[start.getMonth()] + '-' + dd);
+            this.endDate = year + '-' + month[start.getMonth()] + '-' + dd;
+            this.endHour = this.startHour;
+            this.goToReservation();
+
+        }
+          else if(this.pricePlan === 'monthly'){
+            var start = new Date(this.startDate);
+            console.log("In one week", start);
+            var dd = start.getDate();
+            var month = new Array();
+              month[0] = "01";
+              month[1] = "02";
+              month[2] = "03";
+              month[3] = "04";
+              month[4] = "05";
+              month[5] = "06";
+              month[6] = "07";
+              month[7] = "08";
+              month[8] = "09";
+              month[9] = "10";
+              month[10] = "11";
+              month[11] = "12";
+            var year = start.getFullYear();
+            console.log(year + '-' + month[start.getMonth()] + '-' + dd);
+            this.endDate = year + '-' + month[start.getMonth() + 1] + '-' + dd;
+            this.endHour = this.startHour;
+            this.goToReservation();
     }
    
  
@@ -356,8 +428,14 @@ setStartHour(value){
 }
 
 setEndHour(value){
-  this.endHour = value;
-  console.log(this.startHour);
+  if(value < this.startHour){
+    this.presentAlert("Choose a end time later than " + this.startHour);
+  }else{
+    this.endHour = value;
+    this.endDate = this.startDate;
+  }
+
+  console.log(value);
 }
 
 toggleEndDate(value){
@@ -444,29 +522,38 @@ tConvert (time) {
 // }
 
 updateDate(){
-  this.loading = this.loadingCtrl.create({
-    spinner: 'hide',
-    content: `<img width="150" src="assets/imgs/placeholder.png" />
-    <br>
-    <h1 class="loader-text-center">Loading...</h1>`,
-  });
-  this.loading.present();
-  this.enableDates = false;
-  this.dates = [];
-  this.getDates(this.timeStarts);
+
+  console.log("Inicio", this.timeStarts);
+
+  if(this.timeStarts != ''){
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: `<img width="150" src="assets/imgs/placeholder.png" />
+      <br>
+      <h1 class="loader-text-center">Loading...</h1>`,
+    });
+    this.loading.present();
+    this.enableDates = false;
+    this.dates = [];
+    this.getDates(this.timeStarts);
+  }
+ 
 }
 
 updateEndDate(){
-  this.loading = this.loadingCtrl.create({
-    spinner: 'hide',
-    content: `<img width="150" src="assets/imgs/placeholder.png" />
-    <br>
-    <h1 class="loader-text-center">Loading...</h1>`,
-  });
-  this.loading.present();
-  this.enableDates = false;
-  this.datesEnd = [];
-  this.getEndDates(this.timeEnd);
+  if(this.timeEnd != null){
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: `<img width="150" src="assets/imgs/placeholder.png" />
+      <br>
+      <h1 class="loader-text-center">Loading...</h1>`,
+    });
+    this.loading.present();
+    this.enableDates = false;
+    this.datesEnd = [];
+    this.getEndDates(this.timeEnd);
+  }
+ 
 }
 
 // getStartDate(){
@@ -487,7 +574,7 @@ updateEndDate(){
         console.log(result);
         if(result.length > 0){
           this.prices = result;
-          this.getDates();
+          this.getDates(this.timeStarts);
         }else{
           this.prices = result;
           this.enableInquiry = true;
@@ -499,9 +586,10 @@ updateEndDate(){
 
   choosePrice(price, pricePlan){
     console.log(price, pricePlan);
+    this.pricesRow = false;
     this.price = price;
     this.pricePlan = pricePlan;
-    if(pricePlan.includes('Hour') == true){
+    if(pricePlan.includes('daily') == true){
         this.hourly = true;
       }else{
         this.hourly = false;

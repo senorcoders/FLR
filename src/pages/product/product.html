@@ -4,14 +4,14 @@
   <ion-navbar>
 	<ion-title>{{operator_name}} </ion-title>
 	<ion-buttons item-end> 
-			<button ion-button icon-only class="back-btn" click="back()"><ion-icon name="close"></ion-icon></button>		
+			<button ion-button icon-only class="back-btn" (click)="back()"><ion-icon name="close"></ion-icon></button>		
 	  </ion-buttons>
   </ion-navbar>
  
 </ion-header>
 
 <ion-content padding >
-		<ion-card class="product-image" [ngStyle]="{'background': 'url(https://findlocalrentals.net/reservations/shop_image/product/' + image + ')'}">
+		<ion-card class="product-image" [ngStyle]="{'background': 'url(' + image + ')'}">
 				<!-- <img src="assets/imgs/placeholder.png"> -->
 			</ion-card>
 	<ion-row>
@@ -69,15 +69,16 @@
 		</ion-col>
 		
 
-		<ion-row>
-		<h3 class="light">Choose a plan</h3> 
+		<ion-row *ngIf="pricesRow">
+		<h3 class="dark" style="width:100%;">{{productName}}</h3>
+		<h3 class="dark">Choose price plan</h3> 
 
-				<ion-item>
-						<ion-label>Prices Availables</ion-label>
-						<ion-select >
-						  <ion-option  *ngFor="let price of prices" value="{{price.price}}" (ionSelect)="choosePrice(price.price, price.price_plan)">${{price.price}} - {{price.price_plan}}</ion-option>
-						</ion-select>
-					  </ion-item>
+		<ion-row (click)="onButtonGroupClick($event)" class="date-row" style="width:100%; flex-wrap: wrap;">
+			<button col-4 class="orange-border" *ngFor="let price of prices" style="max-width:31%" (click)="choosePrice(price.price, price.timing)">
+				{{price.timing}} <br>  USD {{price.price}}
+			</button>
+					
+		</ion-row>
 						
 		</ion-row>
 		<ion-row *ngIf="enablePicker">
@@ -91,7 +92,9 @@
 		</ion-row>
 		<ion-row *ngIf="enablePicker">
 				<ion-col col-8>
-						<h3 class="light">{{pricePlan}}<br>$ {{price}}</h3>
+						<button col-6 class="orange-border orange-bg">
+								{{pricePlan}}<br>$ {{price}}
+						   </button>
 					</ion-col>
 					<ion-col col-4 class="center">
 						 <button class="transparent" (click)="timesCount()"><ion-icon name="add"></ion-icon></button><span class="square">{{reserveCount}}</span><button (click)="dicreaseCount()" class="transparent"><ion-icon name="remove"></ion-icon></button>
@@ -141,20 +144,20 @@
 			<h3 class="dark-light">Pick activity {{rowText}} time</h3>
 		</ion-col>
 		<ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableFirst">
-			<button (click)="setStartHour(hour.hour)" class="orange-border time" *ngFor="let hour of dates[0]?.hours" >
-				{{tConvert(hour.hour)}}
+			<button (click)="setStartHour(hour.start_hours)" class="orange-border time" *ngFor="let hour of dates[0]?.hours" >
+				{{tConvert(hour.start_hours)}}
 			</button>
 		
     </ion-row>
     <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableSecond">
-			<button (click)="setStartHour(hour.hour)" class="orange-border time" *ngFor="let hour of dates[1]?.hours">
-					{{tConvert(hour.hour)}}
+			<button (click)="setStartHour(hour.start_hours)" class="orange-border time" *ngFor="let hour of dates[1]?.hours">
+					{{tConvert(hour.start_hours)}}
 				</button>
 		
     </ion-row>
     <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableThird">
-			<button (click)="setStartHour(hour.hour)" class="orange-border time" *ngFor="let hour of dates[2]?.hours">
-					{{tConvert(hour.hour)}}
+			<button (click)="setStartHour(hour.start_hours)" class="orange-border time" *ngFor="let hour of dates[2]?.hours">
+					{{tConvert(hour.start_hours)}}
 				</button>
 		
 		</ion-row>
@@ -180,7 +183,10 @@
 
 		<ion-row>
 				<ion-col col-8>
-						<h3 class="light">{{pricePlan}}<br>$ {{price}}</h3>
+						<button col-8 class="orange-border orange-bg">
+								{{pricePlan}}<br>$ {{price}}
+						   </button>
+						
 					</ion-col>
 					<ion-col col-4 class="center">
 						 <button class="transparent" (click)="timesCount()"><ion-icon name="add"></ion-icon></button><span class="square">{{reserveCount}}</span><button (click)="dicreaseCount()" class="transparent"><ion-icon name="remove"></ion-icon></button>
@@ -188,13 +194,13 @@
 		</ion-row>
 		
 		
-		<ion-col col-12>
+		<ion-col col-12 *ngIf="enableEndDateRow">
 			<div class="separate-line"></div>
 		</ion-col>
-		<ion-col col-12>
+		<ion-col col-12 *ngIf="enableEndDateRow">
 			<h3 class="dark-light">Pick activity {{rowText}} date</h3>
 		</ion-col>
-		<ion-col col-12>
+		<ion-col col-12 *ngIf="enableEndDateRow">
 			<!-- <h3 class="dark-light">Pick another {{rowText}} date</h3> -->
 			<ion-item>
 				<ion-label>Pick a date</ion-label>
@@ -204,7 +210,7 @@
 			</ion-item>
 		</ion-col>
 
-		 <ion-row (click)="onButtonGroupClick($event)" class="date-row" >
+		 <ion-row *ngIf="enableEndDateRow" (click)="onButtonGroupClick($event)" class="date-row" >
 
 			<!-- <button col-4 class="orange-border orange-bg" *ngIf="i == 0" >
        			{{date.day_name}} <br> {{date.date}}
@@ -226,22 +232,25 @@
 			
 			
 		</ion-row> 
-		<ion-col col-12>
+		<ion-col col-12 *ngIf="enableEndTimeRow">
 			<h3 class="dark-light">Pick activity {{rowText}} time</h3>
 		</ion-col>
+		<div *ngIf="enableEndTimeRow">
+				<ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableSecond">
+						<button (click)="setEndHour(hour.start_hours)" class="orange-border time" *ngFor="let hour of datesEnd[1]?.hours">
+								{{tConvert(hour.start_hours)}}
+							</button>
+					
+				</ion-row>
+				<ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableThird">
+						<button (click)="setEndHour(hour.start_hours)" class="orange-border time" *ngFor="let hour of datesEnd[2]?.hours">
+								{{tConvert(hour.start_hours)}}
+							</button>
+					
+					</ion-row>
+		</div>
 		
-    <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableSecond">
-			<button (click)="setEndHour(hour.hour)" class="orange-border time" *ngFor="let hour of datesEnd[1]?.hours">
-					{{tConvert(hour.hour)}}
-				</button>
-		
-    </ion-row>
-    <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableThird">
-			<button (click)="setEndHour(hour.hour)" class="orange-border time" *ngFor="let hour of datesEnd[2]?.hours">
-					{{tConvert(hour.hour)}}
-				</button>
-		
-		</ion-row>
+   
 	</div>
 
 	</ion-row>
