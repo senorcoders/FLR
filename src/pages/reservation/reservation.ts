@@ -44,6 +44,7 @@ export class ReservationPage {
   stars:any;
   count_stars:any;
   miles:any;
+  daysQty:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -69,6 +70,7 @@ export class ReservationPage {
       this.count_stars = navParams.get('count_stars');
 
       this.miles = navParams.get('miles');
+      this.daysQty = navParams.get('daysQty');
 
       this.getUserStatus();
 
@@ -107,7 +109,7 @@ backToEdit(){
 }
 
 getSubtotal(){
-  return (this.price * this.qty).toFixed(2);
+  return (this.price * this.qty * this.daysQty).toFixed(2);
 }
 
 getTax(){

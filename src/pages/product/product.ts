@@ -64,6 +64,7 @@ export class ProductPage {
   image:any;
   enableEndDateRow:boolean = true;
   enableEndTimeRow:boolean = true;
+  daysQty:number = 1;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -116,13 +117,23 @@ export class ProductPage {
     }
   }
 
+  increaseDays(){
+    this.daysQty++;
+  }
+
+  decreaseDays(){
+    if(this.daysQty > 1){
+      this.daysQty--;
+    }
+  }
+
   goToBookReservation(){
     console.log('click');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductPage');
-  }
+  } 
 
   onButtonGroupClick($event){
   	console.log($event);
@@ -318,6 +329,36 @@ thirdEndTab(value){
   console.log(this.endDate);
 }
 
+getDate(date, qty){
+  var fecha:any = new Date(date);
+  console.log("In miliseconds", fecha.getTime());
+  fecha = fecha.getTime();
+  fecha += 1000 * 60 * 60 * 24 * qty;
+  console.log("Plus days", fecha);
+  console.log("Formated Date", new Date(fecha));
+  fecha = new Date(fecha);
+  var dd = fecha.getDate();
+  if(dd < 10){
+    dd = '0' + dd;
+  }
+  var month = new Array();
+    month[0] = "01";
+    month[1] = "02";
+    month[2] = "03";
+    month[3] = "04";
+    month[4] = "05";
+    month[5] = "06";
+    month[6] = "07";
+    month[7] = "08";
+    month[8] = "09";
+    month[9] = "10";
+    month[10] = "11";
+    month[11] = "12";
+  var year = fecha.getFullYear();
+  console.log(year + '-' + month[fecha.getMonth()] + '-' + dd);
+  return year + '-' + month[fecha.getMonth()] + '-' + dd;
+} 
+
 enableTabs(){
   if(this.startHour != null){
     if(this.pricePlan === 'hourly'){
@@ -344,72 +385,19 @@ enableTabs(){
     
     //this.enableEndDate = true;
     } else if(this.pricePlan === 'daily'){
-      console.log("clicked");
-      this.loading = this.loadingCtrl.create({
-        spinner: 'hide',
-        content: `<img width="150" src="assets/imgs/placeholder.png" />
-        <br>
-        <p class="loader-text-center">Loading End Dates...</p>`,
-      });
-      this.loading.present();
-        this.getEndDates(this.startDate);
-        this.disable = false;
-        this.enableEndTimeRow = false;
-        this.disableFirst = true;
-        this.enableFirst = false;
-        this.enableThird = false;
-        this.enableSecond = true;
-        this.secondColor = 'orange-bg orange-border';
-        this.firstColor = 'orange-border';
-        this.rowText = 'end';
-        this.enableContinue = false;
-        this.enableDates = false;
-        this.endHour = this.startHour;
-        }
-        else if(this.pricePlan === 'weekly'){
-            var start = new Date(this.startDate);
-            console.log("In one week", start);
-            var dd = start.getDate() + 7;
-            var month = new Array();
-              month[0] = "01";
-              month[1] = "02";
-              month[2] = "03";
-              month[3] = "04";
-              month[4] = "05";
-              month[5] = "06";
-              month[6] = "07";
-              month[7] = "08";
-              month[8] = "09";
-              month[9] = "10";
-              month[10] = "11";
-              month[11] = "12";
-            var year = start.getFullYear();
-            console.log(year + '-' + month[start.getMonth()] + '-' + dd);
-            this.endDate = year + '-' + month[start.getMonth()] + '-' + dd;
+      
+            this.endDate = this.getDate(this.startDate, 1 + this.daysQty);
             this.endHour = this.startHour;
             this.goToReservation();
+        }
+        else if(this.pricePlan === 'weekly'){
+          this.endDate = this.getDate(this.startDate, 1 + (this.daysQty * 7));
+          this.endHour = this.startHour;
+          this.goToReservation();
 
         }
           else if(this.pricePlan === 'monthly'){
-            var start = new Date(this.startDate);
-            console.log("In one week", start);
-            var dd = start.getDate();
-            var month = new Array();
-              month[0] = "01";
-              month[1] = "02";
-              month[2] = "03";
-              month[3] = "04";
-              month[4] = "05";
-              month[5] = "06";
-              month[6] = "07";
-              month[7] = "08";
-              month[8] = "09";
-              month[9] = "10";
-              month[10] = "11";
-              month[11] = "12";
-            var year = start.getFullYear();
-            console.log(year + '-' + month[start.getMonth()] + '-' + dd);
-            this.endDate = year + '-' + month[start.getMonth() + 1] + '-' + dd;
+            this.endDate = this.getDate(this.startDate, 1 + (this.daysQty * 30));
             this.endHour = this.startHour;
             this.goToReservation();
     }
@@ -467,7 +455,8 @@ goToReservation(){
     pricePlan: this.pricePlan,
     stars: this.stars,
     count_stars: this.count_stars,
-    miles: this.miles
+    miles: this.miles,
+    daysQty: this.daysQty
   });
 }
 reservate(){

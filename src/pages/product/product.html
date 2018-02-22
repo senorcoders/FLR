@@ -86,7 +86,7 @@
 						<h3 class="dark">{{productName}}</h3>
 					</ion-col>
 					<ion-col col-4 class="center">
-							<h3 class="dark"># Reserve</h3>
+							<h3 class="dark"># People</h3>
 						</ion-col>
 					
 		</ion-row>
@@ -99,6 +99,12 @@
 					<ion-col col-4 class="center">
 						 <button class="transparent" (click)="timesCount()"><ion-icon name="add"></ion-icon></button><span class="square">{{reserveCount}}</span><button (click)="dicreaseCount()" class="transparent"><ion-icon name="remove"></ion-icon></button>
 					</ion-col>
+		</ion-row>
+		<ion-row *ngIf="hourly">
+				<h3 class="dark" style="width: 100%; margin-bottom: 10px;"># Reserve</h3>
+
+			<button class="transparent" (click)="increaseDays()"><ion-icon name="add"></ion-icon></button><span class="square">{{daysQty}}</span><button (click)="decreaseDays()" class="transparent"><ion-icon name="remove"></ion-icon></button>
+
 		</ion-row>
 		
 		<div *ngIf="enablePicker">
