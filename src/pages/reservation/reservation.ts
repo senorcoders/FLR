@@ -113,12 +113,12 @@ getSubtotal(){
 }
 
 getTax(){
-  let subtotal = this.price * this.qty;
+  let subtotal = this.price * this.qty * this.daysQty;
   return (subtotal * 0.07).toFixed(2);
 }
 
 getTotal():any{
-  return ((this.price * this.qty) + ((this.price * this.qty) * 0.07) + this.gap).toFixed(2);
+  return ((this.price * this.qty * this.daysQty) + ((this.price * this.qty * this.daysQty) * 0.07) + this.gap).toFixed(2);
 }
 
 getDiscount(){

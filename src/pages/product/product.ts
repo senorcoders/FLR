@@ -461,7 +461,8 @@ goToReservation(){
 }
 reservate(){
   if(this.endHour != null){
-    this.goToReservation();
+    console.log("Horas", this.endHour);
+    //this.goToReservation();
   }else{
     this.presentAlert("You need to choose a end hour");
 
