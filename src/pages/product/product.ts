@@ -50,7 +50,7 @@ export class ProductPage {
   public timeEnd = '';
   enableEndDate:boolean = false;
   pricePlan:any;
-  hourly:boolean = false;
+  hourly:boolean = true;
   pricingEndpoint:any = 'product/';
   public prices:any = [];
   miles:any;
