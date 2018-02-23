@@ -100,7 +100,7 @@
 						 <button class="transparent" (click)="timesCount()"><ion-icon name="add"></ion-icon></button><span class="square">{{reserveCount}}</span><button (click)="dicreaseCount()" class="transparent"><ion-icon name="remove"></ion-icon></button>
 					</ion-col>
 		</ion-row>
-		<ion-row *ngIf="hourly">
+		<ion-row *ngIf="!hourly">
 				<h3 class="dark" style="width: 100%; margin-bottom: 10px;"># Reserve</h3>
 
 			<button class="transparent" (click)="increaseDays()"><ion-icon name="add"></ion-icon></button><span class="square">{{daysQty}}</span><button (click)="decreaseDays()" class="transparent"><ion-icon name="remove"></ion-icon></button>

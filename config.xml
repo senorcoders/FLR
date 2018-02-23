@@ -132,4 +132,7 @@
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-plugin-add-swift-support" spec="^1.7.0" />
     <allow-navigation href="http://169.254.75.43:8100" />
+    <allow-navigation href="http://169.254.74.252:8100" />
+    <allow-navigation href="http://169.254.112.70:8100" />
+    <allow-navigation href="http://169.254.247.39:8100" />
 </widget>

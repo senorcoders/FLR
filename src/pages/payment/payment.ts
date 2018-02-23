@@ -53,6 +53,7 @@ export class PaymentPage {
   paymentEndpoint:any = 'payment';
   loading:any;
   checked:boolean = true;
+  total:any;
 
 
   constructor(
@@ -95,7 +96,7 @@ export class PaymentPage {
       this.guestEmail = navParams.get('guestEmail');
       this.guestMobile = navParams.get('guestMobile');
       this.deviceID = this.device.uuid;
-      this.amount = this.price * this.number_activity_reserved;
+      this.amount = navParams.get('total');
       console.log(this.transaction_start_time, this.transaction_end_time);
       this.getUserStatus();
   }

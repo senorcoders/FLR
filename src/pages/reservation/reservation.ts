@@ -182,7 +182,8 @@ checkRequireFields(){
           number_activity_reserved: this.qty,
           guestName: this.name,
           guestEmail: this.email,
-          guestMobile: this.mobile
+          guestMobile: this.mobile,
+          total: this.getTotal()
         });
     }else{
       console.log("You need to enter your information");
