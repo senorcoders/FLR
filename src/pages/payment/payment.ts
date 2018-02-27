@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { UsersProvider } from '../../providers/users/users';
 import { ModifyReservationPage } from '../modify-reservation/modify-reservation';
 import { Device } from '@ionic-native/device';
+import { TermsPage } from '../terms/terms';
 
 
 @IonicPage()
@@ -224,6 +225,10 @@ export class PaymentPage {
         this.presentAlert(data.text);
       }
     }); 
+}
+
+goToTerms(){
+  this.navCtrl.push(TermsPage);
 }
 
 
