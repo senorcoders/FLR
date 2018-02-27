@@ -19,6 +19,7 @@ export class EditProfilePage {
   username:any;
   user_id:any;
   updateEndpoint:any = 'user/';
+  phone:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -45,12 +46,14 @@ export class EditProfilePage {
           this.username = result[0].username;
           this.photo_url = result[0].photo_url;
           this.user_id = result[0].id;
+          this.phone = result[0].phone;
+          this.password = result[0].password;
       }
     )
   }
 
   updateUser(){
-    this.httpProvider.updateUser(this.updateEndpoint+this.user_id, this.name, this.username, this.email, this.password, this.photo_url)
+    this.httpProvider.updateUser(this.updateEndpoint+this.user_id, this.name, this.username, this.email, this.password, this.photo_url, this.phone)
       .subscribe(() => {
         this.showToast();
       });

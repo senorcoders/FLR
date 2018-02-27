@@ -75,12 +75,12 @@ saveNewUser(endpoint, name, username, email, photo_url, azure_id){
     
 }
 
-updateUser(endpoint, name,username, email, password, photo_url){
+updateUser(endpoint, name,username, email, password, photo_url, phone){
   var headers = new Headers();
     headers.append('Content-Type', 'application/json; charset=UTF-8' );
   headers.append('Access-Control-Allow-Origin', '*');
   headers.append('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-  let userData = {name: name, username: username, email: email, photo_url: photo_url, password:password};
+  let userData = {name: name, username: username, email: email, photo_url: photo_url, password:password, phone:phone};
   console.log(userData);
     let options = new RequestOptions({ headers: headers });
     return this.http.put(encodeURI(this.base + endpoint), userData, options)
