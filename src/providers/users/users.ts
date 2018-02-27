@@ -75,7 +75,7 @@ saveNewUser(endpoint, name, username, email, photo_url, azure_id){
     
 }
 
-updateUser(endpoint, name,username, email, password, photo_url):void{
+updateUser(endpoint, name,username, email, password, photo_url){
   var headers = new Headers();
     headers.append('Content-Type', 'application/json; charset=UTF-8' );
   headers.append('Access-Control-Allow-Origin', '*');
@@ -83,12 +83,8 @@ updateUser(endpoint, name,username, email, password, photo_url):void{
   let userData = {name: name, username: username, email: email, photo_url: photo_url, password:password};
   console.log(userData);
     let options = new RequestOptions({ headers: headers });
-    this.http.put(encodeURI(this.base + endpoint), userData, options)
-    .subscribe(data => {
-      console.log(data);
-    }, error => {
-      console.log("Error", error);
-    });
+    return this.http.put(encodeURI(this.base + endpoint), userData, options)
+    .map(res => res.json())
 }
 
 addItem(endpoint, data){

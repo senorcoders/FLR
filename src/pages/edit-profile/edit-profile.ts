@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 
 
@@ -23,7 +23,8 @@ export class EditProfilePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private httpProvider: UsersProvider) {
+    private httpProvider: UsersProvider,
+    public toastCtrl: ToastController) {
 
       this.httpProvider.getAzureID().then(azure_id =>{
         this.azure_id = azure_id;
@@ -49,7 +50,21 @@ export class EditProfilePage {
   }
 
   updateUser(){
-    this.httpProvider.updateUser(this.updateEndpoint+this.user_id, this.name, this.username, this.email, this.password, this.photo_url);
+    this.httpProvider.updateUser(this.updateEndpoint+this.user_id, this.name, this.username, this.email, this.password, this.photo_url)
+      .subscribe(() => {
+        this.showToast();
+      });
+
+    
+  }
+
+  showToast() {
+    const toast = this.toastCtrl.create({
+      message: 'Profile updated',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
   }
 
 }
