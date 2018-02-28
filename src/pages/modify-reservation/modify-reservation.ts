@@ -25,13 +25,14 @@ export class ModifyReservationPage {
   price:any;
   totalAmount:number;
   root:any;
+  people:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private viewCtrl: ViewController,
     private httpProvider: UsersProvider) {
-    this.bookingID = navParams.get('reservation').id;
+    this.bookingID = navParams.get('reservation').payment_id;
     this.bookingDate= navParams.get('reservation').transaction_date;
     this.productName = navParams.get('reservation').misc_trip_name;
     this.qty = navParams.get('reservation').number_activity_reserved;
@@ -40,6 +41,8 @@ export class ModifyReservationPage {
     this.startHour = navParams.get('reservation').transaction_start_time;
     this.endHour = navParams.get('reservation').transaction_end_time;
     this.price = navParams.get('reservation').price;
+    this.people = navParams.get('reservation').nbr_in_party;
+
     this.getStatus();
   }
 
@@ -71,7 +74,7 @@ export class ModifyReservationPage {
   }
 
   getAmount(){
-    return this.price * this.qty;
+    return this.price * this.qty * this.people;
   }
 
   goToFeed(){

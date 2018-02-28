@@ -84,7 +84,7 @@ export class ProductPage {
       var dd:any = today.getDate();
       var mm:any = today.getMonth()+1;
       var yyyy = today.getFullYear();
-      this.timeStarts = yyyy + '-' + mm + '-' + dd;
+      this.timeStarts = "'" + yyyy + '-' + mm + '-' + dd + "'";
       this.timeEnd = yyyy + '-' + mm + '-' + dd;
   }
 

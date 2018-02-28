@@ -82,21 +82,21 @@
 						
 		</ion-row>
 		<ion-row *ngIf="enablePicker">
-				<ion-col col-8>
+				<ion-col col-7>
 						<h3 class="dark">{{productName}}</h3>
 					</ion-col>
-					<ion-col col-4 class="center">
-							<h3 class="dark"># People</h3>
+					<ion-col col-5 class="center">
+							<h3 class="dark"># in Party</h3>
 						</ion-col>
 					
 		</ion-row>
 		<ion-row *ngIf="enablePicker">
-				<ion-col col-8>
+				<ion-col col-6>
 						<button col-6 class="orange-border orange-bg">
 								{{pricePlan}}<br>$ {{price}}
 						   </button>
 					</ion-col>
-					<ion-col col-4 class="center">
+					<ion-col col-6 class="center">
 						 <button class="transparent" (click)="timesCount()"><ion-icon name="add"></ion-icon></button><span class="square">{{reserveCount}}</span><button (click)="dicreaseCount()" class="transparent"><ion-icon name="remove"></ion-icon></button>
 					</ion-col>
 		</ion-row>
@@ -117,9 +117,9 @@
 		<ion-col col-12>
 			<!-- <h3 class="dark-light">Pick another {{rowText}} date</h3> -->
 			<ion-item>
-				<ion-label>Pick a date</ion-label>
-				<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeStarts"></ion-datetime>
-				<button (click)="updateDate()" item-end ion-button clear>Update</button>
+				<ion-label>Pick Another Date</ion-label>
+				<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeStarts" (ngModelChange)="updateDate()"></ion-datetime>
+				<!-- <button (click)="updateDate()" item-end ion-button clear>Update</button> -->
 
 			</ion-item>
 		</ion-col>
@@ -209,9 +209,9 @@
 		<ion-col col-12 *ngIf="enableEndDateRow">
 			<!-- <h3 class="dark-light">Pick another {{rowText}} date</h3> -->
 			<ion-item>
-				<ion-label>Pick a date</ion-label>
-				<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeEnd"></ion-datetime>
-				<button (click)="updateEndDate()" item-end ion-button clear>Update</button>
+				<ion-label>Pick Another Date</ion-label>
+				<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeEnd" (ngModelChange)="updateEndDate()"></ion-datetime>
+				<!-- <button (click)="updateEndDate()" item-end ion-button clear>Update</button> -->
 
 			</ion-item>
 		</ion-col>

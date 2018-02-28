@@ -176,7 +176,7 @@ export class MapPage {
       let markerOptions: MarkerOptions = {
         position: coordinates,
         icon: 'https://findlocalrentals.net/reservations/shop_image/gmap/' + location.products_types_name_image,
-        title: location.operator_name,
+        // title: location.operator_name,
       };
 
       const marker = this.map.addMarker(markerOptions)

@@ -55,7 +55,7 @@ export class PaymentPage {
   loading:any;
   checked:boolean = true;
   total:any;
-
+  qty:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -98,6 +98,7 @@ export class PaymentPage {
       this.guestMobile = navParams.get('guestMobile');
       this.deviceID = this.device.uuid;
       this.amount = navParams.get('total');
+      this.qty = navParams.get('qty');
       console.log(this.transaction_start_time, this.transaction_end_time);
       this.getUserStatus();
   }
@@ -160,8 +161,8 @@ export class PaymentPage {
       transaction_end_date: this.transaction_end_date,
       transaction_start_time: this.transaction_start_time,
       transaction_end_time: this.transaction_end_time,
-      number_activity_reserved: this.number_activity_reserved,
-      nbr_in_party: 0,
+      number_activity_reserved: this.qty,
+      nbr_in_party: this.number_activity_reserved,
       nbr_in_adult: this.number_activity_reserved,
       nbr_children: 0,
       misc_trip_name: this.productName,

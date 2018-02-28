@@ -19,6 +19,7 @@ export class ReservationDetailPage {
   endHour:any;
   price:any;
   totalAmount:number;
+  people:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.bookingID = navParams.get('reservation').id;
@@ -30,6 +31,8 @@ export class ReservationDetailPage {
     this.startHour = navParams.get('reservation').transaction_start_time;
     this.endHour = navParams.get('reservation').transaction_end_time;
     this.price = navParams.get('reservation').price;
+    this.people = navParams.get('reservation').nbr_in_party;
+
   }
 
   ionViewDidLoad() {
@@ -37,7 +40,7 @@ export class ReservationDetailPage {
   }
 
   getAmount(){
-    return this.price * this.qty;
+    return this.price * this.qty * this.people;
   }
 
   tConvert (time) {

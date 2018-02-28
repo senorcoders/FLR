@@ -184,7 +184,8 @@ checkRequireFields(){
           guestName: this.name,
           guestEmail: this.email,
           guestMobile: this.mobile,
-          total: this.getTotal()
+          total: this.getTotal(),
+          qty: this.daysQty
         });
     }else{
       console.log("You need to enter your information");
