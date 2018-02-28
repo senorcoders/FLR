@@ -40,21 +40,21 @@
                 <ion-input placeholder="COUNTRY" [(ngModel)]="country"></ion-input>
               </ion-item> -->
       <ion-item>
-        <ion-input type="number" placeholder="CARD NUMBER" [(ngModel)]="account"></ion-input>
+        <ion-input type="number" pattern="\\d*" placeholder="CARD NUMBER" [(ngModel)]="account"></ion-input>
       </ion-item>
       <ion-col col-8>
         <ion-item>
-          <ion-input type="number" placeholder="EXPIRES (MM/YY)" [(ngModel)]="expiry"></ion-input>
+          <ion-input type="number" pattern="\\d*" placeholder="EXPIRES (MMYY)" [(ngModel)]="expiry"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-4>
         <ion-item>
-          <ion-input type="number"  max="3" placeholder="CVV" [(ngModel)]="cvv2"></ion-input>
+          <ion-input type="number" pattern="\\d*" max="3" placeholder="CVV" [(ngModel)]="cvv2"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-8>
         <ion-item>
-          <ion-input type="number" max="9" placeholder="ZIP CODE" [(ngModel)]="postal"></ion-input>
+          <ion-input type="number" pattern="\\d*" max="9" placeholder="ZIP CODE" [(ngModel)]="postal"></ion-input>
         </ion-item>
       </ion-col>
     
