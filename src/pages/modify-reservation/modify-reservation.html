@@ -50,10 +50,7 @@
         </div>
       </ion-col>
       <ion-col col-5>
-        <div class="summary">
-          <h3>Quantity</h3>
-          {{qty}}
-        </div>
+        
         <div class="summary">
           <div *ngIf="endDate != ''">
             <h3>Ends <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
@@ -62,13 +59,14 @@
         </div>
       </ion-col>
       <ion-col col-12>
-          <div class="summary">
-              <span class="label"># In Party</span> 
-              <span class="price-val">{{people}}</span>
-            </div>
+          
         <div class="summary">
           <span class="label">Price:</span> 
-          <span class="price-val">$ {{price}}</span>
+          <span class="price-val">$ {{price}} - ({{qty}} {{type}})</span>
+        </div>
+        <div class="summary">
+          <span class="label">Quantity:</span> 
+          <span class="price-val">{{people}}</span>
         </div>
         <div class="summary">
           <span class="label">Payment Amount:</span>
@@ -76,8 +74,8 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row class="map-reservation">
-    </ion-row>
+    <div  id="map_canvas2" #map_canvas2 style="height: 140px;">
+    </div>
   </ion-content>
   <ion-footer>
       <button class="full-custom-btn" ion-button clear (click)="goToFeed()">

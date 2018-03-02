@@ -9,10 +9,10 @@
         <ion-thumbnail item-start>
           <img src="https://findlocalrentals.net/reservations/shop_image/product/{{product.name_image}}">
         </ion-thumbnail>
-        <h2 text-wrap><strong>{{product.name}}</strong></h2>
+        <h2 class="product-name" text-wrap><strong>{{product.name}}</strong></h2>
         <p>
         <!-- <p><strong>${{product.price}}</strong> Daily (24 hours) <br> -->
-          <span style="color: rgb(206, 94, 94);">{{operator}}</span>  
+          <span style="color: #f68f54">{{operator}}</span>  
         </p>
         <div class="rating-box">
           <rating [(ngModel)]="stars" 

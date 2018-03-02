@@ -27,6 +27,7 @@ export class BookingInquiryPage {
   stars:any;
   count_stars:any;
   miles:any;
+  checked:boolean = true;
 
   constructor(
     public navCtrl: NavController, 
@@ -128,6 +129,10 @@ export class BookingInquiryPage {
         console.log("You need to enter your information");
         this.presentAlert("Your name, email and phone number are required");
       }
+  }
+
+  updateTerms(){
+    console.log(this.checked);
   }
 
 }

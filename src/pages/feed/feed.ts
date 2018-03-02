@@ -110,7 +110,7 @@ export class FeedPage {
   }
 
   logout(){
-    this.storage.remove(this.HAS_LOGGED_IN);
+    this.storage.clear();
     this.navCtrl.setRoot(HomePage);
   }
 

@@ -1,4 +1,12 @@
+ion-app._gmaps_cdv_ .nav-decor {
+	background-color: transparent !important;
+   }
+
+   
 page-modify-reservation {
+	ion-content{
+		background: #fff !important;
+	}
     /*header*/
 	.toolbar-background {
 		background: #f68f54;
@@ -128,3 +136,7 @@ height: 3.5em;
     padding-right: 20px;
 }
 
+
+page-modify-reservation.ion-page._gmaps_cdv_.show-page{
+	background-color: #fff !important;
+}

@@ -10,16 +10,25 @@ page-product-list {
 	    color: white;
 	    text-align: center;
 	}
+
+	.product-name{
+		font-size: 15px;
+	}
 	.footer-md .button-clear-md{height: 4rem}
 	.footer-ios .button-ios{height: 4rem}
 	ul {
 		padding: 0px;
 		width: 80%;
+		margin-top: 0;
+		margin-bottom: 0;
        
         &.rating li {
           padding: 5px 2px !important;
           background: none;
-          color: #ffb400;
+		  color: #ffb400;
+		  ion-icon{
+			  font-size: 14px;
+		  }
        
           
         }

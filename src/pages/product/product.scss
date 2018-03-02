@@ -95,7 +95,7 @@ page-product {
 	}
 	/*buttons*/
 	.orange-border{
-		border: 2px solid #f0f1f2;
+		border: 1px solid #f68f54;
 		color: black;
 		font-size: 1.2rem;
 		text-align: center;
@@ -154,7 +154,8 @@ page-product {
 	.footer-ios .button-ios{height: 4rem}
 
 	ul {
-        padding: 0px;
+		padding: 0px;
+		margin-top: 0;
        
         &.rating li {
           padding: 5px 2px !important;
@@ -167,6 +168,37 @@ page-product {
 	  
 	  .product-image{
 		height: 180px; width:100%; background-size: cover; background-position: center !important;
+	  }
+
+	  .bottom-none{
+		margin-bottom: 0;
+		padding-bottom: 0;
+	  }
+
+	  .main-div-product{
+		  margin-top: 10px;
+		  width: 100%;
+	  }
+
+	  .margin-5{
+		  margin-bottom: 5px;
+	  }
+
+	  .center{
+		  width: 100%;
+		  text-align: center;
+	  }
+
+	  .type-increase{
+		  align-items: flex-end;
+	  }
+
+	  .picker-label{
+		  text-align: right;
+		  span{
+			  width: 100%;
+			  color: #f68f54;
+		  }
 	  }
 
 }

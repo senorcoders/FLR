@@ -119,6 +119,7 @@
     <allow-navigation href="http://169.254.18.239:8100" />
     <allow-navigation href="http://169.254.143.188:8100" />
     <allow-navigation href="http://169.254.190.67:8100" />
+    <allow-navigation href="http://169.254.92.205:8100" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -142,4 +143,10 @@
     <plugin name="cordova.plugins.diagnostic" spec="^3.9.2" />
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-plugin-add-swift-support" spec="^1.7.0" />
+    <allow-navigation href="http://169.254.189.190:8100" />
+    <allow-navigation href="http://169.254.58.157:8100" />
+    <allow-navigation href="http://169.254.112.234:8100" />
+    <allow-navigation href="http://169.254.77.16:8100" />
+    <allow-navigation href="http://169.254.70.132:8100" />
+    <allow-navigation href="http://169.254.125.140:8100" />
 </widget>

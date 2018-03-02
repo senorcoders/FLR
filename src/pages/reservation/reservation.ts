@@ -45,6 +45,7 @@ export class ReservationPage {
   count_stars:any;
   miles:any;
   daysQty:any;
+  type:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -71,6 +72,7 @@ export class ReservationPage {
 
       this.miles = navParams.get('miles');
       this.daysQty = navParams.get('daysQty');
+      this.type = navParams.get('type');
 
       this.getUserStatus();
 
@@ -185,7 +187,8 @@ checkRequireFields(){
           guestEmail: this.email,
           guestMobile: this.mobile,
           total: this.getTotal(),
-          qty: this.daysQty
+          qty: this.daysQty,
+          type: this.type
         });
     }else{
       console.log("You need to enter your information");

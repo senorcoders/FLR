@@ -49,25 +49,32 @@
                 Find Activity
             </ion-item>
             <ion-item (click)="goToReservations()">
-                <ion-icon name="ios-chatbubbles" item-start></ion-icon>
+                <ion-icon name="md-calendar" item-start></ion-icon>
                 Reservations
             </ion-item>
             <ion-item (click)="goToRequests()">
                 <ion-icon name="ios-chatbubbles" item-start></ion-icon>
                 Requests
             </ion-item>
+            <ion-item (click)="goToReview()">
+                    <ion-icon name="ios-star" item-start></ion-icon>
+                    Reviews
+                </ion-item>
             <ion-item (click)="goToFavorites()">
                 <ion-icon name="ios-heart" item-start></ion-icon>
                 Favorites
-            </ion-item>
-           
-            <ion-item (click)="goToReview()">
-                <ion-icon name="ios-star" item-start></ion-icon>
-                Reviews
-            </ion-item>
+            </ion-item>   
+            <ion-item>
+                <ion-icon name="ios-help-circle-outline" item-start></ion-icon>
+                Help
+            </ion-item>    
             <ion-item (click)="goToTerms()">
+                <ion-icon name="ios-document-outline" item-start></ion-icon>
+                Terms
+            </ion-item>
+            <ion-item>
                 <ion-icon name="ios-cog-outline" item-start></ion-icon>
-                Terms &amp; Help
+                Itinerary
             </ion-item>
         </ion-list>
     </ion-content>

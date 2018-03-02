@@ -56,6 +56,8 @@ export class PaymentPage {
   checked:boolean = true;
   total:any;
   qty:any;
+  type:any;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -71,20 +73,6 @@ export class PaymentPage {
         <br>
         <h1 class="loader-text-center">Contacting Payment Provider...</h1>`,
       });
-
-      // window.addEventListener('message', function(event) {
-      //   // document.getElementById('mytoken').value = JSON.parse(event.data);
-      //   that.token;
-        
-      //   var token = JSON.parse(event.data);      
-        
-      //   console.log('Received message ' + token.message);
-      //   // var mytoken = document.getElementById('mytoken');
-      //   that.token = token.message;
-      //   }, false);
-
-
-
       this.productID = navParams.get('productID');
       this.productName = navParams.get('productName');
       this.price = navParams.get('price');
@@ -99,6 +87,7 @@ export class PaymentPage {
       this.deviceID = this.device.uuid;
       this.amount = navParams.get('total');
       this.qty = navParams.get('qty');
+      this.type = navParams.get('type');
       console.log(this.transaction_start_time, this.transaction_end_time);
       this.getUserStatus();
   }
@@ -171,7 +160,7 @@ export class PaymentPage {
       payment_id: payment_id
     })).subscribe(data => {
         console.log(data);
-        this.navCtrl.push(ModifyReservationPage, {reservation: data});
+        this.navCtrl.push(ModifyReservationPage, {reservation: data, type: this.type});
     });
   }
 

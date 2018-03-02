@@ -65,6 +65,9 @@ export class ProductPage {
   enableEndDateRow:boolean = true;
   enableEndTimeRow:boolean = true;
   daysQty:number = 1;
+  type:any;
+  showPicker:boolean = false;
+  currentHour:any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -86,6 +89,8 @@ export class ProductPage {
       var yyyy = today.getFullYear();
       this.timeStarts = "'" + yyyy + '-' + mm + '-' + dd + "'";
       this.timeEnd = yyyy + '-' + mm + '-' + dd;
+      this.currentHour = this.addZero(today.getHours()) + ':' + this.addZero(today.getMinutes()) + ':' + this.addZero(today.getSeconds());
+      console.log("Current Hour", this.currentHour);
   }
 
   ngOnInit(){ 
@@ -106,6 +111,14 @@ export class ProductPage {
       this.getStatus();
       this.getPricing();
   }
+
+   addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
 
   timesCount(){
     this.reserveCount++;
@@ -456,7 +469,8 @@ goToReservation(){
     stars: this.stars,
     count_stars: this.count_stars,
     miles: this.miles,
-    daysQty: this.daysQty
+    daysQty: this.daysQty,
+    type: this.type
   });
 }
 
@@ -599,12 +613,25 @@ updateEndDate(){
     this.pricesRow = false;
     this.price = price;
     this.pricePlan = pricePlan;
+    if(pricePlan === 'hourly'){
+      this.type = 'Hours';
+    }else if(pricePlan === 'daily'){
+      this.type = 'Days';
+    }else if(pricePlan === 'monthly'){
+      this.type = 'Months';
+
+    }
     if(pricePlan.includes('hourly') == true){
         this.hourly = true;
       }else{
         this.hourly = false;
       }
     this.enablePicker = true;
+  }
+
+
+  updatePicker(){
+    this.showPicker = true;
   }
 
 }

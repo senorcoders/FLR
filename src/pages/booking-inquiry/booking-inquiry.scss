@@ -137,5 +137,33 @@ page-booking-inquiry {
        
           
         }
-      }
+	  }
+	  
+	  /*checkbox*/
+	.item-checkbox{
+		font-size: 1.3rem;
+		.checkbox-icon{
+			background: transparent;
+		    color: black;
+		    border: 1px solid #999999;
+		    padding: 10px;
+		    .checkbox-inner{
+				border-color: #999999;
+			    top: 3px;
+			    left: 8px;
+			}
+		}
+		.item-inner{
+			border: 0 !important;
+	    	color: #9f9f9f;
+	    	margin-bottom: 0 !important;
+		}
+		.checkbox{
+			margin-right: 10px !important;
+		}
+	}
+
+	.item-block{
+		border: none !important;
+	}
 }

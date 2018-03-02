@@ -2,7 +2,7 @@
 <ion-header>
 
     <ion-navbar>
-      <ion-title>Book Inquiry <button (click)="close()" class="back-btn"><ion-icon name="close"></ion-icon></button></ion-title>
+      <ion-title>Booking Inquiry <button (click)="close()" class="back-btn"><ion-icon name="close"></ion-icon></button></ion-title>
     </ion-navbar>
   </ion-header>
   <ion-content padding>
@@ -65,6 +65,10 @@
             
             <ion-input type="number" [(ngModel)]="mobile"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label text-wrap>By sending a request, I agree to Privacy Policy.</ion-label>
+            <ion-checkbox checked="checked" [(ngModel)]="checked" (ionChange)="updateTerms()"></ion-checkbox>
+          </ion-item>
       </ion-list>
   </ion-content>
   <ion-footer>

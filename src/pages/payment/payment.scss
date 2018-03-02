@@ -51,6 +51,8 @@ page-payment {
 		.checkbox{
 			margin-right: 10px !important;
 		}
+
+		
 	}
 	/*footer*/
 	ion-footer{
@@ -62,6 +64,11 @@ page-payment {
 	    text-transform: uppercase;
 	    color: white;
 	    text-align: center;
+	}
+	.dark{
+		font-size: 16px;
+		font-weight: 900;
+		padding: 0 20px;
 	}
 	.footer-md .button-clear-md{height: 4rem}
 	.footer-ios .button-ios{height: 4rem}

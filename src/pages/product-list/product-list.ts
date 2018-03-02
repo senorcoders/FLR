@@ -74,6 +74,7 @@ export class ProductListPage {
  
 
   goToDetail(product){
+
     let miles = this.getDistanceBetweenPoints(product.lat, product.lot);
     console.log("Miles to Go", miles);
     this.navCtrl.push(ProductPage, {
@@ -84,7 +85,6 @@ export class ProductListPage {
       'miles': miles
 
     });
-    //this.viewCtrl.dismiss();
   } 
 
   request(){

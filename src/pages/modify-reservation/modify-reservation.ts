@@ -4,6 +4,15 @@ import { FeedPage } from '../feed/feed';
 import { MapPage } from '../map/map';
 import { HomePage } from '../home/home';
 import { UsersProvider } from '../../providers/users/users';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+ } from '@ionic-native/google-maps';
 
 
 @IonicPage()
@@ -26,13 +35,18 @@ export class ModifyReservationPage {
   totalAmount:number;
   root:any;
   people:any;
+  gap:number = 3.50;
+  type:any;
+  map: GoogleMap;
+
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private viewCtrl: ViewController,
-    private httpProvider: UsersProvider) {
-    this.bookingID = navParams.get('reservation').payment_id;
+    private httpProvider: UsersProvider,
+    public googleMaps: GoogleMaps) {
+    this.bookingID = navParams.get('reservation').ID;
     this.bookingDate= navParams.get('reservation').transaction_date;
     this.productName = navParams.get('reservation').misc_trip_name;
     this.qty = navParams.get('reservation').number_activity_reserved;
@@ -42,9 +56,12 @@ export class ModifyReservationPage {
     this.endHour = navParams.get('reservation').transaction_end_time;
     this.price = navParams.get('reservation').price;
     this.people = navParams.get('reservation').nbr_in_party;
+    this.type = navParams.get('type');
 
     this.getStatus();
   }
+
+  
 
   getStatus(){
     this.httpProvider.hasLoggedIn().then(hasLoggedIn => {
@@ -63,18 +80,64 @@ export class ModifyReservationPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ModifyReservationPage');
+    this.loadMap();
   }
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false);
 }
+
+loadMap() {
+
+  let mapOptions: GoogleMapOptions = {
+    camera: {
+      target: {
+        lat: 43.0741904,
+        lng: -89.3809802
+      },
+      zoom: 18,
+      tilt: 30
+    }
+  };
+  let mapEle: HTMLElement = document.getElementById('map_canvas2');
+
+    
+  this.map= this.googleMaps.create(mapEle);
+
+  //  this.map = GoogleMaps.create('map_canvas', mapOptions);
+
+  // Wait the MAP_READY before using any methods.
+  this.map.one(GoogleMapsEvent.MAP_READY)
+    .then(() => {
+      console.log('Map is ready!');
+
+      // Now you can use all methods safely.
+      this.map.addMarker({
+          title: 'Ionic',
+          icon: 'blue',
+          animation: 'DROP',
+          position: {
+            lat: 43.0741904,
+            lng: -89.3809802
+          }
+        })
+        .then(marker => {
+          marker.on(GoogleMapsEvent.MARKER_CLICK)
+            .subscribe(() => {
+              alert('clicked');
+            });
+        });
+
+    });
+}
+
 
   viewReservation(){
     this.enableOverlay = false;
   }
 
   getAmount(){
-    return this.price * this.qty * this.people;
+    return ((this.price * this.qty * this.people) + ((this.price * this.qty * this.people) * 0.07) + this.gap).toFixed(2);
+
   }
 
   goToFeed(){
