@@ -112,7 +112,7 @@ export class BookingInquiryPage {
 
   checkRequireFields(){
     console.log(this.name);
-      if(this.name != undefined && this.email != undefined && this.mobile != undefined){
+      if(this.name != undefined && this.email != undefined && this.mobile != undefined && this.checked != false){
           console.log("Send request!");
           this.httpProvider.addItem(this.inquiryEndpoint, JSON.stringify({
             product_id: this.productID,
@@ -127,7 +127,7 @@ export class BookingInquiryPage {
           //this.shareProvider.shareViaEmail(this.name + " " +  this.email + " " + this.mobile + " " + this.productID);
       }else{
         console.log("You need to enter your information");
-        this.presentAlert("Your name, email and phone number are required");
+        this.presentAlert("Your name, email, phone number and accept the terms are required");
       }
   }
 

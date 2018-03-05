@@ -115,7 +115,7 @@
 								{{pricePlan}}<br>USD {{price}}
 						   </button>
 					</ion-col>
-					<ion-col col-5 *ngIf="!hourly">
+					<ion-col col-5 >
 							<h3 class="dark center margin-5" style="text-align: left;"># of {{type}}</h3>
 
 							<button class="transparent" (click)="increaseDays()"><ion-icon name="add"></ion-icon></button><span class="square">{{daysQty}}</span><button (click)="decreaseDays()" class="transparent"><ion-icon name="remove"></ion-icon></button>
@@ -176,7 +176,13 @@
 				{{tConvert(hour.start_hours)}}
 			</button>
 		
-    </ion-row>
+	</ion-row>
+	<ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="filteredFirstDate">
+		<button  (click)="setStartHour(hour.start_hours)"   class="orange-border time" *ngFor="let hour of dates[0]?.hours"  >
+			{{tConvert(hour.start_hours)}}
+		</button>
+	
+</ion-row>
     <ion-row (click)="onButtonGroupClick($event)" class="activity-row" *ngIf="enableSecond">
 			<button (click)="setStartHour(hour.start_hours)" class="orange-border time" *ngFor="let hour of dates[1]?.hours">
 					{{tConvert(hour.start_hours)}}

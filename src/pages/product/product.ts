@@ -68,6 +68,7 @@ export class ProductPage {
   type:any;
   showPicker:boolean = false;
   currentHour:any;
+  filteredFirstDate:boolean = false;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -375,26 +376,13 @@ getDate(date, qty){
 enableTabs(){
   if(this.startHour != null){
     if(this.pricePlan === 'hourly'){
-      console.log("clicked");
-      this.loading = this.loadingCtrl.create({
-        spinner: 'hide',
-        content: `<img width="150" src="assets/imgs/placeholder.png" />
-        <br>
-        <p class="loader-text-center">Loading End Times...</p>`,
-      });
-      this.loading.present();
-    this.getEndDates(this.startDate);
-    this.disable = false;
-    this.enableEndDateRow = false;
-    this.disableFirst = true;
-    this.enableFirst = false;
-    this.enableThird = false;
-    this.enableSecond = true;
-    this.secondColor = 'orange-bg orange-border';
-    this.firstColor = 'orange-border';
-    this.rowText = 'end';
-    this.enableContinue = false;
-    this.enableDates = false;
+
+    this.endDate = this.startDate;
+    let hour = this.startHour.split(":");
+    let hourNew = parseInt(hour[0]) + (this.daysQty);
+    this.endHour = hourNew + ':' + hour[1] + ':' + hour[2];
+    console.log(this.endHour);
+    this.goToReservation();
     
     //this.enableEndDate = true;
     } else if(this.pricePlan === 'daily'){
@@ -541,7 +529,7 @@ tConvert (time) {
 //     });
 //     this.loading.present();
 //     this.enableDates = false;
-//     this.dates = [];
+//     this.dates = []; 
 //   });
 // }
 
@@ -559,6 +547,8 @@ updateDate(){
     this.loading.present();
     this.enableDates = false;
     this.dates = [];
+    this.enableFirst = false;
+    this.filteredFirstDate = true;
     this.getDates(this.timeStarts);
   }
  
