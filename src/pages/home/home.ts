@@ -107,7 +107,7 @@ export class HomePage {
   }
 
   getFBuserData(token){
-    this.http.get('https://graph.facebook.com/me?fields=id,name,picture,email,birthday,first_name&access_token='+token).subscribe(
+    this.http.get('https://graph.facebook.com/me?fields=id,name,picture.width(900),email,birthday,first_name&access_token='+token).subscribe(
       user => {
         console.log(user);
         this.user = JSON.parse(user['_body']);
