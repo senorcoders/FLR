@@ -39,17 +39,20 @@
         </p>
        
       </ion-col>
-      <ion-col col-7>
+      <ion-col col-12>
         <div class="summary">
           <h3>Activity</h3>
           {{productName}}
         </div>
+        
+      </ion-col>
+      <ion-col col-6>
         <div class="summary">
           <h3>Starts <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
           {{startDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(startHour)}}
         </div>
       </ion-col>
-      <ion-col col-5>
+      <ion-col col-6>
         
         <div class="summary">
           <div *ngIf="endDate != ''">

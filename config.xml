@@ -3,7 +3,7 @@
     <name>Find Local Rentals</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://169.254.130.59:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -127,6 +127,7 @@
     <allow-navigation href="http://169.254.70.132:8100" />
     <allow-navigation href="http://169.254.125.140:8100" />
     <allow-navigation href="http://169.254.195.244:8100" />
+    <allow-navigation href="http://169.254.130.59:8100" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
