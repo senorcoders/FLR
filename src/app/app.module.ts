@@ -42,6 +42,7 @@ import { RegisterPage } from '../pages/register/register';
 import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     ChangeLocationPage,
     MapModalPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ThankInquiryPage
   ],
   imports: [
     BrowserModule,
@@ -103,7 +105,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     ChangeLocationPage,
     MapModalPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ThankInquiryPage
   ],
   providers: [
     StatusBar,

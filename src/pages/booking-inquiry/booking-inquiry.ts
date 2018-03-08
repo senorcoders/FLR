@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { SocialShareProvider } from '../../providers/social-share/social-share';
 import { FeedPage } from '../feed/feed';
 import { HomePage } from '../home/home';
+import { ThankInquiryPage } from '../thank-inquiry/thank-inquiry';
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 @IonicPage()
@@ -34,7 +36,12 @@ export class BookingInquiryPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     private httpProvider: UsersProvider,
-    private shareProvider: SocialShareProvider) {
+    private shareProvider: SocialShareProvider,
+    public modalCtrl: ModalController,
+    private keyboard: Keyboard,
+    private readonly ngZone: NgZone) {
+      this.keyboard.hideKeyboardAccessoryBar(false);
+
       this.productID = navParams.get('productID');
       this.operatorName = navParams.get('operatorName');
       this.productName = navParams.get('productName');
@@ -72,6 +79,15 @@ export class BookingInquiryPage {
       }]
     });
     alert.present();
+  }
+
+  showThankModal(){
+    let modal = this.modalCtrl.create(ThankInquiryPage);
+    modal.present();
+    modal.onDidDismiss(() => {
+      this.ngZone.run(() =>  this.navCtrl.popToRoot() );
+
+    });
   }
 
 
@@ -122,7 +138,7 @@ export class BookingInquiryPage {
             message: 'Product ' + this.productID + ' is not available' 
           })).subscribe(data => {
               console.log(data);
-              this.inquiryOverlay("Your request has been sent successfully!");
+              this.showThankModal();
           });
           //this.shareProvider.shareViaEmail(this.name + " " +  this.email + " " + this.mobile + " " + this.productID);
       }else{
