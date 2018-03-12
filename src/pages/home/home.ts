@@ -92,10 +92,15 @@ export class HomePage {
           this.fbToken = token[0].access_token;
           this.getFBuserData(this.fbToken);
         }else if(this.provider === 'twitter'){
-          this.httpProvider.saveNewUser('user', token[0].user_id, token[0].user_id, 'not defined yet', token[0].user_claims[9].val, this.azure_id);
-          this.storage.set(this.HAS_LOGGED_IN, true);
-          this.storage.set('username', token[0].user_id);
-          this.ngZone.run(() => this.navCtrl.setRoot(FeedPage));
+          console.log("Twitter Token", data);
+          this.httpProvider.saveNewUser('user', token[0].user_id, token[0].user_id, 'not defined yet', token[0].user_claims[9].val, this.azure_id)
+            .subscribe(data => {
+              console.log("Twitter Data", data);
+              this.storage.set(this.HAS_LOGGED_IN, true);
+              this.storage.set('username', data.id);
+              this.ngZone.run(() => this.navCtrl.setRoot(FeedPage));
+            });
+         
           //this.getTwitterData(token[0].user_id);
         }else{  
           console.log(token);
