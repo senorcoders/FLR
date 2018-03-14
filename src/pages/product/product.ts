@@ -90,7 +90,7 @@ export class ProductPage {
       var dd:any = today.getDate();
       var mm:any = today.getMonth()+1;
       var yyyy = today.getFullYear();
-      this.timeStarts = "'" + yyyy + '-' + mm + '-' + dd + "'";
+      this.timeStarts = yyyy + '-' + mm + '-' + dd;
       this.timeEnd = yyyy + '-' + mm + '-' + dd;
       this.currentHour = this.addZero(today.getHours()) + ':' + this.addZero(today.getMinutes()) + ':' + this.addZero(today.getSeconds());
       console.log("Current Hour", this.currentHour);
@@ -630,7 +630,7 @@ updateEndDate(){
   updatePicker(){
 
     this.showPicker = true;
-    // this.picker.open();
+    this.picker.open();
   }
 
 }

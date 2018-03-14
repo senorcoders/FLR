@@ -136,7 +136,7 @@
 			</ion-col>
 		</ion-row>
 		
-		<ion-col col-12 *ngIf="showPicker">
+		<ion-col col-12 [ngStyle]="{'display': showPicker ? 'block' : 'none'}">
 			<!-- <h3 class="dark-light">Pick another {{rowText}} date</h3> -->
 			<ion-item>
 				<ion-label>Pick Another Date</ion-label>
