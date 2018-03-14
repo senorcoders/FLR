@@ -140,7 +140,7 @@
 			<!-- <h3 class="dark-light">Pick another {{rowText}} date</h3> -->
 			<ion-item>
 				<ion-label>Pick Another Date</ion-label>
-				<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeStarts" (ngModelChange)="updateDate()"></ion-datetime>
+				<ion-datetime id="dateTimeUpdate" #dateTimeUpdate displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY"  [(ngModel)]="timeStarts" (ngModelChange)="updateDate()"></ion-datetime>
 				<!-- <button (click)="updateDate()" item-end ion-button clear>Update</button> -->
 
 			</ion-item>

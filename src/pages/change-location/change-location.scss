@@ -33,4 +33,17 @@ page-change-location {
 		background-color: transparent !important;
 		background: linear-gradient(180deg, #fff 65%, rgba(0,0,0, .7) 50%);
 	}
+
+	.close-custom-btn{
+		position: absolute;
+		top: 5px;
+		right: 0;
+		background: transparent;
+		box-shadow: none;
+		font-size: 25px;
+		ion-icon{
+			color: #000;
+		}
+	
+	}
 }

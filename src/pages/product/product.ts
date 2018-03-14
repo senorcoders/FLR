@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { ReservationPage } from '../reservation/reservation';
@@ -14,6 +14,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'product.html',
 })
 export class ProductPage {
+  @ViewChild('dateTimeUpdate') sTime:ElementRef;
 
   operator_name:any;
   productName:any;
@@ -69,6 +70,7 @@ export class ProductPage {
   showPicker:boolean = false;
   currentHour:any;
   filteredFirstDate:boolean = false;
+  private picker:any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -93,6 +95,11 @@ export class ProductPage {
       this.currentHour = this.addZero(today.getHours()) + ':' + this.addZero(today.getMinutes()) + ':' + this.addZero(today.getSeconds());
       console.log("Current Hour", this.currentHour);
   }
+
+  ngAfterViewChecked() {
+    this.picker = this.sTime;
+    console.log("Picker", this.sTime);
+}
 
   ngOnInit(){ 
       this.operator_name = this.navParams.get('operator');
@@ -621,7 +628,9 @@ updateEndDate(){
 
 
   updatePicker(){
+
     this.showPicker = true;
+    // this.picker.open();
   }
 
 }

@@ -32,6 +32,9 @@ export class ChangeLocationPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+  close() {
+    this.viewCtrl.dismiss('none');
+  }
 
 
   public getLocation(){

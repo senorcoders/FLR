@@ -174,7 +174,7 @@ export class PaymentPage {
   }
 
   showMe(){
-    if(this.name != undefined && this.account != undefined && this.expiry != undefined && this.cvv2 != undefined && this.postal != undefined){
+    if(this.name != undefined && this.account != undefined && this.expiry != undefined && this.cvv2 != undefined && this.postal != undefined && this.checked == true){
       this.sendCardData();
     }else if(this.checked == false){
       this.presentAlert("Accept the terms and conditions");
@@ -185,7 +185,17 @@ export class PaymentPage {
   }
 
   updateTerms(){
+    // if(this.checked == true){
+    //   this.checked = false ;
+    //   console.log(this.checked);
+      
+    // }else if(this.checked == false){
+    //   this.checked = true;
+    //  console.log(this.checked);
+      
+    // }
     console.log(this.checked);
+
   }
   sendCardData() { 
     this.loading.present();

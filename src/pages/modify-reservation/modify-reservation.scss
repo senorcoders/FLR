@@ -91,10 +91,12 @@ page-modify-reservation {
 
 /*buttons*/
 .full-custom-btn{
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
     color: white;
-    text-align: center;
+	text-align: center;
+	padding: 25px;
+	letter-spacing: 1px;
 }
 .orange-btn{
 background: #ed640a;
