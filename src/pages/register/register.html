@@ -13,6 +13,7 @@
 
 <ion-content padding style="background: url(assets/imgs/white-blurred.jpg);">
   <h1 class="main-title">Create account</h1>
+  <p class="red" *ngIf="showMessage">* {{message}}</p>
 
   <ion-list style="width: 100% !important;">
 
@@ -23,7 +24,7 @@
 
       <ion-item>
         <ion-label stacked>Username</ion-label>
-        <ion-input type="text"  [(ngModel)]="username"></ion-input>
+        <ion-input autocapitalize='off' type="text"  [(ngModel)]="username"></ion-input>
     </ion-item>
 
       <ion-item>

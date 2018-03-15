@@ -22,6 +22,11 @@ export class RegisterPage {
   endpoint:any = 'user';
   HAS_LOGGED_IN = 'hasLoggedIn';
   photo_url:any = 'https://liveglam.com/wp-content/themes/liveglam-new/assets/img/avatar_placeholder.svg';
+  emailEndpoint:any = 'user/check/email/';
+  usernameEndpoint:any = 'user/check/username/';
+  message:string;
+  showMessage:boolean = false;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -61,9 +66,12 @@ export class RegisterPage {
 
   checkFields(){
     if(this.name != undefined && this.email != undefined && this.password != undefined && this.username != undefined){
-      this.register();
+      //this.register();
+      this.checkEmail();
     }else{
-      this.presentAlert("All fields are required");
+      // this.presentAlert("All fields are required");
+      this.message = 'All fields are required';
+      this.showMessage = true;
     }
   }
 
@@ -74,6 +82,94 @@ export class RegisterPage {
       buttons: ['Dismiss']
     });
     alert.present();
+  }
+
+   validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+
+  checkEmail(){
+    console.log("Email ok?", this.validateEmail(this.email));
+    if(this.validateEmail(this.email)){
+      this.httpProvider.getJsonData(this.emailEndpoint + this.email).subscribe(result => {
+        console.log("Email: ", result);
+        if(result[0].count > 0){
+          console.log("Email existing");
+          this.message = 'An account already has been created with ' + this.email + ' . Try to sign in.';
+          this.showMessage = true;
+        }else{
+          console.log("New user");
+          this.validateUsername();
+        }
+     });
+    } else{
+      this.message = 'Please provide a valid email address.';
+      this.showMessage = true;
+    }
+   
+  }
+
+  validateUsername(){
+    var format = /[ !@#$%^&*()+\=\[\]{};':"\\|,<>\/?]/;
+    var format2 = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    var firstLetter = this.username.charAt(0);
+    var lastChar = this.username[this.username.length -1];
+    var pattern = /[a-z]/;
+
+    if(this.username.length < 3 ){
+      this.message = "Username should contain at least 3 characters long";
+      console.log("Username should contain at least 3 characters long");
+      this.showMessage = true;
+      
+    }else if(this.username.length > 15){
+      this.message = "Username should contain no more than 15 characters long";
+      this.showMessage = true;
+    }else if (/\s/.test(this.username)) {
+      this.message = "Username should not contain spaces";
+      this.showMessage = true;
+    }else if(format.test(this.username) == true){
+      this.message = "Username should not contain special characters";
+      this.showMessage = true;
+    }else if(format2.test(firstLetter) == true){
+      this.message = "Username should not start with -, _  or .";
+      this.showMessage = true;
+    }else if(format2.test(lastChar) == true){
+      this.message = "Username should not end with -, _  or .";
+      this.showMessage = true;
+    }else if(pattern.test(firstLetter) == false){
+      this.message = "Username must start with a lowercase letter";
+      this.showMessage = true;
+    }else{
+      this.checkUsername();
+    }
+  }
+
+
+  checkUsername(){
+    this.httpProvider.getJsonData(this.usernameEndpoint + this.username).subscribe(result => {
+      console.log("Username: ", result);
+      if(result[0].count > 0){
+        console.log("username existing");
+        this.message = this.username + ' already taken.';
+          this.showMessage = true;
+      }else{
+        console.log("New username");
+        this.validatePassword();
+      }
+  });
+  }
+
+
+  validatePassword(){
+    if(this.password.length < 4 ){
+      this.message = "Password should contain at least 4 characters long";
+      this.showMessage = true;
+      
+    }else{
+      this.register();
+    }
   }
 
 }
