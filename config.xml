@@ -5,6 +5,7 @@
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -136,6 +137,13 @@
     <allow-navigation href="http://169.254.77.112:8100" />
     <allow-navigation href="http://169.254.66.139:8100" />
     <allow-navigation href="http://169.254.167.225:8100" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://169.254.117.184:8100" />
+    <allow-navigation href="http://169.254.151.181:8100" />
+    <allow-navigation href="http://169.254.211.200:8100" />
+    <allow-navigation href="http://192.168.8.110:8100" />
+    <allow-navigation href="http://169.254.122.11:8100" />
+    <allow-navigation href="http://169.254.233.11:8100" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -157,6 +165,5 @@
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Use geocoder service" />
     </plugin>
     <plugin name="cordova.plugins.diagnostic" spec="^3.9.2" />
-    <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-plugin-add-swift-support" spec="^1.7.0" />
 </widget>

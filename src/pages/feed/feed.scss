@@ -18,6 +18,10 @@ page-feed {
         font-weight: 900;
         background: #ff6633;
         height: 5rem !important;
+        ion-icon{
+            position: absolute;
+            right: 10px;
+        }
     }
     .verification-box{
         padding: 10px;

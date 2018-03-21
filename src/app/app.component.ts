@@ -7,7 +7,6 @@ import { HomePage } from '../pages/home/home';
 import { UsersProvider } from '../providers/users/users';
 import { FeedPage } from '../pages/feed/feed';
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +21,6 @@ export class MyApp {
     splashScreen: SplashScreen,
     public httpProvider: UsersProvider,
     private diagnostic: Diagnostic,
-    private locationAccuracy: LocationAccuracy,
     private splashscreen: SplashScreen) {
     platform.ready().then(() => {
       console.log(platform.is('android'));
@@ -64,19 +62,7 @@ export class MyApp {
 
 
 
-  enableGps(){
-    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-
-      if(canRequest) {
-        // the accuracy option will be ignored by iOS
-        this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-          () => console.log('Request successful'),
-          error => console.log('Error requesting location permissions', error)
-        );
-      }
-    
-    });
-  }
+  
  
   closeOverlay(){
     this.gps = false;
@@ -85,6 +71,6 @@ export class MyApp {
 
   }
 
-  
+   
 }
 

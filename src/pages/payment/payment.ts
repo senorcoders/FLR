@@ -90,6 +90,16 @@ export class PaymentPage {
       this.type = navParams.get('type');
       console.log(this.transaction_start_time, this.transaction_end_time);
       this.getUserStatus();
+
+      var that = this;
+
+      // window.addEventListener('message', function(event) {
+      //   var token = JSON.parse(event.data);
+      //   that.token = token.message;
+      //   alert(that.token);
+      //   }, false);
+
+     
   }
 
   ionViewDidLoad() {

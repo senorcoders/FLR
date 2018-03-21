@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { SingleReviewPage } from '../single-review/single-review';
+import { MapPage } from '../map/map';
 
 
 @IonicPage()
@@ -69,6 +70,10 @@ export class ReviewPage {
 
   evaluate(product){
     this.navCtrl.push(SingleReviewPage, {'product': product});
+  }
+
+  goToNearbyActivities(){
+    this.navCtrl.push(MapPage);
   }
 
 }

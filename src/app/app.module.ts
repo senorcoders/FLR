@@ -41,7 +41,6 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
 
 @NgModule({
@@ -121,7 +120,6 @@ import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
     Device,
     Keyboard,
     Diagnostic,
-    LocationAccuracy
   ]
 })
 export class AppModule {}

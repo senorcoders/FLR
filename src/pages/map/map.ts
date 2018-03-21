@@ -14,6 +14,7 @@ import { ProductListPage } from '../product-list/product-list';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ChangeLocationPage } from '../change-location/change-location';
 import { Storage } from '@ionic/storage';
+import { ProductPage } from '../product/product';
 
 @IonicPage()
 @Component({
@@ -52,16 +53,16 @@ export class MapPage {
   ngAfterViewInit() {
     this.plt.ready().then(() => {
 
-        this.geolocation.getCurrentPosition().then((resp) =>{
-        this.lat = resp.coords.latitude;
-        this.lng = resp.coords.longitude;
-        this.getLocations();
-          }).catch((error) => {
-            console.log('Error getting location', error);
-          });
-          // this.lat = '28.471346';
-          // this.lng = '-81.54047';
-          // this.getLocations();
+        // this.geolocation.getCurrentPosition().then((resp) =>{
+        // this.lat = resp.coords.latitude;
+        // this.lng = resp.coords.longitude;
+        // this.getLocations();
+        //   }).catch((error) => {
+        //     console.log('Error getting location', error);
+        //   });
+          this.lat = '28.471346';
+          this.lng = '-81.54047';
+          this.getLocations();
       
     //   this.storage.get('customLat').then((val) => {
     //     console.log(val);
@@ -194,8 +195,13 @@ export class MapPage {
         .then((marker: Marker) => {
           marker.showInfoWindow();
           marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-              //this.presentPopover(location.products, location.operator_name);
+            console.log("Length", location.products);
+            if(location.products.length == 1){
+              this.ngZone.run(() => this.goToProductDetail(location.products[0], location.operator_name, location.avg_stars, location.count_stars));
+            }else if(location.products.length > 1){
               this.ngZone.run(() => this.presentPopover(location.products, location.operator_name, location.avg_stars, location.count_stars));
+
+            }
             });
           });
 
@@ -216,6 +222,51 @@ export class MapPage {
       }, {cssClass: 'product-popover'} );
     popover.present();
   }
+
+  getDistanceBetweenPoints(lat, lng){
+        
+    let earthRadius = {
+        miles: 3958.8,
+        km: 6371
+    };
+
+    let R = earthRadius['miles'];
+    let lat1 = this.myLat;
+    let lon1 = this.myLng;
+    let lat2 = lat;
+    let lon2 = lng;
+
+    let dLat = this.toRad((lat2 - lat1));
+    let dLon = this.toRad((lon2 - lon1));
+    let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(this.toRad(lat1)) * Math.cos(this.toRad(lat2)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    let d = R * c;
+
+    return d.toFixed(2) + ' miles';
+
+}
+
+  goToProductDetail(product, operator, avg_stars, count_stars){
+    let miles = this.getDistanceBetweenPoints(product.lat, product.lot);
+    console.log("Millas", miles);
+
+    this.navCtrl.push(ProductPage, {
+      'product': product,
+      'operator': operator,
+      'stars': avg_stars,
+      "count_stars": count_stars,
+      'miles': miles
+  
+    });
+  }
+
+  toRad(x){
+    return x * Math.PI / 180;
+}
+  
 
   presentModal() {
     let modal = this.modalCtrl.create(ChangeLocationPage);
