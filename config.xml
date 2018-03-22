@@ -166,4 +166,6 @@
     </plugin>
     <plugin name="cordova.plugins.diagnostic" spec="^3.9.2" />
     <plugin name="cordova-plugin-add-swift-support" spec="^1.7.0" />
+    <allow-navigation href="http://169.254.13.213:8100" />
+    <allow-navigation href="http://169.254.252.65:8100" />
 </widget>

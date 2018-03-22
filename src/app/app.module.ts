@@ -42,6 +42,8 @@ import { RegisterPage } from '../pages/register/register';
 import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
+import { ReviewSummaryPage } from '../pages/review-summary/review-summary';
+import {ProgressBarModule} from "angular-progress-bar"
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
     MapModalPage,
     LoginPage,
     RegisterPage,
-    ThankInquiryPage
+    ThankInquiryPage,
+    ReviewSummaryPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
     IonicStorageModule.forRoot(),
     Ionic2RatingModule,
     MomentModule,
-    GooglePlacesAutocompleteComponentModule
+    GooglePlacesAutocompleteComponentModule,
+    ProgressBarModule
 
   ],
   bootstrap: [IonicApp],
@@ -105,7 +109,8 @@ import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
     MapModalPage,
     LoginPage,
     RegisterPage,
-    ThankInquiryPage
+    ThankInquiryPage,
+    ReviewSummaryPage
   ],
   providers: [
     StatusBar,

@@ -62,4 +62,12 @@ page-single-review {
       border-color: gray !important;
       border-width: 3px !important;
     }
+
+    .list-md .item-block .item-inner{
+      border: none !important;
+      p{
+        color: #000;
+        font-size: 14px;
+    }
+  }
 }

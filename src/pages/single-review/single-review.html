@@ -2,14 +2,14 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title>Reviews</ion-title>
+      <ion-title>Review</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <div class="review-bg" style="background: url('assets/imgs/rita-bg.jpg');"></div>
+    <div class="review-bg" [ngStyle]="{'background': 'url(' + image + ')'}"></div>
     <ion-row padding >
       <span> {{productName}}</span>
       <div class="bottom-row"></div>

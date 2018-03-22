@@ -22,11 +22,13 @@ export class SingleReviewPage {
   productName:any;
   operatorEndpoint:any = 'operator/';
   reviews:any;
+  image:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private httpProvider: UsersProvider, private alertCtrl: AlertController) {
     console.log("Producto", navParams.get('product').id);
     this.operatorID = navParams.get('product').id;
     this.productName = navParams.get('product').operator_name;
+    this.image = 'https://findlocalrentals.net/reservations/shop_image/product/' +  navParams.get('product').name_image;
     this.getStatus();
   }
 
@@ -64,7 +66,7 @@ export class SingleReviewPage {
     this.httpProvider.getJsonData(this.operatorEndpoint + this.operatorID + '/stars-comments')
       .subscribe(result =>{
         console.log(result);
-        this.reviews = result;
+        this.reviews = result['reviews'];
       });
   }
 

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { UsersProvider } from '../../providers/users/users';
 import { SingleReviewPage } from '../single-review/single-review';
 import { MapPage } from '../map/map';
+import { ReviewSummaryPage } from '../review-summary/review-summary';
 
 
 @IonicPage()
@@ -17,6 +18,7 @@ export class ReviewPage {
   loading:any;
   azure_id:any;
   userID:any;
+  oldreviews:any = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -58,6 +60,7 @@ export class ReviewPage {
         console.log(result);
           this.userID = result[0].id;
           this.getReviews();
+          this.getOldReviews();
       });
   }
 
@@ -68,8 +71,19 @@ export class ReviewPage {
     });
   }
 
+  getOldReviews(){
+    this.httpProvider.getJsonData(this.endpoint+this.userID+'/stars-comments-more' ).subscribe(result => {
+      this.oldreviews = result;
+    });
+  }
+
   evaluate(product){
     this.navCtrl.push(SingleReviewPage, {'product': product});
+  }
+
+  goToSummary(product){
+    this.navCtrl.push(ReviewSummaryPage, {'product': product});
+
   }
 
   goToNearbyActivities(){

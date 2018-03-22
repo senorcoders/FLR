@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-<div *ngIf="reviews.length < 1">
+<div *ngIf="reviews.length < 1 && oldreviews.length < 1">
   <ion-row class="flex-center">
       <img src="assets/imgs/placeholder.png">
       <h3>Let us know what you think!</h3>
@@ -26,18 +26,27 @@
     <ion-list>
         <ion-item *ngFor="let item of reviews" (click)="evaluate(item)">
           <ion-avatar item-start>
-            <img src="assets/imgs/placeholder.png">
+            <img src="https://findlocalrentals.net/reservations/shop_image/product/{{item.name_image}}">
           </ion-avatar>
-          <h2>{{item.operator_name}}</h2>
-          <p>Booking # 143984u</p>
-          <p>Rental Date Oct 2, 2017</p>
+          <h2 text-wrap>{{item.operator_name}}</h2>
+          <p>Booking # {{item.ID}}</p>
+          <p>Rental Date {{item.transaction_date | amDateFormat:'LL' }}</p>
           <p><span class="orange">Write a Review <ion-icon name="ios-arrow-forward"></ion-icon></span></p>
+        </ion-item>
+        <ion-item *ngFor="let item of oldreviews" (click)="goToSummary(item)">
+          <ion-avatar item-start>
+            <img src="https://findlocalrentals.net/reservations/shop_image/product/{{item.name_image}}">
+          </ion-avatar>
+          <h2 text-wrap>{{item.operator_name}}</h2>
+          <p>Booking # {{item.bookingID}}</p>
+          <p>Rental Date {{item.transaction_date | amDateFormat:'LL' }}</p>
+          <p>Reviewed on {{item.transaction_date | amDateFormat:'LL' }}</p>
         </ion-item>
       </ion-list>
 
 </ion-content>
 
-<ion-footer class="custom-footer" *ngIf="reviews.length < 1">
+<ion-footer class="custom-footer" *ngIf="reviews.length < 1 && oldreviews.length < 1">
     <button icon-right class="full-custom-btn" ion-button full (click)="goToNearbyActivities()">
       Explore Things To Do
       <ion-icon name="ios-arrow-forward" style="color: #fff !important;"></ion-icon>
