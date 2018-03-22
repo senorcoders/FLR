@@ -13,7 +13,7 @@ import { MapPage } from '../map/map';
 export class ReviewPage {
 
   endpoint:any = 'user/';
-  reviews:any;
+  reviews:any = [];
   loading:any;
   azure_id:any;
   userID:any;

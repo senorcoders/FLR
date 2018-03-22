@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-<div *ngIf="reviews != null">
+<div *ngIf="reviews.length < 1">
   <ion-row class="flex-center">
       <img src="assets/imgs/placeholder.png">
       <h3>Let us know what you think!</h3>
@@ -29,13 +29,15 @@
             <img src="assets/imgs/placeholder.png">
           </ion-avatar>
           <h2>{{item.operator_name}}</h2>
-          <h3>{{item.operator_type}}</h3>
+          <p>Booking # 143984u</p>
+          <p>Rental Date Oct 2, 2017</p>
+          <p><span class="orange">Write a Review <ion-icon name="ios-arrow-forward"></ion-icon></span></p>
         </ion-item>
       </ion-list>
 
 </ion-content>
 
-<ion-footer class="custom-footer" *ngIf="reviews != null">
+<ion-footer class="custom-footer" *ngIf="reviews.length < 1">
     <button icon-right class="full-custom-btn" ion-button full (click)="goToNearbyActivities()">
       Explore Things To Do
       <ion-icon name="ios-arrow-forward" style="color: #fff !important;"></ion-icon>
