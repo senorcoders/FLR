@@ -65,7 +65,8 @@ export class PaymentPage {
     private httpProvider: UsersProvider, 
     public alertCtrl: AlertController,
     private device: Device,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+  ) {
       var that = this;
       this.loading = this.loadingCtrl.create({
         spinner: 'hide',
@@ -179,6 +180,14 @@ export class PaymentPage {
       title: 'Warning!',
       subTitle: message,
       buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
+  badgeAlert(){
+    let alert = this.alertCtrl.create({
+      subTitle: 'Lorem ipsum dolor sit ammet, Lorem ipsum dolor sit ammet',
+      buttons: ['Ok']
     });
     alert.present();
   }

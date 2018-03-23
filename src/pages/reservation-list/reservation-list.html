@@ -12,13 +12,15 @@
 <ion-content padding>
 
     <ion-list>
-        <ion-item *ngFor="let item of reservations" (click)="modifyReservation(item.reservationID, item.transactionDate, item.reservationMiscTripName, item.reservationNbrInAdult, item.transactionStartDate, item.transactionEndtTime, item.transactionStartTime, item.transactionEndTime, item.Price)">
+        <ion-item *ngFor="let item of reservations" (click)="modifyReservation(item.reservationID, item.transactionDate, item.reservationMiscTripName, item.reservationNbrInAdult, item.transactionStartDate, item.transactionEndtTime, item.transactionStartTime, item.transactionEndTime, item.Price, item.reservationNbrInParty, item.productID)">
           <ion-avatar item-start>
-            <img src="assets/imgs/placeholder.png">
+            <img [src]="item.nameImage ? 'https://findlocalrentals.net/reservations/shop_image/product/' + item.nameImage : 'assets/imgs/placeholder.png'">
           </ion-avatar>
-          <h2>{{item.productName}}</h2>
-          <h3>$ {{item.Price}}</h3>
-          <p>{{item.transactionDate | amTimeAgo}}</p>
+          <h2 text-wrap>{{item.operatorName}}</h2>
+          <p>Booking # {{item.reservationID}}</p>
+          <p>Rental Date {{item.transactionDate | amDateFormat:'LL'}}</p>
+          <p>{{item.productName}}</p>
+          <p>USD {{item.Price}}</p>
         </ion-item>
       </ion-list>
   

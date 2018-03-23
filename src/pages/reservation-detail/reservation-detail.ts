@@ -30,6 +30,8 @@ export class ReservationDetailPage {
   people:any;
   gap:number = 3.50;
   map: GoogleMap;
+  lat:any;
+  lng:any;
 
   
 
@@ -45,11 +47,13 @@ export class ReservationDetailPage {
     this.endHour = navParams.get('reservation').transaction_end_time;
     this.price = navParams.get('reservation').price;
     this.people = navParams.get('reservation').nbr_in_party;
-
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReservationDetailPage');
+    this.lat = this.navParams.get('lat');
+    this.lng = this.navParams.get('lng');
     this.loadMap();
 
   }
@@ -76,10 +80,10 @@ export class ReservationDetailPage {
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
-          lat: 43.0741904,
-          lng: -89.3809802
+          lat: this.lat,
+          lng: this.lng
         },
-        zoom: 18,
+        zoom: 12,
         tilt: 30
       }
     };
@@ -101,8 +105,8 @@ export class ReservationDetailPage {
             icon: 'blue',
             animation: 'DROP',
             position: {
-              lat: 43.0741904,
-              lng: -89.3809802
+              lat: this.lat,
+              lng: this.lng
             }
           })
           .then(marker => {

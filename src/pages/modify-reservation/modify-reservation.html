@@ -21,7 +21,7 @@
         <b>Booking # </b>{{bookingID}}
       </ion-col>
       <ion-col col-12>
-        <b>Booking Date</b> {{bookingDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}
+        <b>Booking Date</b> {{bookingDate |  amUtc | amDateFormat: 'MMM DD, YYYY'}}
       </ion-col>
       <ion-col col-12>
         <span class="gray">Receipt has been emailed to you.</span>	
@@ -39,7 +39,7 @@
         </p>
        
       </ion-col>
-      <ion-col col-12>
+      <ion-col col-6>
         <div class="summary">
           <h3>Activity</h3>
           {{productName}}
@@ -47,9 +47,16 @@
         
       </ion-col>
       <ion-col col-6>
+          <div class="summary">
+            <h3>Quantity</h3>
+            {{people}}
+          </div>
+          
+        </ion-col>
+      <ion-col col-6>
         <div class="summary">
           <h3>Starts <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
-          {{startDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(startHour)}}
+          {{startDate | amUtc | amDateFormat: 'MMM DD' }}, {{tConvert(startHour)}}
         </div>
       </ion-col>
       <ion-col col-6>
@@ -57,7 +64,7 @@
         <div class="summary">
           <div *ngIf="endDate != ''">
             <h3>Ends <img src="assets/imgs/calendar-icon.png" width="20" alt=""></h3>
-            {{endDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}, {{tConvert(endHour)}}
+            {{endDate |  amUtc | amDateFormat: 'MMM DD' }}, {{tConvert(endHour)}}
           </div>
         </div>
       </ion-col>
@@ -65,15 +72,15 @@
           
         <div class="summary">
           <span class="label">Price:</span> 
-          <span class="price-val">$ {{price}} - ({{qty}} {{type}})</span>
+          <span class="price-val">USD {{price}} </span>
         </div>
         <div class="summary">
-          <span class="label">Quantity:</span> 
-          <span class="price-val">{{people}}</span>
+          <span class="label"># of {{type}}:</span> 
+          <span class="price-val">{{qty}}</span>
         </div>
         <div class="summary">
           <span class="label">Payment Amount:</span>
-          <span class="payment-val">$ {{getAmount()}}</span>
+          <span class="payment-val">USD {{getAmount()}}</span>
         </div>
       </ion-col>
     </ion-row>
@@ -82,7 +89,7 @@
   </ion-content>
   <ion-footer>
       <button class="full-custom-btn" ion-button clear (click)="goToFeed()">
-         BOOK ANOTHER ACTIVITY  
+         MODIFY  
         </button>
   </ion-footer>
   <ion-row class="overlay" *ngIf="enableOverlay">

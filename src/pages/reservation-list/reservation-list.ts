@@ -13,6 +13,7 @@ export class ReservationListPage {
   azure_id:any;
   userID:any;
   userEndpoint:any = 'user/';
+  productEndpoint:any = 'product/';
   reservations:any;
   data:any = {
       id: '',
@@ -23,7 +24,8 @@ export class ReservationListPage {
       transaction_end_date: '',
       transaction_start_time: '',
       transaction_end_time: '',
-      price: ''
+      price: '',
+      nbr_in_party: ''
   };
   loading:any;
 
@@ -91,17 +93,24 @@ export class ReservationListPage {
       });
   }
 
-  modifyReservation(id, transaction_date, misc_trip_name, number_activity_reserved, transaction_start_date, transaction_end_date, transaction_start_time, transaction_end_time, price){
-    this.data.id = id;
-    this.data.transaction_date = transaction_date;
-    this.data.misc_trip_name = misc_trip_name;
-    this.data.number_activity_reserved = number_activity_reserved;
-    this.data.transaction_start_date = transaction_start_date;
-    this.data.transaction_end_date = transaction_end_date;
-    this.data.transaction_start_time = transaction_start_time;
-    this.data.transaction_end_time = transaction_end_time;
-    this.data.price = price;
-    this.navCtrl.push(ReservationDetailPage, {reservation: this.data});
+  modifyReservation(id, transaction_date, misc_trip_name, number_activity_reserved, transaction_start_date, transaction_end_date, transaction_start_time, transaction_end_time, price, nbr_in_party, productID){
+    this.httpProvider.getJsonData(this.productEndpoint + productID + '/location')
+      .subscribe(data => {
+        console.log("Coords", data);
+        this.data.id = id;
+        this.data.transaction_date = transaction_date;
+        this.data.misc_trip_name = misc_trip_name;
+        this.data.number_activity_reserved = number_activity_reserved;
+        this.data.transaction_start_date = transaction_start_date;
+        this.data.transaction_end_date = transaction_end_date;
+        this.data.transaction_start_time = transaction_start_time;
+        this.data.transaction_end_time = transaction_end_time;
+        this.data.price = price;
+        this.data.nbr_in_party = nbr_in_party;
+        this.navCtrl.push(ReservationDetailPage, {reservation: this.data, lat: data[0].lat, lng: data[0].lng});
+
+      });
+  
   }
 
 }

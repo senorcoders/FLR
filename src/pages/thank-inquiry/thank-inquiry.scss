@@ -16,4 +16,16 @@ page-thank-inquiry {
         width: 100px !important;
         margin-top: 25% !important;
     }
+
+    .close-x button{
+        float: right;
+        background: none !important;
+        color: #fff !important;
+        font-size: 20px;
+        width: 100%;
+        text-align: right;
+        .button-inner{
+            justify-content: flex-end;
+        }
+    }
 }

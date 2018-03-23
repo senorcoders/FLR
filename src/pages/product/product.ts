@@ -112,7 +112,7 @@ export class ProductPage {
       this.stars = this.navParams.get('stars');
       this.count_stars = this.navParams.get('count_stars');
       this.miles = this.navParams.get('miles');
-      this.image = 'https://findlocalrentals.net/reservations/shop_image/product/' + this.navParams.get('product').name_image;
+      this.image =  this.navParams.get('product').name_image ? 'https://findlocalrentals.net/reservations/shop_image/product/' + this.navParams.get('product').name_image : 'assets/imgs/placeholder.png';
 
       console.log("Product ID", this.productID);
       //this.getDates();
@@ -543,23 +543,34 @@ tConvert (time) {
 updateDate(){
 
   console.log("Inicio", this.timeStarts);
+  console.log("Testing", this.compareTime(this.timeStarts));
+ 
 
   if(this.timeStarts != ''){
-    this.loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: `<img width="150" src="assets/imgs/placeholder.png" />
-      <br>
-      <h1 class="loader-text-center">Loading...</h1>`,
-    });
-    this.loading.present();
-    this.enableDates = false;
-    this.dates = [];
-    this.enableFirst = false;
-    this.filteredFirstDate = true;
-    this.getDates(this.timeStarts);
+    if(this.compareTime(this.timeStarts)){
+      this.presentAlert("You need to choose a date later than today!");
+    }else{
+      this.loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        content: `<img width="150" src="assets/imgs/placeholder.png" />
+        <br>
+        <h1 class="loader-text-center">Loading...</h1>`,
+      });
+      this.loading.present();
+      this.enableDates = false;
+      this.dates = [];
+      this.enableFirst = false;
+      this.filteredFirstDate = true;
+      this.getDates(this.timeStarts);
+    }
+    
   }
  
 }
+
+compareTime(time) {
+  return new Date() >= new Date(time); 
+ }
 
 updateEndDate(){
   if(this.timeEnd != null){

@@ -26,6 +26,7 @@ export class RegisterPage {
   usernameEndpoint:any = 'user/check/username/';
   message:string;
   showMessage:boolean = false;
+  phone:any;
 
 
   constructor(
@@ -52,7 +53,8 @@ export class RegisterPage {
       email:this.email,
       password: this.password,
       azure_id: this.azure_id,
-      photo_url: this.photo_url
+      photo_url: this.photo_url,
+      phone: this.phone
     })).subscribe(data => {
         console.log(data);
         this.storage.set('azureid', this.azure_id);	
@@ -65,7 +67,7 @@ export class RegisterPage {
   }
 
   checkFields(){
-    if(this.name != undefined && this.email != undefined && this.password != undefined && this.username != undefined){
+    if(this.name != undefined && this.email != undefined && this.password != undefined && this.username != undefined && this.phone != undefined){
       //this.register();
       this.checkEmail();
     }else{
