@@ -42,8 +42,8 @@ export class ProductListPage {
   }
 
           getDistanceBetweenPoints(lat, lng){
-            if(this.myLat != null && this.MyLng != null){
-              let earthRadius = {
+        
+            let earthRadius = {
                 miles: 3958.8,
                 km: 6371
             };
@@ -64,9 +64,6 @@ export class ProductListPage {
             let d = R * c;
 
             return d.toFixed(2) + ' miles';
-            }
-        
-           
 
         }
 
