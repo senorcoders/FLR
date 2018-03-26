@@ -71,6 +71,7 @@ export class ProductPage {
   currentHour:any;
   filteredFirstDate:boolean = false;
   private picker:any;
+  maxQty:number;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -112,6 +113,7 @@ export class ProductPage {
       this.stars = this.navParams.get('stars');
       this.count_stars = this.navParams.get('count_stars');
       this.miles = this.navParams.get('miles');
+      this.maxQty = this.navParams.get('product').max_adults;
       this.image =  this.navParams.get('product').name_image ? 'https://findlocalrentals.net/reservations/shop_image/product/' + this.navParams.get('product').name_image : 'assets/imgs/placeholder.png';
 
       console.log("Product ID", this.productID);
@@ -129,7 +131,10 @@ export class ProductPage {
 
 
   timesCount(){
-    this.reserveCount++;
+    if(this.reserveCount < this.maxQty){
+      this.reserveCount++;
+
+    }
   }
 
   dicreaseCount(){
@@ -139,7 +144,10 @@ export class ProductPage {
   }
 
   increaseDays(){
-    this.daysQty++;
+   
+      this.daysQty++;
+
+    
   }
 
   decreaseDays(){
