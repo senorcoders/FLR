@@ -12,9 +12,9 @@ page-favorites {
         height: 130px;
         border-radius: 50%;
         max-width: 130px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
         margin-top: 30px;
         position: relative;
     }

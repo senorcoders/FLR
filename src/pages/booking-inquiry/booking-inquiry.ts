@@ -121,6 +121,7 @@ export class BookingInquiryPage {
           this.email = result[0].email;
           this.name = result[0].name;
           this.user_id = result[0].id;
+          this.mobile = result[0].phone;
           console.log(this.email);
       }
     )
