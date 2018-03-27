@@ -86,7 +86,7 @@ export class PaymentPage {
       this.guestEmail = navParams.get('guestEmail');
       this.guestMobile = navParams.get('guestMobile');
       this.deviceID = this.device.uuid;
-      this.amount = navParams.get('total');
+      this.amount = navParams.get('total'); 
       this.qty = navParams.get('qty');
       this.type = navParams.get('type');
       console.log(this.transaction_start_time, this.transaction_end_time);
@@ -168,7 +168,8 @@ export class PaymentPage {
       misc_trip_name: this.productName,
       price: this.price,
       guest_id: this.guestId ,
-      payment_id: payment_id
+      payment_id: payment_id,
+      timing: this.type
     })).subscribe(data => {
         console.log(data);
         this.navCtrl.push(ModifyReservationPage, {reservation: data, type: this.type});
