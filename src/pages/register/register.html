@@ -13,7 +13,6 @@
 
 <ion-content padding style="background: url(assets/imgs/white-blurred.jpg);">
   <h1 class="main-title">Sign up</h1>
-  <p class="red" *ngIf="showMessage">* {{message}}</p>
 
   <ion-list style="width: 100% !important;">
 
@@ -46,6 +45,8 @@
       <ion-col col-12>
           <button class="btn-orange" full ion-button (click)="checkFields()">Join Find Local Rentals</button>
       </ion-col>
+      <p class="red" *ngIf="showMessage">* {{message}}</p>
+
       <ion-col col-12>
             <button class="guest-btn" full clear ion-button>Continue as a Guest</button>
   

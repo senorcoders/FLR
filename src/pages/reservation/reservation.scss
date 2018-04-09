@@ -14,7 +14,7 @@ page-reservation {
 	.back-btn{float: right; color: white; background: transparent;}
 	.toolbar-ios ion-title{padding:0 20px 1px;;}
 	.back-button-text-ios{display: none;}
-	.ion-md-close{float: right;}
+	.ion-md-close{float: right; font-size: 25px;}
 	.back-button-icon{color: white;}
 	/*font style*/
 	.orange-font{
@@ -144,6 +144,10 @@ page-reservation {
 			border-bottom-color: transparent;
 			box-shadow: inset 0 -1px 0 0 #dedede;
 			box-shadow: none;
+		}
+
+		.toolbar-title-md{
+			padding-right: 0 !important;
 		}
 	  
 
