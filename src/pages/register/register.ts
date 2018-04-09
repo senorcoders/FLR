@@ -49,7 +49,7 @@ export class RegisterPage {
   register(){
     this.httpProvider.addItem(this.endpoint, JSON.stringify({
       name: this.name,
-      username: this.username,
+      username: this.email,
       email:this.email,
       password: this.password,
       azure_id: this.azure_id,
@@ -67,7 +67,7 @@ export class RegisterPage {
   }
 
   checkFields(){
-    if(this.name != undefined && this.email != undefined && this.password != undefined && this.username != undefined && this.phone != undefined){
+    if(this.name != undefined && this.email != undefined && this.password != undefined  && this.phone != undefined){
       //this.register();
       this.checkEmail();
     }else{
@@ -103,7 +103,7 @@ export class RegisterPage {
           this.showMessage = true;
         }else{
           console.log("New user");
-          this.validateUsername();
+          this.validatePassword();
         }
      });
     } else{
@@ -160,7 +160,7 @@ export class RegisterPage {
         console.log("New username");
         this.validatePassword();
       }
-  });
+    });
   }
 
 
