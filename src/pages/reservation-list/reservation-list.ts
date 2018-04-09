@@ -25,7 +25,8 @@ export class ReservationListPage {
       transaction_start_time: '',
       transaction_end_time: '',
       price: '',
-      nbr_in_party: ''
+      nbr_in_party: '',
+      address: ''
   };
   loading:any;
 
@@ -93,7 +94,7 @@ export class ReservationListPage {
       });
   }
 
-  modifyReservation(id, transaction_date, misc_trip_name, number_activity_reserved, transaction_start_date, transaction_end_date, transaction_start_time, transaction_end_time, price, nbr_in_party, productID){
+  modifyReservation(id, transaction_date, misc_trip_name, number_activity_reserved, transaction_start_date, transaction_end_date, transaction_start_time, transaction_end_time, price, nbr_in_party, productID, address){
     this.httpProvider.getJsonData(this.productEndpoint + productID + '/location')
       .subscribe(data => {
         console.log("Coords", data);
@@ -107,6 +108,7 @@ export class ReservationListPage {
         this.data.transaction_end_time = transaction_end_time;
         this.data.price = price;
         this.data.nbr_in_party = nbr_in_party;
+        this.data.address = address;
         this.navCtrl.push(ReservationDetailPage, {reservation: this.data, lat: data[0].lat, lng: data[0].lng});
 
       });

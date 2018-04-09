@@ -32,6 +32,7 @@ export class ReservationDetailPage {
   map: GoogleMap;
   lat:any;
   lng:any;
+  address:any;
 
   
 
@@ -47,6 +48,7 @@ export class ReservationDetailPage {
     this.endHour = navParams.get('reservation').transaction_end_time;
     this.price = navParams.get('reservation').price;
     this.people = navParams.get('reservation').nbr_in_party;
+    this.address = navParams.get('reservation').address;
     
   }
 

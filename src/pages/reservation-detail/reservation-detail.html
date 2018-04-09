@@ -37,6 +37,7 @@
           <p>
             {{productName}}
           </p>
+          <p>{{address}}</p>
           
         </ion-col>
         <ion-col col-6>
@@ -68,14 +69,15 @@
           </div>
         </ion-col>
         <ion-col col-12>
-            <div class="summary">
-                <span class="label"> # In Party</span> 
-                <span class="price-val">{{people}}</span>
-              </div>
+            
           <div class="summary">
             <span class="label">Price:</span> 
             <span class="price-val">USD {{price}}</span>
           </div>
+          <div class="summary">
+                <span class="label"> # of Days</span> 
+                <span class="price-val">{{people}}</span>
+              </div>
           <div class="summary">
             <span class="label">Payment Amount:</span>
             <span class="payment-val">USD {{getAmount()}}</span>

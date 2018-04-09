@@ -187,8 +187,10 @@ export class PaymentPage {
 
   badgeAlert(){
     let alert = this.alertCtrl.create({
-      subTitle: 'Lorem ipsum dolor sit ammet, Lorem ipsum dolor sit ammet',
-      buttons: ['Ok']
+      subTitle: 'CVV stands for Card Verification Value. It is 3 or 4 digit code embossed or imprinted on the reserve side of Visa, MasterCard and Discover cards. On the front of American Express cards, it appears after and to the right of your',
+      buttons: ['Ok'],
+      cssClass: 'alertReservation'
+
     });
     alert.present();
   }
