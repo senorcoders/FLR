@@ -171,4 +171,5 @@
     <plugin name="cordova-plugin-add-swift-support" spec="^1.7.0" />
     <allow-navigation href="http://169.254.59.57:8100" />
     <allow-navigation href="http://169.254.191.100:8100" />
+    <allow-navigation href="http://169.254.244.139:8100" />
 </widget>

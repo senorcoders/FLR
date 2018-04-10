@@ -85,7 +85,7 @@ export class BookingInquiryPage {
     let modal = this.modalCtrl.create(ThankInquiryPage);
     modal.present();
     modal.onDidDismiss(() => {
-      this.ngZone.run(() =>  this.navCtrl.popToRoot() );
+      this.ngZone.run(() =>  this.navCtrl.popTo(this.navCtrl.getByIndex(2)) );
 
     });
   }

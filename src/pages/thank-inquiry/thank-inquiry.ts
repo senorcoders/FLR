@@ -53,7 +53,7 @@ export class ThankInquiryPage {
     console.log(this.root);
     this.viewCtrl.dismiss();
     // this.app.getRootNav().setRoot(this.root);
-    // this.navCtrl.popToRoot();
+     //this.navCtrl.popToRoot();
   }
 
 }
