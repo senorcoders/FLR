@@ -33,6 +33,7 @@ export class ReservationDetailPage {
   lat:any;
   lng:any;
   address:any;
+  operatorName:any;
 
   
 
@@ -49,6 +50,7 @@ export class ReservationDetailPage {
     this.price = navParams.get('reservation').price;
     this.people = navParams.get('reservation').nbr_in_party;
     this.address = navParams.get('reservation').address;
+    this.operatorName = navParams.get('reservation').operatorName;
     
   }
 

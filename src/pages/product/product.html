@@ -18,9 +18,9 @@
 		<ion-col col-10 class="bottom-none">
 			<h3 class="direction bottom-none">{{operator_name}} ({{miles}})</h3>
 		</ion-col>
-		<ion-col col-2 class="right bottom-none">
+		<!-- <ion-col col-2 class="right bottom-none">
 			<img src="assets/imgs/arrow-rigth.png" width="20" height="20">
-		</ion-col>
+		</ion-col> -->
 		<ion-col col-10 class="bottom-none">
 			
 			<div class="rating-box">
@@ -36,11 +36,11 @@
 			  <span class="count" *ngIf="count_stars != null">({{count_stars}}) </span>
 			  </div>
 		</ion-col>
-		<ion-col col-2 class="right bottom-none" *ngIf="enable">
+		<!-- <ion-col col-2 class="right bottom-none" *ngIf="enable">
 			<button *ngIf="!liked" (click)="addToFav()" class="transparent"><ion-icon name="heart-outline" md="md-heart-outline" class="gray-heart"></ion-icon></button>
 			<button *ngIf="liked"  class="transparent"><ion-icon name="ios-heart"></ion-icon></button>
 
-		</ion-col>
+		</ion-col> -->
 		<ion-col col-12 class="bottom-none">
 			<div class="separate-line"></div>
 		</ion-col>

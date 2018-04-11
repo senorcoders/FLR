@@ -7,4 +7,24 @@ page-terms {
     .toolbar-title {
         color: #fff;
     }
+
+    ol{
+        padding-left: 15px;
+    }
+    p, li{
+        color: dimgray;
+    }
+
+    li{
+        margin-bottom: 20px;
+    }
+
+    .full-custom-btn {
+        margin-bottom: 0;
+        text-transform: uppercase;
+        font-weight: 900;
+        background: #ff6633;
+        height: 5rem !important;
+       
+    }
 }

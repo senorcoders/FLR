@@ -178,7 +178,6 @@ export class PaymentPage {
 
   presentAlert(message) { 
     let alert = this.alertCtrl.create({
-      title: 'Warning!',
       subTitle: message,
       buttons: ['Dismiss']
     });
@@ -187,7 +186,7 @@ export class PaymentPage {
 
   badgeAlert(){
     let alert = this.alertCtrl.create({
-      subTitle: 'CVV stands for Card Verification Value. It is 3 or 4 digit code embossed or imprinted on the reserve side of Visa, MasterCard and Discover cards. On the front of American Express cards, it appears after and to the right of your',
+      subTitle: 'CVV stands for Card Verification Value. It is a 3 or 4 digit code embossed or imprinted on the reverse side of Visa, MasterCard and Discover cards. On the front of American Express cards, it appears after and to the right of your card number.',
       buttons: ['Ok'],
       cssClass: 'alertReservation'
 
