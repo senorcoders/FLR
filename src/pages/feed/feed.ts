@@ -26,6 +26,7 @@ export class FeedPage {
   HAS_LOGGED_IN = 'hasLoggedIn';
   email:any;
   verified:boolean;
+  param:any;
 
 
   constructor(
@@ -36,6 +37,11 @@ export class FeedPage {
     private storage: Storage) {
       this.getStatus();
       console.log(this.navCtrl);
+      this.param = navParams.get('gotopage');
+      console.log("Param", this.param);
+      if(this.param === 'map'){
+        this.goToNearbyActivities();
+      }
   }
 
   ionViewDidEnter() {

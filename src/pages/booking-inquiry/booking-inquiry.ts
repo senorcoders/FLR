@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, App } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { SocialShareProvider } from '../../providers/social-share/social-share';
 import { FeedPage } from '../feed/feed';
@@ -39,7 +39,8 @@ export class BookingInquiryPage {
     private shareProvider: SocialShareProvider,
     public modalCtrl: ModalController,
     private keyboard: Keyboard,
-    private readonly ngZone: NgZone) {
+    private readonly ngZone: NgZone,
+    public app: App) {
       this.keyboard.hideKeyboardAccessoryBar(false);
 
       this.productID = navParams.get('productID');
@@ -52,6 +53,7 @@ export class BookingInquiryPage {
 
 
       this.getUserStatus();
+      console.log("Index", this.app.getRootNav());
   }
 
   ionViewDidLoad() {
@@ -85,7 +87,9 @@ export class BookingInquiryPage {
     let modal = this.modalCtrl.create(ThankInquiryPage);
     modal.present();
     modal.onDidDismiss(() => {
-      this.ngZone.run(() =>  this.navCtrl.popTo(this.navCtrl.getByIndex(2)) );
+      this.ngZone.run(() =>  this.app.getRootNav().setRoot(this.root, {
+        gotopage: 'map'
+      }) );
 
     });
   }

@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, NavParams } from 'ionic-angular';
 import { LocationsPage } from '../locations/locations';
 import { UsersProvider } from '../../providers/users/users';
 declare var WindowsAzure: any;
@@ -21,6 +21,7 @@ export class HomePage {
   appUrl:any = 'https://find-local-rentals.azurewebsites.net';
   HAS_LOGGED_IN = 'hasLoggedIn';
   fbToken:any;
+  param:any;
 
 
 
@@ -30,7 +31,14 @@ export class HomePage {
     private storage: Storage, 
     public http: Http, 
     private app:App,
-    private readonly ngZone: NgZone) {
+    private readonly ngZone: NgZone,
+    public navParams: NavParams,
+  ) {
+     this.param = navParams.get('gotopage');
+     console.log("Param", this.param);
+     if(this.param === 'map'){
+       this.goToNearbyActivities();
+     }
 
   }
 

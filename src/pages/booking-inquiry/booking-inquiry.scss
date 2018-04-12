@@ -9,7 +9,11 @@ page-booking-inquiry {
 	}
 	.ion-ios-close{
 		float: right;
-		font-size: 2.4rem;
+		font-size: 30px;
+	}
+
+	ion-title{
+		padding-right: 0;
 	}
 	.back-btn{float: right; color: white; background: transparent;}
 	.toolbar-ios ion-title{padding:0 20px 1px;;}

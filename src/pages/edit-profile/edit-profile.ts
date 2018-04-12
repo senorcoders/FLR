@@ -47,7 +47,7 @@ export class EditProfilePage {
           this.photo_url = result[0].photo_url;
           this.user_id = result[0].id;
           this.phone = result[0].phone;
-          this.password = result[0].password;
+          //this.password = result[0].password;
       }
     )
   }
