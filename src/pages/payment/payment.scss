@@ -96,6 +96,10 @@ ion-icon{
 .text-input{
 	font-size: 13px !important;
 }
+item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner {
+    border-bottom-color: #dedede;
+  
+}
 }
 
 

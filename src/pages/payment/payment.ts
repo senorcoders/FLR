@@ -169,7 +169,10 @@ export class PaymentPage {
       price: this.price,
       guest_id: this.guestId ,
       payment_id: payment_id,
-      timing: this.type
+      timing: this.type,
+      name: this.guestName,
+      email: this.guestEmail,
+      mobile: this.guestMobile
     })).subscribe(data => {
         console.log(data);
         this.navCtrl.push(ModifyReservationPage, {reservation: data, type: this.type});

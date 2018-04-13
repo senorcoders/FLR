@@ -6,6 +6,7 @@ import { FeedPage } from '../feed/feed';
 import { HomePage } from '../home/home';
 import { ThankInquiryPage } from '../thank-inquiry/thank-inquiry';
 import { Keyboard } from '@ionic-native/keyboard';
+import { PrivacyPage } from '../privacy/privacy';
 
 
 @IonicPage()
@@ -154,6 +155,10 @@ export class BookingInquiryPage {
 
   updateTerms(){
     console.log(this.checked);
+  }
+
+  goToPrivacy(){
+    this.navCtrl.push(PrivacyPage);
   }
 
 }

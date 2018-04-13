@@ -66,9 +66,10 @@
             <ion-input type="number" [(ngModel)]="mobile"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label text-wrap>By sending a request, I agree to Privacy Policy.</ion-label>
+            <ion-label text-wrap>By sending a request, I agree to </ion-label>
             <ion-checkbox checked="checked" [(ngModel)]="checked" (ionChange)="updateTerms()"></ion-checkbox>
           </ion-item>
+          <strong (click)="goToPrivacy()">Privacy Policy</strong>
       </ion-list>
   </ion-content>
   <ion-footer>

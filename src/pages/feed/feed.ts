@@ -108,7 +108,7 @@ export class FeedPage {
       result =>{
         console.log(result);
           this.photo_url = result[0].photo_url;
-          this.username = result[0].username;
+          this.username = result[0].name;
           this.email = result[0].email;
           this.verified = result[0].verified;
           console.log(result[0].email);

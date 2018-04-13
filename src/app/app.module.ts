@@ -44,6 +44,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
 import { ReviewSummaryPage } from '../pages/review-summary/review-summary';
 import {ProgressBarModule} from "angular-progress-bar"
+import { PrivacyPage } from '../pages/privacy/privacy';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {ProgressBarModule} from "angular-progress-bar"
     LoginPage,
     RegisterPage,
     ThankInquiryPage,
-    ReviewSummaryPage
+    ReviewSummaryPage,
+    PrivacyPage
   ],
   imports: [
     BrowserModule,
@@ -110,7 +112,8 @@ import {ProgressBarModule} from "angular-progress-bar"
     LoginPage,
     RegisterPage,
     ThankInquiryPage,
-    ReviewSummaryPage
+    ReviewSummaryPage,
+    PrivacyPage
   ],
   providers: [
     StatusBar,
