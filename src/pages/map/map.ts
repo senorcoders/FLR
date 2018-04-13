@@ -53,16 +53,16 @@ export class MapPage {
   ngAfterViewInit() {
     this.plt.ready().then(() => {
 
-        this.geolocation.getCurrentPosition().then((resp) =>{
-        this.lat = resp.coords.latitude;
-        this.lng = resp.coords.longitude;
-        this.getLocations();
-          }).catch((error) => {
-            console.log('Error getting location', error);
-          });
-          // this.lat = '28.471346';
-          // this.lng = '-81.54047';
-          // this.getLocations();
+        // this.geolocation.getCurrentPosition().then((resp) =>{
+        // this.lat = resp.coords.latitude;
+        // this.lng = resp.coords.longitude;
+        // this.getLocations();
+        //   }).catch((error) => {
+        //     console.log('Error getting location', error);
+        //   });
+          this.lat = '28.471346';
+          this.lng = '-81.54047';
+          this.getLocations();
       
     //   this.storage.get('customLat').then((val) => {
     //     console.log(val);

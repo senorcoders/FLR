@@ -155,6 +155,7 @@ export class BookingInquiryPage {
 
   updateTerms(){
     console.log(this.checked);
+    this.goToPrivacy();
   }
 
   goToPrivacy(){
