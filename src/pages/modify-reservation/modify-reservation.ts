@@ -38,7 +38,10 @@ export class ModifyReservationPage {
   gap:number = 3.50;
   type:any;
   map: GoogleMap;
-
+  stars:any;
+  avg:any;
+  operatorName:any;
+  operatorAddress:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -57,6 +60,10 @@ export class ModifyReservationPage {
     this.price = navParams.get('reservation').price;
     this.people = navParams.get('reservation').nbr_in_party;
     this.type = navParams.get('type');
+    this.stars = navParams.get('reservation').stars;
+    this.avg = navParams.get('reservation').countReviews;
+    this.operatorName = navParams.get('reservation').operatorName;
+    this.operatorAddress = navParams.get('reservation').operatorAddress;
 
     this.getStatus();
   }
