@@ -34,6 +34,8 @@ export class ReservationDetailPage {
   lng:any;
   address:any;
   operatorName:any;
+  stars:any;
+  avg:any;
 
   
 
@@ -51,6 +53,8 @@ export class ReservationDetailPage {
     this.people = navParams.get('reservation').nbr_in_party;
     this.address = navParams.get('reservation').address;
     this.operatorName = navParams.get('reservation').operatorName;
+    this.stars = navParams.get('res').stars;
+    this.avg = navParams.get('res').countReviews;
     
   }
 
