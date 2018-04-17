@@ -316,10 +316,21 @@ getLikeStatus(){
 }
 
 firstTab(value){
-  this.enableFirst = true;
   this.enableThird = false;
   this.enableSecond = false;
   this.startDate = value;
+
+  if(this.timeStarts != ''){
+    if(this.compareTime(this.timeStarts)){
+      this.enableFirst = true;
+      this.filteredFirstDate = false;
+    }else{
+      this.enableFirst = false;
+      this.filteredFirstDate = true;
+    }
+  }
+  
+ 
   console.log(this.startDate);
 
 }
@@ -328,6 +339,7 @@ secondTab(value){
   this.enableFirst = false;
   this.enableThird = false;
   this.enableSecond = true;
+  this.filteredFirstDate = false;
   this.startDate = value;
   console.log(this.startDate);
 
@@ -337,6 +349,7 @@ thirdTab(value){
   this.enableFirst = false;
   this.enableSecond = false;
   this.enableThird = true;
+  this.filteredFirstDate = false;
   this.startDate = value;
   console.log(this.startDate);
 }
@@ -548,7 +561,7 @@ tConvert (time) {
 //   });
 // }
 
-updateDate(){
+updateDate(){ 
 
   console.log("Inicio", this.timeStarts);
   console.log("Testing", this.compareTime(this.timeStarts));
