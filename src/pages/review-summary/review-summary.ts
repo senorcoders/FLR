@@ -29,6 +29,7 @@ export class ReviewSummaryPage {
   avg3:any;
   avg4:any;
   avg5:any;
+  total:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private httpProvider: UsersProvider) {
@@ -73,7 +74,8 @@ export class ReviewSummaryPage {
       .subscribe(result =>{
         console.log(result);
         this.reviews = result['reviews'];
-        this.avg = result['average'].total;
+        this.avg = result['average'].promedio;
+        this.total = result['average'].total;
         this.avg1 = result['average']["1"];
         this.avg2 = result['average']["2"];
         this.avg3 = result['average']["3"];
@@ -84,7 +86,7 @@ export class ReviewSummaryPage {
 
 
     getAvg(count = 0){
-      return (count / this.avg) * 100;
+      return ((count / this.total) * 100).toFixed(1);
 
     }
 

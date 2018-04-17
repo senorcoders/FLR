@@ -86,6 +86,8 @@ page-review-summary {
         .progress-inner[_ngcontent-c0]{
             border-radius: 0 !important;
             background: #ff6633 !important;
+            color: #ff6633 !important;
+            padding: 0;
 
         }
     }
@@ -115,5 +117,7 @@ page-review-summary {
         width: 100%;
     }
 
-    
+    .item-block{
+        padding-left: 0;
+      }
 }

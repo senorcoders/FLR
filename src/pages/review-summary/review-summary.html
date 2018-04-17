@@ -24,7 +24,7 @@
                 <div class="progress-box">
                     5 <ion-icon name="star"></ion-icon>
                     <progress-bar [progress]="getAvg(avg5)">
-                      </progress-bar>
+                      </progress-bar> {{getAvg(avg5)}}%
                 </div>
                 
               </ion-item>
@@ -32,7 +32,7 @@
                   <div class="progress-box">
                       4 <ion-icon name="star"></ion-icon>
                       <progress-bar [progress]="getAvg(avg4)">
-                        </progress-bar>
+                        </progress-bar>{{getAvg(avg4)}}%
                   </div>
                   
                 </ion-item>
@@ -40,7 +40,7 @@
                     <div class="progress-box">
                         3 <ion-icon name="star"></ion-icon>
                         <progress-bar [progress]="getAvg(avg3)">
-                          </progress-bar>
+                          </progress-bar>{{getAvg(avg3)}}%
                     </div>
                     
                   </ion-item>
@@ -48,7 +48,7 @@
                       <div class="progress-box">
                           2 <ion-icon name="star"></ion-icon>
                           <progress-bar [progress]="getAvg(avg2)">
-                            </progress-bar>
+                            </progress-bar>{{getAvg(avg2)}}%
                       </div>
                       
                     </ion-item>
@@ -56,7 +56,7 @@
                         <div class="progress-box">
                             1 <ion-icon name="star"></ion-icon>
                             <progress-bar [progress]="getAvg(avg1)">
-                              </progress-bar>
+                              </progress-bar>{{getAvg(avg1)}}%
                         </div>
                         
                       </ion-item>
@@ -76,7 +76,7 @@
         starIconName="star" 
         nullable="false" 
         ></rating>
-        <span class="count"> ({{avg}})</span>
+        <span class="count"> ({{total}})</span>
         </div>
 
       </ion-col>
