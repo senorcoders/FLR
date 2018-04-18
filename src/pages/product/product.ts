@@ -463,7 +463,7 @@ toggleEndDate(value){
 presentAlert(message) {
   let alert = this.alertCtrl.create({
     title: 'Oops!',
-    subTitle: message,
+    subTitle: message, 
     buttons: ['Dismiss']
   });
   alert.present();

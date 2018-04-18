@@ -55,7 +55,7 @@ export class ReservationPage {
     public popoverCtrl: PopoverController,
     private keyboard: Keyboard) {
       this.keyboard.hideKeyboardAccessoryBar(false);
-      this.productID = navParams.get('productID');
+      this.productID = navParams.get('productID'); 
       this.operatorName = navParams.get('operatorName');
       this.productName = navParams.get('productName');
       this.price = navParams.get('price');
@@ -173,7 +173,7 @@ getUserData(){
 checkRequireFields(){
   console.log(this.name);
     if(this.name != undefined && this.email != undefined && this.mobile != undefined){
-        console.log("You can go and pay!");
+        console.log("You can go and pay!", this.getTotal());
         this.navCtrl.push(PaymentPage, {
           productID: this.productID,
           productName: this.productName,
