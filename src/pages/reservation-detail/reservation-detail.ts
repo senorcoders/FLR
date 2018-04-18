@@ -9,6 +9,8 @@ import {
   MarkerOptions,
   Marker
  } from '@ionic-native/google-maps';
+ import { Geolocation } from '@ionic-native/geolocation';
+
 
 @IonicPage()
 @Component({
@@ -36,11 +38,13 @@ export class ReservationDetailPage {
   operatorName:any;
   stars:any;
   avg:any;
+  myLat:any;
+  MyLng:any;
 
   
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public googleMaps: GoogleMaps) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public googleMaps: GoogleMaps, private geolocation: Geolocation) {
     this.bookingID = navParams.get('reservation').id;
     this.bookingDate= navParams.get('reservation').transaction_date;
     this.productName = navParams.get('reservation').misc_trip_name;
@@ -55,6 +59,12 @@ export class ReservationDetailPage {
     this.operatorName = navParams.get('reservation').operatorName;
     this.stars = navParams.get('res').stars;
     this.avg = navParams.get('res').countReviews;
+    this.geolocation.getCurrentPosition().then((resp) =>{
+      this.myLat = resp.coords.latitude;
+      this.MyLng = resp.coords.longitude;
+        }).catch((error) => {
+          console.log('Error getting location', error);
+        });
     
   }
 
@@ -126,6 +136,42 @@ export class ReservationDetailPage {
   
       });
   }
+
+  getDistanceBetweenPoints(lat, lng){
+    console.log(lat, lng);
+        
+    let earthRadius = {
+        miles: 3958.8,
+        km: 6371
+    };
+
+    let R = earthRadius['miles'];
+    let lat1 = this.myLat;
+    let lon1 = this.MyLng;
+    let lat2 = lat;
+    let lon2 = lng;
+
+    let dLat = this.toRad((lat2 - lat1));
+    let dLon = this.toRad((lon2 - lon1));
+    let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(this.toRad(lat1)) * Math.cos(this.toRad(lat2)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    let d = R * c;
+
+    if(isNaN(d)){
+      return '0 miles'
+    }else{
+      return d.toFixed(2) + ' miles';
+
+    }
+
+}
+
+toRad(x){
+  return x * Math.PI / 180;
+}
   
 
 }

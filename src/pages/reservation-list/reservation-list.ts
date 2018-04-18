@@ -111,7 +111,7 @@ export class ReservationListPage {
         this.data.nbr_in_party = nbr_in_party;
         this.data.address = address;
         this.data.operatorName = operatorName;
-        this.navCtrl.push(ReservationDetailPage, {reservation: this.data, lat: data[0].lat, lng: data[0].lng, res: res});
+        this.navCtrl.push(ReservationDetailPage, {reservation: this.data, lat: data[0].lat, lng: data[0].lon, res: res});
 
       });
   

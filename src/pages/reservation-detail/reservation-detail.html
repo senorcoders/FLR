@@ -21,7 +21,7 @@
           <b>Booking # </b>{{bookingID}}
         </ion-col>
         <ion-col col-12>
-          <b>Booking Date</b> {{bookingDate | amUtc | amDateFormat: 'MM-DD-YYYY'}}
+          <b>Booking Date</b> {{bookingDate | amUtc | amDateFormat: 'MMM DD, YYYY'}}
         </ion-col>
         <ion-col col-12>
           <span class="gray">Receipt has been emailed to you.</span>	
@@ -35,7 +35,7 @@
         <ion-col col-12>
           <h3>Reservation Summary</h3>
           <p>
-            {{operatorName}}
+            {{operatorName}} ({{getDistanceBetweenPoints(lat, lng)}})
           </p>
           <p>{{address}}</p>
           <div class="rating-box">
