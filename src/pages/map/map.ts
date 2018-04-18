@@ -245,7 +245,12 @@ export class MapPage {
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     let d = R * c;
 
-    return d.toFixed(2) + ' miles';
+    if(isNaN(d)){
+      return '0 miles'
+    }else{
+      return d.toFixed(2) + ' miles';
+
+    }
 
 }
 
