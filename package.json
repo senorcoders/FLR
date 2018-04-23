@@ -80,8 +80,8 @@
       "cordova-plugin-ms-azure-mobile-apps": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyCSHbipVPR37zalKSRMqad8n_aM2BZfSps",
-        "API_KEY_FOR_IOS": "AIzaSyDEtLuaFKe6NVXWj2CWOwwzOJ2ZWhQ_aqE"
+        "API_KEY_FOR_ANDROID": "AIzaSyD8cgKLIOo3nL2k_ybDbOlQ4TteORyLyvA",
+        "API_KEY_FOR_IOS": "AIzaSyD8cgKLIOo3nL2k_ybDbOlQ4TteORyLyvA"
       },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"

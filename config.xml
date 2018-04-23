@@ -157,6 +157,8 @@
     <allow-navigation href="http://169.254.71.61:8100" />
     <allow-navigation href="http://169.254.184.1:8100" />
     <allow-navigation href="http://169.254.126.55:8100" />
+    <allow-navigation href="http://169.254.223.31:8100" />
+    <allow-navigation href="http://169.254.211.184:8100" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -168,8 +170,8 @@
     <plugin name="cordova-plugin-ms-azure-mobile-apps" spec="^2.0.0" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.1" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.1.1">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCSHbipVPR37zalKSRMqad8n_aM2BZfSps" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyDEtLuaFKe6NVXWj2CWOwwzOJ2ZWhQ_aqE" />
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyD8cgKLIOo3nL2k_ybDbOlQ4TteORyLyvA" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyD8cgKLIOo3nL2k_ybDbOlQ4TteORyLyvA" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
@@ -179,6 +181,4 @@
     </plugin>
     <plugin name="cordova.plugins.diagnostic" spec="^3.9.2" />
     <plugin name="cordova-plugin-add-swift-support" spec="^1.7.0" />
-    <allow-navigation href="http://169.254.223.31:8100" />
-    <allow-navigation href="http://169.254.211.184:8100" />
 </widget>
