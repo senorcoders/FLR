@@ -21,7 +21,7 @@ export class RegisterPage {
   password:any;
   endpoint:any = 'user';
   HAS_LOGGED_IN = 'hasLoggedIn';
-  photo_url:any = 'https://liveglam.com/wp-content/themes/liveglam-new/assets/img/avatar_placeholder.svg';
+  photo_url:any = 'http://reserverentals.com/avatar_placeholder.svg';
   emailEndpoint:any = 'user/check/email/';
   usernameEndpoint:any = 'user/check/username/';
   message:string;
