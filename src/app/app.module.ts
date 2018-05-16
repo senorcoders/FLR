@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -45,46 +45,65 @@ import { ThankInquiryPage } from '../pages/thank-inquiry/thank-inquiry';
 import { ReviewSummaryPage } from '../pages/review-summary/review-summary';
 import {ProgressBarModule} from "angular-progress-bar"
 import { PrivacyPage } from '../pages/privacy/privacy';
+import { BookingInquiryPageModule } from '../pages/booking-inquiry/booking-inquiry.module';
+import { ChangeLocationPageModule } from '../pages/change-location/change-location.module';
+import { EditProfilePageModule } from '../pages/edit-profile/edit-profile.module';
+import { FavoritesPageModule } from '../pages/favorites/favorites.module';
+import { FeedPageModule } from '../pages/feed/feed.module';
+import { LocationsPageModule } from '../pages/locations/locations.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { MapPageModule } from '../pages/map/map.module';
+import { MapModalPageModule } from '../pages/map-modal/map-modal.module';
+import { ModifyReservationPageModule } from '../pages/modify-reservation/modify-reservation.module';
+import { PaymentPageModule } from '../pages/payment/payment.module';
+import { PrivacyPageModule } from '../pages/privacy/privacy.module';
+import { ProductPageModule } from '../pages/product/product.module';
+import { ProductListPageModule } from '../pages/product-list/product-list.module';
+import { RegisterPageModule } from '../pages/register/register.module';
+import { RequestsPageModule } from '../pages/requests/requests.module';
+import { ReservationPageModule } from '../pages/reservation/reservation.module';
+import { ReservationDetailPageModule } from '../pages/reservation-detail/reservation-detail.module';
+import { ReservationListPageModule } from '../pages/reservation-list/reservation-list.module';
+import { ReviewPageModule } from '../pages/review/review.module';
+import { ReviewSummaryPageModule } from '../pages/review-summary/review-summary.module';
+import { SingleReviewPageModule } from '../pages/single-review/single-review.module';
+import { TermsPageModule } from '../pages/terms/terms.module';
+import { ThankInquiryPageModule } from '../pages/thank-inquiry/thank-inquiry.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    FeedPage,
-    LocationsPage,
-    ProductPage,
-    ProductListPage,
-    EditProfilePage,
-    FavoritesPage,
-    ReviewPage,
-    SingleReviewPage,
-    ReservationPage,
-    PaymentPage,
-    ModifyReservationPage,
-    ReservationListPage,
-    ReservationDetailPage,
-    BookingInquiryPage,
-    MapPage,
-    TermsPage,
-    RequestsPage,
-    ChangeLocationPage,
-    MapModalPage,
-    LoginPage,
-    RegisterPage,
-    ThankInquiryPage,
-    ReviewSummaryPage,
-    PrivacyPage
+    HomePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-    Ionic2RatingModule,
-    MomentModule,
-    GooglePlacesAutocompleteComponentModule,
-    ProgressBarModule
-
+    BookingInquiryPageModule,
+    ChangeLocationPageModule,
+    EditProfilePageModule,
+    FavoritesPageModule,
+    FeedPageModule,
+    LocationsPageModule,
+    LoginPageModule,
+    MapPageModule,
+    MapModalPageModule,
+    ModifyReservationPageModule,
+    PaymentPageModule,
+    PrivacyPageModule,
+    ProductPageModule,
+    ProductListPageModule,
+    RegisterPageModule,
+    RequestsPageModule,
+    ReservationPageModule,
+    ReservationDetailPageModule,
+    ReservationListPageModule,
+    ReviewPageModule,
+    ReviewSummaryPageModule,
+    SingleReviewPageModule,
+    TermsPageModule,
+    ThankInquiryPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
