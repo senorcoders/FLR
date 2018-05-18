@@ -97,20 +97,20 @@ export class MapPage {
 
   getLocations(){
     
-    this.http.get(this.base + this.lat + '/' + this.lng + '/40000')
+    this.http.get(this.base + this.lat + '/' + this.lng + '/25000')
     //this.http.get(this.base +  '28.471346/-81.54047/10000')
     .map(res => res.json())
     .subscribe(locations => this.initMap(locations))
   }
 
   updateLocations(){
-    this.http.get(this.base + this.lat + '/' + this.lng + '/40000')
+    this.http.get(this.base + this.lat + '/' + this.lng + '/25000')
     .map(res => res.json())
     .subscribe(locations => this.moveMap(locations))
   }
 
   updateMarkers(){
-    this.http.get(this.base + this.lat + '/' + this.lng + '/40000')
+    this.http.get(this.base + this.lat + '/' + this.lng + '/25000')
     .map(res => res.json())
     .subscribe(locations => this.sortMarkers(locations))
   }
