@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ChangeLocationPage } from './change-location';
-import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,10 @@ import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-au
   ],
   imports: [
     IonicPageModule.forChild(ChangeLocationPage),
-    GooglePlacesAutocompleteComponentModule
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBmXK9M2OQCfZuPJdgxLzWkFcdPd_Zo7ZY",
+      libraries: ["places"]
+    })
   ],
 })
 export class ChangeLocationPageModule {}

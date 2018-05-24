@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
+import { MapsAPILoader } from '@agm/core';
+declare var google;
 
 @IonicPage()
 @Component({
@@ -12,6 +14,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 export class ChangeLocationPage {
 
   searchTerm:any;
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
   constructor( 
     public navCtrl: NavController, 
@@ -19,7 +23,9 @@ export class ChangeLocationPage {
     public viewCtrl: ViewController,
     private storage: Storage,
     private nativeGeocoder: NativeGeocoder,
-    private geolocation: Geolocation) {
+    private geolocation: Geolocation,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) {
      
   }
 
@@ -73,7 +79,33 @@ export class ChangeLocationPage {
     this.searchTerm = item.description;
   }
 
+  ngOnInit() {
 
+
+   
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["(cities)"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }else{
+            console.log("place", place.geometry.location.lat());
+            this.searchTerm = place.formatted_address;
+          }
+
+        });
+      });
+    });
+  }
   
 
 }

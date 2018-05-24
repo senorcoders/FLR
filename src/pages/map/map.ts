@@ -24,7 +24,7 @@ import { ProductPage } from '../product/product';
 export class MapPage {
   //@ViewChild('map') element:ElementRef;
 
-  base:any = 'http://104.131.20.153:3030/api/location/by_distance/';
+  base:any = 'https://reserverentals.com/api/location/by_distance/';
   lat:any;
   lng:any;
   map: GoogleMap;
