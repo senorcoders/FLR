@@ -4,6 +4,9 @@ import { Storage } from '@ionic/storage';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
+
+
 declare var google;
 
 @IonicPage()

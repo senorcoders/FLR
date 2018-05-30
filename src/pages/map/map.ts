@@ -97,20 +97,20 @@ export class MapPage {
 
   getLocations(){
     
-    this.http.get(this.base + this.lat + '/' + this.lng + '/25000')
+    this.http.get(this.base + this.lat + '/' + this.lng + '/16000')
     //this.http.get(this.base +  '28.471346/-81.54047/10000')
     .map(res => res.json())
     .subscribe(locations => this.initMap(locations))
   }
 
   updateLocations(){
-    this.http.get(this.base + this.lat + '/' + this.lng + '/25000')
+    this.http.get(this.base + this.lat + '/' + this.lng + '/16000')
     .map(res => res.json())
-    .subscribe(locations => this.moveMap(locations))
+    .subscribe(locations => this.moveUpdatedMap(locations))
   }
 
   updateMarkers(){
-    this.http.get(this.base + this.lat + '/' + this.lng + '/25000')
+    this.http.get(this.base + this.lat + '/' + this.lng + '/16000')
     .map(res => res.json())
     .subscribe(locations => this.sortMarkers(locations))
   }
@@ -135,6 +135,17 @@ export class MapPage {
     }); 
   }
 
+
+  centerMap(){
+    let cameraCoordinates: LatLng = new LatLng(this.lat, this.lng);
+
+      let cameraPosition = {
+        target: cameraCoordinates,
+        zoom: 12
+      }
+  
+      this.map.animateCamera(cameraPosition);
+  }
 
   moveMap(locations){
     if(locations.length < 1){
@@ -172,6 +183,23 @@ export class MapPage {
 
     
     
+  }
+
+  moveUpdatedMap(locations){
+    if(locations.length < 1){
+        console.log("No hay lugares");
+    }else{
+      let cameraCoordinates: LatLng = new LatLng(locations[0].lat, locations[0].lot);
+
+    let cameraPosition = {
+      target: cameraCoordinates,
+      zoom: 12
+    }
+
+    this.map.animateCamera(cameraPosition);
+    this.sortMarkers(locations);
+
+  }
   }
 
   myMarker(){
@@ -320,7 +348,7 @@ export class MapPage {
         // };
   
         // this.map.animateCamera(cameraPosition);
-        this.updateLocations();
+        this.centerMap();
        
       }      
     });
